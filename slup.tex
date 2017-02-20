@@ -141,7 +141,7 @@
 \begin{proof}
   Пусть $\Prob(\tau < \infty) < 1$. Тогда
   \begin{flushleft}
-    $\Prob(N < \infty) = \sum\limits_{n=1}^{\infty} \Prob(N = n) = \sum\limits_{n=1}^{\infty} \Prob(\tau = \infty) \Prob(\tau < \infty)^{n-1} = \frac{\Prob(\tau = \infty)}{1 - \Prob(\tau < \infty)} = \qquad = \frac{\Prob(\tau = \infty)}{\Prob(\tau = \infty)} = 1$.
+    $\Prob(N < \infty) = \sum\limits_{n=1}^{\infty} \Prob(N = n) = \sum\limits_{n=1}^{\infty} \Prob(\tau = \infty) \Prob(\tau < \infty)^{n-1} = \frac{\Prob(\tau = \infty)}{1 - \Prob(\tau < \infty)} = \frac{\Prob(\tau = \infty)}{\Prob(\tau = \infty)} = 1$.
   \end{flushleft}
   Это доказывает первое утверждение следствия и импликацию справа налево в формулировке следствия. Докажем импликацию слева направо.
   \begin{flushleft}
@@ -391,11 +391,41 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 \end{proof}
 
 \begin{thm}
-  Вероятность вырождения $\Prob(A)$ есть нуль $\Leftrightarrow$ $p_{0} = 0$. Пусть $p_{0} > 0$. Тогда при $\Expect \xi \leqslant 1$ имеем $\Prob (A) = 1$, при $\Expect \xi > 1$ имеем $\Prob(A) < 1$.
+ \begin{enumerate}
+  \item Вероятность вырождения $\Prob(A)$ есть нуль $\Leftrightarrow$ $p_{0} = 0$. \item Пусть $p_{0} > 0$. Тогда при $\Expect \xi \leqslant 1$ имеем $\Prob (A) = 1$, при $\Expect \xi > 1$ имеем $\Prob(A) < 1$.
+ \end{enumerate}
 \end{thm}
 
 \begin{proof}
-  \textbf{TODO: доказательство теоремы}
+  \begin{enumerate}
+   \item Пусть $\Prob(A) = 0$. Тогда $p_{0} = 0$, потому что иначе была бы ненулевая вероятность вымирания $\Prob(A) > \Prob(Z_{1} = 0) = p_{0}$. В другую сторону, если $p_{0} = 0$, то вымирания не происходит (почти наверное) из-за того, что у каждой частицы есть как минимум один потомок (почти наверное).
+   \item 
+    \begin{enumerate}
+     \item Пусть $\mu = \Expect\xi \leqslant 1$. Покажем, что в таком случае у уравнения (1) будет единственный корень, равный $1$.
+      \[
+         \psi_{\xi}^{\prime} (z) = \sum\limits_{k=1}^{\infty} kz^{k-1}\Prob(\xi = k) \;\; \Rightarrow \;\; \psi_{\xi}^{\prime} (z) > 0 \text{ при } z > 0{,}
+      \]
+      если только $\xi$ не тождественно равна нулю (в противном случае утверждение теоремы выполнено). Заметим также, что $\psi_{\xi}^{\prime} (z)$ возрастает на $z > 0$. Воспользуемся формулой Лагранжа:
+      \[
+         1 - \psi_{\xi} (z) = \psi_{\xi} (1) - \psi_{\xi} (z) = \psi_{\xi}^{\prime} (\theta) (1 - z) <  \psi_{\xi}^{\prime} (1) (1-z) \leqslant 1-z {,}     
+      \]
+где $z \in (0, 1)$, в силу монотонности $\psi_{\xi}^{\prime} (z)$. Следовательно, если $z < 1$, то
+      \[
+         1 - \psi_{\xi}(z) < 1 - z{,}
+      \] 
+то есть $z=1$ "--- это единственный корень уравнения (1). Значит, $P(A) = 1$.
+\item Пусть $\mu = \Expect\xi > 1$. Покажем, что в таком случае у уравнения (1) есть два корня, один из которых строго меньше единицы.
+      \[
+         \psi_{\xi}^{\prime\prime}(z) = \sum\limits_{k=2}^{\infty} k(k-1)z^{t{ при }k-2}\Prob(\xi = k){,}
+      \]
+следовательно, $\psi_{\xi}^{\prime\prime}(z)$ монотонно возрастает и больше нуля при $z > 0$. Из этого следует, что $1 - \psi_{\xi}^{\prime} (z)$ строго убывает, причем
+ \begin{align*}
+   &1 - \psi_{\xi}^{\prime} (0) = 1 - \Prob(\xi = 1) > 0 {,} \\
+   &1 - \psi_{\xi}^{\prime} (1) = 1 - \mu < 0 {.}
+ \end{align*}
+ Рассмотрим теперь $z - \psi_{\xi} (z)$ при $z = 0$. Поскольку  $1 - \psi_{\xi} (1) = 0$, производная этой функции монотонно убывает, а $0 - \psi_{\xi} (0) = -\Prob(\xi = 0) < 0$, то график функции $z - \psi_{\xi} (z)$ пересечет ось абсцисс в двух точках, одна из которых будет лежать в интервале $(0, 1)$. Так как вероятность вырождения $\Prob(A)$ равна наименьшему корню уравнения (1), то $\Prob(A) < 1$, что и требовалось доказать.
+    \end{enumerate}     
+  \end{enumerate}
 \end{proof}
 
 \begin{cor}
@@ -469,7 +499,6 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 \end{defn}
 
 \begin{lem}
-  \sloppy
   Рассмотрим независимые геометрические величины $U_{0}, \ldots , U_{j+m}$ с параметром $p \in (0, 1)$. Тогда
   \begin{equation*}
     \Prob (j \neq U_{0} + \ldots + U_{j} = m) = \Prob (Z^{\star}(t) = m ){.}
