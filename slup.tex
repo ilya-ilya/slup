@@ -8,6 +8,10 @@
 
 \newcommand{\Expect}{\mathsf{E}}
 \newcommand{\nat}{\ensuremath\mathbb N}
+\newcommand{\nonneg}{\ensuremath\mathbb Z_+}
+\newcommand{\as}{\xrightarrow{\text{п.\,н.}}}
+\newcommand{\ind}{\mathbb I}
+\DeclareMathOperator{\var}{\mathrm var}
 
 \theoremstyle{plain}
 \newtheorem{thm}{Теорема}[section]
@@ -88,7 +92,7 @@
 \end{defn}
 
 \begin{defn}\index{Случайное блуждание!простое!возвратное}
-  Введем N := $\sum\limits_{n=0}^\infty \mathbb{I} \lbrace S_{n} = 0 \rbrace$ ($\leqslant \infty$). Это, по сути, число попаданий нашего процесса в точку 0. Простое случайное блуждание $S = \lbrace S_{n}, n \geqslant 0\rbrace$ называется \emph{возвратным}, если $\Prob(N = \infty) = 1$; \emph{невозвратным}, если $\Prob(N < \infty) = 1$.
+  Введем N := $\sum\limits_{n=0}^\infty \ind \lbrace S_{n} = 0 \rbrace$ ($\leqslant \infty$). Это, по сути, число попаданий нашего процесса в точку 0. Простое случайное блуждание $S = \lbrace S_{n}, n \geqslant 0\rbrace$ называется \emph{возвратным}, если $\Prob(N = \infty) = 1$; \emph{невозвратным}, если $\Prob(N < \infty) = 1$.
 \end{defn}
 
 \begin{rem}
@@ -111,8 +115,8 @@
 
   \begin{multline*}
     \Prob(N = n+1, \tau < \infty) = \sum_{k=1}^{\infty} \Prob(N = n+1, \tau = k) =\\
-    = \sum_{k=1}^{\infty} \Prob\left( \sum_{m=0}^{\infty} \mathbb{I} \lbrace S_{m+k} - S_{k} = 0 \rbrace = n, \tau = k\right) =\\
-    = \sum_{k=1}^{\infty} \Prob\left( \sum_{m=0}^{\infty} \mathbb{I} \left\lbrace S_{m} = 0 \right\rbrace = n\right)\Prob(\tau = k) =\\
+    = \sum_{k=1}^{\infty} \Prob\left( \sum_{m=0}^{\infty} \ind \lbrace S_{m+k} - S_{k} = 0 \rbrace = n, \tau = k\right) =\\
+    = \sum_{k=1}^{\infty} \Prob\left( \sum_{m=0}^{\infty} \ind \left\lbrace S_{m} = 0 \right\rbrace = n\right)\Prob(\tau = k) =\\
     = \sum_{k=1}^{\infty} \Prob(N^{\prime} = n)\Prob(\tau = k),
   \end{multline*}
   где $N^{\prime}$ определяется по последовательности $X_{1}^{\prime} = X_{k+1}$, $X_{2}^{\prime} = X_{k+2}$ и так далее. Из того, что $X_{i}$ --- независиые одинаково распределенные случайные векторы, следует, что $N^{\prime}$ и $N$ распределены одинаково. Таким образом, получаем, что
@@ -172,9 +176,9 @@
 \end{proof}
 
 \begin{rem}
-  Заметим, что поскольку $N = \sum\limits_{n=0}^{\infty} \mathbb{I} \lbrace S_{n} = 0 \rbrace$, то
+  Заметим, что поскольку $N = \sum\limits_{n=0}^{\infty} \ind \lbrace S_{n} = 0 \rbrace$, то
   \begin{equation*}
-    \Expect N = \sum_{n=0}^{\infty} \Expect \mathbb{I} \lbrace S_{n} = 0 \rbrace = \sum\limits_{n=0}^{\infty} \Prob(S_{n} = 0),
+    \Expect N = \sum_{n=0}^{\infty} \Expect \ind \lbrace S_{n} = 0 \rbrace = \sum\limits_{n=0}^{\infty} \Prob(S_{n} = 0),
   \end{equation*}
   где перестановка местами знаков матожидания и суммы возможна в силу неотрицательности членов ряда. Таким образом, \begin{center}
     S возвратно $\Leftrightarrow$ $\sum\limits_{n=0}^{\infty} \Prob(S_{n} = 0) = \infty$.
@@ -216,11 +220,11 @@
     1, & n=0 \\ 0, &n \neq 0
   \end{cases}$. Следовательно,
   \begin{equation*}
-    \mathbb{I} \lbrace S_{n} = 0 \rbrace  = \prod_{k=1}^{d} \mathbb{I} \lbrace S_{n}^{(k)} = 0 \rbrace = \prod\limits_{k=1}^{d} \int\limits_{[-\pi, \pi]} \frac{e^{i S_{n}^{(k)} t_{k}}}{2 \pi}\,\dif t_{k} = \frac{1}{(2 \pi)^{d}} \int\limits_{[-\pi, \pi]^{d}} e^{i (S_{n}, t)}\,\dif t{.}
+    \ind \lbrace S_{n} = 0 \rbrace  = \prod_{k=1}^{d} \ind \lbrace S_{n}^{(k)} = 0 \rbrace = \prod\limits_{k=1}^{d} \int\limits_{[-\pi, \pi]} \frac{e^{i S_{n}^{(k)} t_{k}}}{2 \pi}\,\dif t_{k} = \frac{1}{(2 \pi)^{d}} \int\limits_{[-\pi, \pi]^{d}} e^{i (S_{n}, t)}\,\dif t{.}
   \end{equation*}
   По теореме Фубини
   \begin{equation*}
-    \Expect \mathbb{I} (S_{n} = 0) = \Expect \frac{1}{(2 \pi)^{d}} \int_{[-\pi, \pi]^{d}} e^{i (S_{n}, t)}\,\dif t = \frac{1}{(2 \pi)^{d}} \int\limits_{[-\pi, \pi]^{d}} \Expect e^{i (S_{n}, t)}\,\dif t.
+    \Expect \ind (S_{n} = 0) = \Expect \frac{1}{(2 \pi)^{d}} \int_{[-\pi, \pi]^{d}} e^{i (S_{n}, t)}\,\dif t = \frac{1}{(2 \pi)^{d}} \int\limits_{[-\pi, \pi]^{d}} \Expect e^{i (S_{n}, t)}\,\dif t.
   \end{equation*}
   Заметим, что
   \begin{equation*}
@@ -228,7 +232,7 @@
   \end{equation*}
   Тогда
   \begin{equation*}
-    \Expect \mathbb{I} (S_{n} = 0) = \Prob(S_{n} = 0) = \frac{1}{(2 \pi)^{d}}\int_{[-\pi, \pi]^{d}} \left(\varphi \left(t\right)\right)^{n}\,\dif t.
+    \Expect \ind (S_{n} = 0) = \Prob(S_{n} = 0) = \frac{1}{(2 \pi)^{d}}\int_{[-\pi, \pi]^{d}} \left(\varphi \left(t\right)\right)^{n}\,\dif t.
   \end{equation*}
   Из этого следует, что
   \begin{equation*}
@@ -328,11 +332,11 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 
   \begin{multline*}
     f_{Z_{n}}(s) = \Expect s^{Z_{n}} = \Expect \left(s^{\sum_{k=1}^{Z_{n-1}} \xi_{n, k}}\right) =\\
-    = \sum_{j=0}^{\infty} \Expect \left[ \left( s^{\sum_{k=1}^{Z_{n-1}} \xi_{n, k}} \right)  \mathbb{I} \lbrace Z_{n-1} = j \rbrace \right] = \\ = \sum_{j=0}^{\infty} \Expect \left[ \left( s \: ^{\sum_{k=1}^{j} \xi_{n, k}} \right)  \mathbb{I} \lbrace Z_{n-1} = j \rbrace \right].
+    = \sum_{j=0}^{\infty} \Expect \left[ \left( s^{\sum_{k=1}^{Z_{n-1}} \xi_{n, k}} \right)  \ind \lbrace Z_{n-1} = j \rbrace \right] = \\ = \sum_{j=0}^{\infty} \Expect \left[ \left( s \: ^{\sum_{k=1}^{j} \xi_{n, k}} \right)  \ind \lbrace Z_{n-1} = j \rbrace \right].
   \end{multline*}
   Поскольку $\sigma \lbrace Z_{r} \rbrace \subset \sigma \lbrace \xi_{m, k}, \; m = 1, \ldots, r, \; k \in \mathbb{N} \rbrace$, которая независима с $\sigma \lbrace \xi_{n, k}, \; k \in \mathbb{N} \rbrace$ (строгое и полное обоснование остается в качестве упражнения), то
   \begin{multline*}
-    \sum_{j=0}^{\infty} \Expect \left[ \left( s \: ^{\sum_{k=1}^{j} \xi_{n, k}} \right)  \mathbb{I} \lbrace Z_{n-1} = j \rbrace \right]  =  \sum\limits_{j=0}^{\infty} \Expect \left(s \: ^{\sum\limits_{k=1}^{j} \xi_{n, k}}\right) \Expect \mathbb{I} \lbrace Z_{n-1} = j \rbrace  = \\ = \sum\limits_{j=0}^{\infty} \Expect \left(s \: ^{\sum\limits_{k=1}^{j} \xi_{n, k}}\right) \Prob ( Z_{n-1} = j ) = \sum\limits_{j=0}^{\infty} \prod\limits_{k=1}^{j} \Expect s^{\xi_{n, k}} \Prob (Z_{n-1} = j) = \\ = \sum\limits_{j=0}^{\infty} \psi_{\xi}^{j} (s) \Prob (Z_{n-1} = j)  =  f_{Z_{n-1}} \left(\psi_{\xi} \left(s \right) \right)
+    \sum_{j=0}^{\infty} \Expect \left[ \left( s \: ^{\sum_{k=1}^{j} \xi_{n, k}} \right)  \ind \lbrace Z_{n-1} = j \rbrace \right]  =  \sum\limits_{j=0}^{\infty} \Expect \left(s \: ^{\sum\limits_{k=1}^{j} \xi_{n, k}}\right) \Expect \ind \lbrace Z_{n-1} = j \rbrace  = \\ = \sum\limits_{j=0}^{\infty} \Expect \left(s \: ^{\sum\limits_{k=1}^{j} \xi_{n, k}}\right) \Prob ( Z_{n-1} = j ) = \sum\limits_{j=0}^{\infty} \prod\limits_{k=1}^{j} \Expect s^{\xi_{n, k}} \Prob (Z_{n-1} = j) = \\ = \sum\limits_{j=0}^{\infty} \psi_{\xi}^{j} (s) \Prob (Z_{n-1} = j)  =  f_{Z_{n-1}} \left(\psi_{\xi} \left(s \right) \right)
   \end{multline*}
   в силу независимости и одинаковой распределенности $\xi_{n, k}$ и определения производящей функции. Таким образом,
   \begin{equation*}
@@ -476,34 +480,161 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 \begin{rem}
   Полезно заметить, что
   \begin{equation*}
-    Z(t) = \sum_{n=1}^{\infty} \mathbb{I} \lbrace S_{n} \leqslant t \rbrace{,}\;\; t > 0{.}
+    Z(t) = \sum_{n=1}^{\infty} \ind \lbrace S_{n} \leqslant t \rbrace{,}\;\; t > 0{.}
   \end{equation*}
 \end{rem}
 
-\begin{defn}
-  Рассмотрим \emph{процесс восстановления $\lbrace Z^{\star}(t){,}\; t \geqslant 0 \rbrace$}, который строится по $Y, Y_{1}, Y_{2}, \ldots$ "--- независимым одинаково распределенным случайным величинам, где $\Prob(Y = \alpha) = p \in (0, 1)$; $\Prob(Y = 0) = q = 1-p$. Исключаем из рассмотрения случай, когда $Y = C = const$: если $C = 0$, то $Z(t) = \infty \;\: \forall\, t > 0$; если же $C > 0$, то $Z(t) = \left[\frac{t}{c}\right]$.
+\begin{defn}\label{defstar}
+  Рассмотрим \emph{процесс восстановления} $\{ Z^\star(t),\; t \geqslant 0 \}$, который строится по $Y, Y_{1}, Y_{2}, \ldots$ "--- независимым одинаково распределенным случайным величинам, где $\Prob(Y = \alpha) = p \in (0, 1)$, $\Prob(Y = 0) =  1-p$. Исключаем из рассмотрения случай, когда $Y = C = const$: если $C = 0$, то $Z(t) = \infty \;\: \forall\, t > 0$; если же $C > 0$, то $Z(t) = \left[\frac{t}{c}\right]$.
 \end{defn}
 
 \begin{lem}
+  Для $l = 0, 1, 2,\ldots$
   \begin{equation*}
     \Prob(Z^{\star}(t) = m) =
     \begin{cases}
-      C_{m}^{j} \, p^{j+1} q^{m-j} {,}\; \text{где } j = \left[\frac{t}{\alpha} \right]&{,}\; \text{если } m \geqslant j{;} \\ 0 &{,}\; \text{если } m < j{,}
+      C_{m}^{j} \, p^{j+1} q^{m-j} {,}\; \text{где } j = \left[\frac{t}{\alpha} \right],\; &\text{если } m \geqslant j{;} \\
+      0,\; &\text{если } m < j{.}
     \end{cases}
   \end{equation*}
-  где $m = 0, 1, 2, \ldots$ .
 \end{lem}
 
 \begin{defn}
-  $U$ имеет \index{Распределение!геометрическое}\emph{геометрическое распределение} с параметром $p \in (0, 1)$, если $\Prob(U = k) = (1-p)^{k}p,\; k = 0, 1, 2, \ldots$ .
+  Будем говорить, что дискретная случайная величина $U$ имеет \index{Распределение!геометрическое}\emph{геометрическое распределение} с параметром $p \in (0, 1)$, если для $k = 0, 1, 2, \ldots$ $\Prob(U = k) = (1-p)^{k}p$.
 \end{defn}
 
-\begin{lem}
-  Рассмотрим независимые геометрические величины $U_{0}, \ldots , U_{j+m}$ с параметром $p \in (0, 1)$. Тогда
+\begin{lem}\label{lemsum}
+  \sloppy
+  Рассмотрим независимые геометрические величины $U_{0}, \ldots , U_{j+m}$ с параметром $p \in (0, 1)$, где $j = \left[ \frac{t}{\alpha} \right]$. Тогда при $t > \alpha$
   \begin{equation*}
-    \Prob (j \neq U_{0} + \ldots + U_{j} = m) = \Prob (Z^{\star}(t) = m ){.}
+    \Prob (j + U_{0} + \ldots + U_{j} = m) = \Prob (Z^{\star}(t) = m ).
   \end{equation*}
 \end{lem}
+
+\begin{proof}
+   Обозначим $M = \big\{ (k_0, \ldots, k_j)\colon k_j \in \nonneg, \sum\limits_{i = 0}^j k_j = m - j$\big\}.
+  \begin{multline*}
+    \Prob\left( U_0 + \ldots + U_j = m - j\right) = \sum_{(k_0, \ldots, k_j) \in M} \Prob(U_0 = k_0, \ldots, U_j = k_j) =\\
+    = \sum_{(k_0, \ldots, k_j) \in M} \Prob(U_0 = k_0)\ldots \Prob(U_j = k_j) = \sum_{(k_0, \ldots, k_j) \in M} p (1 - p)^{k_0}\ldots p (1 - p)^{k_j} =\\
+    = \sum_{(k_0, \ldots, k_j) \in M} = p^{j + 1} (1 - p)^{k_0 + \ldots + k_j} = p^{j + 1} (1 - p)^{m - j} \#M = C_m^j p^{j + 1} (1 - p)^{m - j}.
+  \end{multline*}
+\end{proof}
+
+\subsection{Сопоставление исходного процесса восстановления со вспомогательным}
+
+\begin{lem}
+  Пусть $t \geqslant \alpha$. Тогда $\Expect Z^\star(t) \leqslant At$ и $\Expect Z^\star(t)^2 \leqslant B t^2$, где $A = A(p, \alpha) > 0$, $B = B(p, \alpha) > 0$.
+\end{lem}
+
+\begin{proof}
+  По лемме \ref{lemsum} $\Expect Z^\star(t) = \Expect(j + U_0 + \ldots + U_j) = j + (j + 1) \Expect U$, где $\Expect U =: a(p) < \infty$ "--- математическое ожидание геометрического распределения.
+
+  Тогда
+  \begin{multline*}
+    \Expect Z^\star(t) = j + (j + 1) a(p) \leqslant (j + 1) \big(a(p) + 1\big) \leqslant\\
+    \leqslant \frac{t + \alpha}{\alpha} \big(a(p) + 1\big) \leqslant \frac{2 t}{\alpha} \big( a(p) + 1 \big) = A t,
+  \end{multline*}
+  где $A := \frac{2 (a(p) + 1)}{\alpha}$.
+
+  Далее,
+  \begin{multline*}
+    \Expect Z^\star(t)^2 = \var Z^\star(t) + \big(\Expect Z^\star(t) \big)^2 \leqslant (j + 1) \underbrace{\var U}_{\sigma^2(p)} + (j + 1)^2 \big( a(p) + 1 \big)^2 \leqslant\\
+    \leqslant (j + 1)^2 \left( \sigma^2(p) + \big( a(p) + 1 \big)^2 \right) \leqslant \frac{4}{\alpha^2} \left( \sigma^2(p) + \big( a(p) + 1 \big)^2 \right) t^2 = B t^2,
+  \end{multline*}
+  где $B := \frac{4}{\alpha^2} \left( \sigma^2(p) + \big( a(p) + 1 \big)^2 \right)$.
+\end{proof}
+
+Заметим, что для любой невырожденной (не равной константе почти наверное) случайной величины $X \geqslant 0$ найдется такое $\alpha > 0$, что $\Prob(X > \alpha) = p \in (0, 1)$. Тогда построим процесс $Z^\star$, как в определении \ref{defstar}, по независимым одинаково распределенным случайным величинам
+\begin{equation*}
+  Y_n =
+  \begin{cases}
+    \alpha, &\text{если }X_n > \alpha,\\
+    0, &\text{если }X_n \leqslant \alpha.
+  \end{cases}
+\end{equation*}
+
+По построению $Y_n \leqslant X_n$, откуда $Z(t) \leqslant Z^\star(t)$, $t \geqslant 0$.
+
+\begin{cor}
+  $\Expect Z(t) \leqslant A t$ и $\Expect Z(t)^2 \leqslant B t^2$. В частности, $Z(t) < \infty$ п.\,н. для любого $t \geqslant 0$.
+\end{cor}
+
+\begin{cor}
+  $\Prob\left( \forall\, t \geqslant 0\; Z(t) < \infty \right) = 1$.
+\end{cor}
+
+\begin{proof}
+  Поскольку $Z(t)$ является неубывающим процессом, т.\,е. $\forall\, s \leqslant t \; Z(s) \leqslant Z(t)$, то достаточно доказать, что $\Prob\left(\forall\,n \in \nat\; Z(n) < \infty\right) = 1$. Но
+  \begin{equation*}
+    \left\{ \forall\,n \in \nat\; Z(n) < \infty \right\} = \bigcap_{n \in \nat} \left\{ Z(n) < \infty \right\} \text{"---}
+  \end{equation*}
+  счетное пересечение событий вероятности 1 (см. предыдущее следствие). Оно тоже имеет вероятность 1.
+\end{proof}
+
+
+\subsection{Элементарная теория восстановления}
+
+\begin{lem}
+  Пусть $X, X_1, X_2, \ldots$  "--- н.\,о.\,р. случайные величины, $X \geqslant 0$. Тогда $\frac{S_n}{n} \as \mu \in [0, \infty]$ при $n \to \infty$, где $\mu = \Expect X$ (конечное или бесконечное).
+\end{lem}
+
+\begin{proof}
+  Если $\mu < \infty$, то утверждение леммы представляет собой усиленный закон больших чисел А.\,Н.\,Колмогорова.
+
+  Пусть $\mu = \infty$. Положим для $c > 0$
+  \begin{equation*}
+    V_n(c) := X_n \ind\{X_n \leqslant c\}.
+  \end{equation*}
+  Тогда снова по УЗБЧ А.\,Н.\,Колмогорова $\frac{1}{n} \sum\limits_{k = 1}^n V_k \as \Expect X \ind\{X_n \leqslant c\}$.
+
+  Возьмем $c = m \in \nat$. Тогда
+  \begin{equation*}
+    \liminf_{n\to \infty} \frac{1}{n}\sum_{k = 1}^n X_k \geqslant \lim_{m \to \infty} \Expect X \ind\{X \leqslant m\} = \Expect X.
+  \end{equation*}
+  В последнем равенстве использовалась теорема о монотонной сходимости (для бесконечного предельного интеграла).
+\end{proof}
+
+Введем определение, которое понадобится нам в дальнейшем.
+
+\begin{defn}
+  Семейство случайных величин $\{ \xi_t, t \in T \}$ называется \emph{равномерно интегрируемым}, если
+  \begin{equation*}
+    \lim_{c \to \infty} \sup_{t \in T} \int_{ \left\{ |\xi_t| \geqslant c \right\}} |\xi_t| \dif\Prob = 0.
+  \end{equation*}
+\end{defn}
+
+Известно, что если семейство $\{ \xi_n, n \geqslant 1\}$ равномерно интегрируемо и $\xi_n \to \xi$ почти наверное, то $\xi$ тоже интегрируема и $\Expect \xi_n \to \Expect \xi$. Для неотрицательных случайных величин $\xi_n$, $n \geqslant 1$, таких, что $\xi_n \to \xi$ п.\,н., где $\Expect \xi < \infty$, имеет место и обратная импликация
+\begin{equation*}
+  \Expect \xi_n \to \Expect \xi\; \Longrightarrow\; \text{семейство $\{ \xi_n, n \geqslant 1 \}$ равномерно интегрируемо.}
+\end{equation*}
+
+Следующая теорема принимается без доказательства
+\begin{thm}
+  Семейство случайных величин $\{ \xi_t, t\in T \}$<++>
+\end{thm}<++>
+
+\begin{thm}
+  Пусть $Z = \{ Z(t), t\geqslant 0 \}$ "--- процесс восстановления, построенный по последовательности н.\,о.\,р случайных величин $X, X_1, X_2, \ldots$ . Тогда
+  \begin{enumerate}
+    \item\label{firstel} $\displaystyle \frac{Z(t)}{t} \as \frac{1}{\mu}$ при $t \to \infty$;
+    \item $\displaystyle \frac{\Expect Z(t)}{t} \to \frac{1}{\mu}$ при $t \to \infty$, где $\frac{1}{0} := \infty$, $\frac{1}{\infty} := 0$.
+  \end{enumerate}
+\end{thm}
+
+\begin{proof}
+  Если $\mu = 0$, то $X_n = 0$ п.\,н., поэтому $\forall\, t > 0 \; Z(t) = \infty$ и утверждение теоремы очевидно.
+
+  Далее $\mu > 0$. Заметим, что
+  \begin{equation}
+    S_{Z(t)} \leqslant t < S_{Z(t) + 1}
+    \label{eqz}
+  \end{equation}
+  Для фиксированного $\omega$ рассмотрим последовательность $t_n := S_n(\omega)$. Поскольку $Z(t_n, \omega) = n$ и траектория $Z(t, \omega)$ монотонна, $Z(t, \omega) \to \infty$. Будем рассматривать те $(t, \omega)$, для которых $0 < Z(t, \omega) < \infty$ (если зафиксировать $t$, это выполнено почти наверное). Для этих $(t, \omega)$ разделим обе части \ref{eqz} на $Z(t)$. Получим
+  \begin{equation*}
+    \frac{S_{Z(t)}}{Z(t)} \leqslant \frac{t}{Z(t)} < \frac{S_{Z(t) + 1}}{Z(t) + 1}\frac{Z(t) + 1}{Z(t)}.
+  \end{equation*}
+  Но поскольку $Z(t) \to \infty$, то $\frac{S_{Z(t)}}{Z(t)} \as \mu$, $\frac{S_{Z(t) + 1}}{Z(t) + 1} \as \mu$ и $\frac{Z(t) + 1}{Z(t)} \to 1$. Следовательно, $\frac{t}{Z(t)} \as \mu$ при $t \to \infty$, т.\,е. $\frac{Z(t)}{t} \as \frac{1}{\mu}$, что завершает доказательство утверждения \ref{firstel}.
+\end{proof}<++>
 
 \clearpage
 \phantomsection
