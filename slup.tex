@@ -7,11 +7,15 @@
 \newindex{default}{idx}{ind}{Предметный указатель}
 
 \newcommand{\Expect}{\mathsf{E}}
+\newcommand{\real}{\ensuremath\mathbb R}
 \newcommand{\nat}{\ensuremath\mathbb N}
 \newcommand{\nonneg}{\ensuremath\mathbb Z_+}
+\newcommand{\borel}{\mathscr{B}}
 \newcommand{\as}{\xrightarrow{\text{п.\,н.}}}
 \newcommand{\ind}{\mathbb I}
 \DeclareMathOperator{\var}{\mathrm var}
+\DeclareMathOperator{\Exp}{\mathrm Exp}
+\DeclareMathOperator{\Pois}{\mathrm Pois}
 
 \theoremstyle{plain}
 \newtheorem{thm}{Теорема}[section]
@@ -460,7 +464,7 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 
 \subsection{Процессы восстановления}
 
-\begin{defn}\index{Процесс восстановления}
+\begin{defn}\index{Процесс!восстановления}
   Пусть $S_{n} = X_{1} + \ldots + X_{n}$, $n \in \mathbb{N}$, $X, X_{1}, X_{2}, \ldots$ "--- независимые одинаково распределенные случайные величины, $X \geqslant 0$. Положим
   \begin{align*}
     Z(0) &:= 0;\\
@@ -499,13 +503,21 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
   \end{equation*}
 \end{lem}
 
+
+
+
+\section{Лекция от 22.02.17. Пуассоновские процессы}
+
+
+\subsection{Процессы восстановления (продолжение)}
+
 \begin{defn}
   Будем говорить, что дискретная случайная величина $U$ имеет \index{Распределение!геометрическое}\emph{геометрическое распределение} с параметром $p \in (0, 1)$, если для $k = 0, 1, 2, \ldots$ $\Prob(U = k) = (1-p)^{k}p$.
 \end{defn}
 
 \begin{lem}\label{lemsum}
   \sloppy
-  Рассмотрим независимые геометрические величины $U_{0}, \ldots , U_{j+m}$ с параметром $p \in (0, 1)$, где $j = \left[ \frac{t}{\alpha} \right]$. Тогда при $t > \alpha$
+  Рассмотрим независимые геометрические величины $U_{0}, \ldots , U_{j}$ с параметром $p \in (0, 1)$, где $j = \left[ \frac{t}{\alpha} \right]$. Тогда
   \begin{equation*}
     \Prob (j + U_{0} + \ldots + U_{j} = m) = \Prob (Z^{\star}(t) = m ).
   \end{equation*}
@@ -522,7 +534,7 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 
 \subsection{Сопоставление исходного процесса восстановления со вспомогательным}
 
-\begin{lem}
+\begin{lem}\label{est}
   Пусть $t \geqslant \alpha$. Тогда $\Expect Z^\star(t) \leqslant At$ и $\Expect Z^\star(t)^2 \leqslant B t^2$, где $A = A(p, \alpha) > 0$, $B = B(p, \alpha) > 0$.
 \end{lem}
 
@@ -556,7 +568,7 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 По построению $Y_n \leqslant X_n$, откуда $Z(t) \leqslant Z^\star(t)$, $t \geqslant 0$.
 
 \begin{cor}
-  $\Expect Z(t) \leqslant A t$ и $\Expect Z(t)^2 \leqslant B t^2$. В частности, $Z(t) < \infty$ п.\,н. для любого $t \geqslant 0$.
+  $\Expect Z(t) \leqslant A t$ и $\Expect Z(t)^2 \leqslant B t^2$ для любого $t \geqslant \alpha$. В частности, $Z(t) < \infty$ п.\,н. при всех $t \geqslant 0$.
 \end{cor}
 
 \begin{cor}
@@ -587,7 +599,7 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
   \end{equation*}
   Тогда снова по УЗБЧ А.\,Н.\,Колмогорова $\frac{1}{n} \sum\limits_{k = 1}^n V_k \as \Expect X \ind\{X_n \leqslant c\}$.
 
-  Возьмем $c = m \in \nat$. Тогда
+  Возьмем $c = m \in \nat$. Тогда с вероятностью 1
   \begin{equation*}
     \liminf_{n\to \infty} \frac{1}{n}\sum_{k = 1}^n X_k \geqslant \lim_{m \to \infty} \Expect X \ind\{X \leqslant m\} = \Expect X.
   \end{equation*}
@@ -597,9 +609,9 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 Введем определение, которое понадобится нам в дальнейшем.
 
 \begin{defn}
-  Семейство случайных величин $\{ \xi_t, t \in T \}$ называется \emph{равномерно интегрируемым}, если
+  Семейство случайных величин $\{ \xi_\alpha, t \in \Lambda \}$ называется \emph{равномерно интегрируемым}, если
   \begin{equation*}
-    \lim_{c \to \infty} \sup_{t \in T} \int_{ \left\{ |\xi_t| \geqslant c \right\}} |\xi_t| \dif\Prob = 0.
+    \lim_{c \to \infty} \sup_{\alpha \in \Lambda} \int_{ \left\{ |\xi_\alpha| \geqslant c \right\}} |\xi_\alpha| \dif\Prob = 0.
   \end{equation*}
 \end{defn}
 
@@ -609,15 +621,18 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 \end{equation*}
 
 Следующая теорема принимается без доказательства
-\begin{thm}
-  Семейство случайных величин $\{ \xi_t, t\in T \}$<++>
-\end{thm}<++>
+\begin{thm}[Де ла Валле Пуссен]\index{Теорема!Де ла Валле Пуссена}\label{pussen}
+  Семейство случайных величин $\{ \xi_\alpha, \alpha \in \Lambda\}$ является равномерно интегрируемым тогда и только тогда, когда найдется измеримая функция $g\colon \real_+ \to \real_+$, т.\,е. $g \in \borel(\real_+) | \borel(\real_+)$, такая, что
+  \begin{equation*}
+    \lim_{t \to \infty}\frac{g(t)}{t} = \infty\quad \text{и}\quad \sup \Expect g(|\xi_\alpha|) < \infty.
+  \end{equation*}
+\end{thm}
 
 \begin{thm}
   Пусть $Z = \{ Z(t), t\geqslant 0 \}$ "--- процесс восстановления, построенный по последовательности н.\,о.\,р случайных величин $X, X_1, X_2, \ldots$ . Тогда
   \begin{enumerate}
     \item\label{firstel} $\displaystyle \frac{Z(t)}{t} \as \frac{1}{\mu}$ при $t \to \infty$;
-    \item $\displaystyle \frac{\Expect Z(t)}{t} \to \frac{1}{\mu}$ при $t \to \infty$, где $\frac{1}{0} := \infty$, $\frac{1}{\infty} := 0$.
+    \item\label{secondel} $\displaystyle \frac{\Expect Z(t)}{t} \to \frac{1}{\mu}$ при $t \to \infty$, где $\frac{1}{0} := \infty$, $\frac{1}{\infty} := 0$.
   \end{enumerate}
 \end{thm}
 
@@ -629,12 +644,99 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
     S_{Z(t)} \leqslant t < S_{Z(t) + 1}
     \label{eqz}
   \end{equation}
-  Для фиксированного $\omega$ рассмотрим последовательность $t_n := S_n(\omega)$. Поскольку $Z(t_n, \omega) = n$ и траектория $Z(t, \omega)$ монотонна, $Z(t, \omega) \to \infty$. Будем рассматривать те $(t, \omega)$, для которых $0 < Z(t, \omega) < \infty$ (если зафиксировать $t$, это выполнено почти наверное). Для этих $(t, \omega)$ разделим обе части \ref{eqz} на $Z(t)$. Получим
+  Для фиксированного $\omega$ рассмотрим последовательность $t_n := S_n(\omega)$. Поскольку $Z(t_n, \omega) = n$ и траектория $Z(t, \omega)$ монотонна, $Z(t, \omega) \to \infty$. Будем рассматривать те $(t, \omega)$, для которых $0 < Z(t, \omega) < \infty$ (при всех $t_n$, а значит, вообще при всех $t$ это выполнено почти наверное). Для этих $(t, \omega)$ разделим обе части \ref{eqz} на $Z(t)$. Получим
   \begin{equation*}
     \frac{S_{Z(t)}}{Z(t)} \leqslant \frac{t}{Z(t)} < \frac{S_{Z(t) + 1}}{Z(t) + 1}\frac{Z(t) + 1}{Z(t)}.
   \end{equation*}
   Но поскольку $Z(t) \to \infty$, то $\frac{S_{Z(t)}}{Z(t)} \as \mu$, $\frac{S_{Z(t) + 1}}{Z(t) + 1} \as \mu$ и $\frac{Z(t) + 1}{Z(t)} \to 1$. Следовательно, $\frac{t}{Z(t)} \as \mu$ при $t \to \infty$, т.\,е. $\frac{Z(t)}{t} \as \frac{1}{\mu}$, что завершает доказательство утверждения \ref{firstel}.
-\end{proof}<++>
+
+  Для доказательства утверждения \ref{secondel} используем теорему \ref{pussen}. А именно, рассмотрим семейство $\left\{\xi_t, t \geqslant \alpha\right\}$ и функцию $g(t) = t^2$, где $\xi_t = \frac{Z(t)}{t}$. По лемме \ref{est}
+  \begin{equation*}
+    \Expect \xi_t^2 = \frac{\Expect Z(t)^2}{t^2} \leqslant \frac{B t^2}{t^2} = B < \infty.
+  \end{equation*}
+  Все условия теоремы \ref{pussen} выполнены. Поэтому из нее вытекает, что семейство $\left\{\xi_t, t \geqslant \alpha\right\}$ равномерно интегрируемо. Тогда можно совершить предельный переход под знаком математического ожидания, и из утверждения \ref{firstel} получаем, что
+  \begin{equation*}
+    \Expect \frac{Z(t)}{t} \to \Expect \frac{1}{\mu} = \frac{1}{\mu},\quad t \to \infty.
+  \end{equation*}
+\end{proof}
+
+
+\subsection{Пуассоновский процесс как процесс восстановления}
+
+\begin{defn}
+  \sloppy
+  Пусть $X$, $X_1$, $X_2$, \ldots  "--- независимые одинаково распределенные случайные величины с экспоненциальным распределением $X\sim \Exp(\lambda)$, т.\,е.
+  \begin{equation*}
+    p_X(x) =
+    \begin{cases}
+      \lambda e^{- \lambda x}, &\text{если $x \geqslant 0$,}\\
+      0, &\text{если $x < 0$}.
+    \end{cases}
+  \end{equation*}
+  \emph{Пуассоновским процессом}\index{Процесс!пуассоновский}\index{Пуассоновский процесс} $N = \left\{N(t), t\geqslant 0\right\}$ называется процесс восстановления, построенный по $X_1$, $X_2$, \ldots.
+\end{defn}
+
+Для $t > 0$ введем случайные величины
+\begin{align*}
+  X_1^t &:= S_{N(t) + 1} - t;\\
+  X_k^t &:= S_{N(t) + k},\quad k \geqslant 2.
+\end{align*}
+
+\begin{lem}
+  Для любого $t > 0$ случайные величины $N(t)$, $X_1^t$, $X_2^t$, \ldots являются независимыми, причем $N(t) \sim \Pois(\lambda t)$, $X_k^t \sim \Exp(\lambda)$ для $k = 1, 2, \ldots$.
+\end{lem}
+
+\begin{proof}
+  Чтобы доказать независимость указанных случайных величин, достаточно проверить, что для $\forall\, n \in \nonneg\; \forall\,u_1, \ldots, u_k \geqslant 0$ выполнено
+  \begin{equation*}
+    \Prob(N(t) = n, X_1^t > u_1, \ldots, X_k^t > u_k) = \Prob(N(t) = n) \Prob(X_1^t > u_1) \ldots \Prob(X_k^t > u_k).
+  \end{equation*}
+
+  Доказываем это индукцией по $k$.
+
+  База индукции: $k = 1$. Напомним (было в курсе теории вероятностей), что случайная величина $S_n$ имеет плотность
+  \begin{equation*}
+    p_{S_n}(x) =
+    \begin{cases}
+      \frac{\lambda (\lambda x)^{n - 1}}{(n - 1)!} e^{- \lambda x}, &\text{если $x \geqslant 0$};\\
+      0, &\text{если $x < 0$}.
+    \end{cases}
+  \end{equation*}
+
+  Итак,
+  \begin{multline*}
+    \Prob(N(t) = n, X_1^t > u_1) = \Prob(S_n \leqslant t, S_{n + 1} > t, S_{N(t) + 1} - t > u_1) =\\
+    = \Prob(S_n \leqslant t, S_{n + 1} > t, S_{n + 1} > t + u_1) = \Prob(S_n \leqslant t, S_{n + 1} > t + u_1) =\\
+    = \Prob(S_n \leqslant t, S_n + X_{n + 1} > t + u_1) =\\
+    = \Prob\left((S_n, X_{n + 1}) \in \left\{(x, y)\colon x \leqslant t, x + y > t + u_1\right\} \right) =\\
+    \iint\limits_{\substack{x \leqslant t\\ x + y > t + u_1}} p_{(S_n, X_{n + 1})}(x, y) \dif x \dif y = \left(\text{независимость $S_n$ и $X_{n + 1}$}\right) =\\
+    = \iint\limits_{\substack{x \leqslant t\\ x + y > t + u_1}} p_{S_n}(x) p_{X_{n + 1}}(y) \dif x \dif y = \iint\limits_{\substack{0 \leqslant x \leqslant t, y \geqslant 0\\ x + y > t + u_1}} \frac{\lambda (\lambda x)^{n - 1}}{(n - 1)!} e^{- \lambda x} \lambda e^{-\lambda y} \dif x \dif y =\\
+    = \left(\text{теорема Фубини}\right) = \int\limits_{0}^{t} \frac{\lambda (\lambda x)^{n - 1}}{(n - 1)!} e^{- \lambda x} \dif x \int\limits_{t + u_1 - x}^{+\infty} \lambda  e^{-\lambda y} \dif y =\\
+    = \int\limits_{0}^{t} \frac{\lambda (\lambda x)^{n - 1}}{(n - 1)!} e^{- \lambda x} e^{-\lambda (t + u_1 - x)} \dif x = e^{-\lambda (t + u_1)} \int\limits_{0}^{t} \frac{\lambda (\lambda x)^{n - 1}}{(n - 1)!} \dif x =\\
+    = \frac{(\lambda t)^n}{n!} e^{-\lambda t} e^{-\lambda u_1}.
+  \end{multline*}
+
+  Положим $u_1 = 0$, получим
+  \begin{equation*}
+    \Prob(N(t) = n, X_1^t > 0) = \Prob(N(t) = n) = \frac{(\lambda t)^n}{n!} e^{-\lambda t},\quad n\in \nonneg,
+  \end{equation*}
+  т.\,е. $N(t) \sim \Pois(\lambda t)$. Далее,
+  \begin{equation*}
+    \Prob(X_1^t > u_1) = \sum_{n = 0}^\infty \Prob(N(t) = n, X_1^t > u_1) = \sum_{n = 0}^\infty \frac{(\lambda t)^n}{n!} e^{-\lambda t} \cdot e^{-\lambda u_1} = 1\cdot e^{-\lambda u_1},
+  \end{equation*}
+  т.\,е. $X_1^t \sim \Exp(\lambda)$ и база установлена.
+
+  Индукционный переход: пусть $k \geqslant 2$.
+  \begin{multline*}
+    \Prob(N(t) = n, X_1^t > u_1, \ldots, X_k^t > u_k) =\\ \Prob(S_n \leqslant t, S_{n + 1} > t, S_{n + 1} > t + u_1, X_{n + 2} > u_2, \ldots, X_{n + k} > u_k) =\\
+    = \left(\text{см. предыдущее}\right) = \Prob(N(t) = n) \Prob(X_1^t > u_1) e^{-\lambda u_2} \ldots e^{-\lambda u_k} =\\
+    = \Prob(N(t) = n)  e^{-\lambda u_1} \ldots e^{-\lambda u_k}.
+  \end{multline*}
+
+  Снова положим $u_1 = \ldots = u_{k - 1} = 0$ и просуммируем по всем $n \in \nonneg$. Получим $\Prob(X_k^t > u_k) = e^{-\lambda u_k}$, откуда $X_k^t \sim \Exp(\lambda)$, индукционный переход завершен.
+\end{proof}
+
+Пусть $X_j \sim \Exp(\lambda)$ "--- интервалы между временами прихода автобусов на данную остановку. Тогда случайная величина $X_1^t = S_{N(t) + 1} - t$ соответствует времени ожидания прибытия ближайшего автобуса. Мы только что доказали, что она распределена так же, как и интервалы: $X_1^t \sim \Exp(\lambda)$. Мы будем в среднем ждать автобуса столько же времени, сколько в среднем проходит времени между двумя автобусами. В этом состоит \textbf{парадокс времени ожидания}\index{Парадокс времени ожидания}. Никакого противоречия здесь на самом деле нет, так как сами моменты прихода автобусов также случайные.
 
 \clearpage
 \phantomsection
