@@ -528,7 +528,8 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
   \begin{multline*}
     \Prob\left( U_0 + \ldots + U_j = m - j\right) = \sum_{(k_0, \ldots, k_j) \in M} \Prob(U_0 = k_0, \ldots, U_j = k_j) =\\
     = \sum_{(k_0, \ldots, k_j) \in M} \Prob(U_0 = k_0)\ldots \Prob(U_j = k_j) = \sum_{(k_0, \ldots, k_j) \in M} p (1 - p)^{k_0}\ldots p (1 - p)^{k_j} =\\
-    = \sum_{(k_0, \ldots, k_j) \in M} = p^{j + 1} (1 - p)^{k_0 + \ldots + k_j} = p^{j + 1} (1 - p)^{m - j} \#M = C_m^j p^{j + 1} (1 - p)^{m - j}.
+    = \sum_{(k_0, \ldots, k_j) \in M} = p^{j + 1} (1 - p)^{k_0 + \ldots + k_j} =\\
+    = p^{j + 1} (1 - p)^{m - j} \#M = C_m^j p^{j + 1} (1 - p)^{m - j}.
   \end{multline*}
 \end{proof}
 
@@ -622,6 +623,7 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 
 Следующая теорема принимается без доказательства
 \begin{thm}[Де ла Валле Пуссен]\index{Теорема!Де ла Валле Пуссена}\label{pussen}
+  \sloppy
   Семейство случайных величин $\{ \xi_\alpha, \alpha \in \Lambda\}$ является равномерно интегрируемым тогда и только тогда, когда найдется измеримая функция $g\colon \real_+ \to \real_+$, т.\,е. $g \in \borel(\real_+) | \borel(\real_+)$, такая, что
   \begin{equation*}
     \lim_{t \to \infty}\frac{g(t)}{t} = \infty\quad \text{и}\quad \sup \Expect g(|\xi_\alpha|) < \infty.
@@ -683,6 +685,7 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 \end{align*}
 
 \begin{lem}
+  \sloppy
   Для любого $t > 0$ случайные величины $N(t)$, $X_1^t$, $X_2^t$, \ldots являются независимыми, причем $N(t) \sim \Pois(\lambda t)$, $X_k^t \sim \Exp(\lambda)$ для $k = 1, 2, \ldots$.
 \end{lem}
 
