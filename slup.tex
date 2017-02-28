@@ -13,6 +13,7 @@
 \newcommand{\borel}{\mathscr{B}}
 \newcommand{\as}{\xrightarrow{\text{п.\,н.}}}
 \newcommand{\ind}{\mathbb I}
+\DeclareMathOperator{\const}{\mathrm const}
 \DeclareMathOperator{\var}{\mathrm var}
 \DeclareMathOperator{\Exp}{\mathrm Exp}
 \DeclareMathOperator{\Pois}{\mathrm Pois}
@@ -485,7 +486,7 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 \end{rem}
 
 \begin{defn}\label{defstar}
-  Рассмотрим \emph{процесс восстановления} $\{ Z^\star(t),\; t \geqslant 0 \}$, который строится по $Y, Y_{1}, Y_{2}, \ldots$ "--- независимым одинаково распределенным случайным величинам, где $\Prob(Y = \alpha) = p \in (0, 1)$, $\Prob(Y = 0) =  1-p$. Исключаем из рассмотрения случай, когда $Y = C = const$: если $C = 0$, то $Z(t) = \infty \;\: \forall\, t > 0$; если же $C > 0$, то $Z(t) = \left[\frac{t}{c}\right]$.
+  Рассмотрим \emph{процесс восстановления} $\{ Z^\star(t),\; t \geqslant 0 \}$, который строится по $Y, Y_{1}, Y_{2}, \ldots$ "--- независимым одинаково распределенным случайным величинам, где $\Prob(Y = \alpha) = p \in (0, 1)$, $\Prob(Y = 0) =  1-p$. Исключаем из рассмотрения случай, когда $Y = C = \const$: если $C = 0$, то $Z(t) = \infty \;\: \forall\, t > 0$; если же $C > 0$, то $Z(t) = \left[\frac{t}{c}\right]$.
 \end{defn}
 
 \begin{lem}
