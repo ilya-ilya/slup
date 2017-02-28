@@ -520,7 +520,7 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 \end{lem}
 
 \begin{proof}
-   Обозначим $M = \big\{ (k_0, \ldots, k_j)\colon k_j \in \nonneg, \sum\limits_{i = 0}^j k_j = m - j$\big\}.
+   Обозначим $M = \left\{ (k_0, \ldots, k_j)\colon k_j \in \nonneg, \sum\limits_{i = 0}^j k_j = m - j\right\}$.
   \begin{multline*}
     \Prob\left( U_0 + \ldots + U_j = m - j\right) = \sum_{(k_0, \ldots, k_j) \in M} \Prob(U_0 = k_0, \ldots, U_j = k_j) =\\
     = \sum_{(k_0, \ldots, k_j) \in M} \Prob(U_0 = k_0)\ldots \Prob(U_j = k_j) = \sum_{(k_0, \ldots, k_j) \in M} p (1 - p)^{k_0}\ldots p (1 - p)^{k_j} =\\
@@ -606,28 +606,28 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 Введем определение, которое понадобится нам в дальнейшем.
 
 \begin{defn}
-  Семейство случайных величин $\{ \xi_\alpha, t \in \Lambda \}$ называется \emph{равномерно интегрируемым}, если
+  Семейство случайных величин $\left\{ \xi_\alpha, t \in \Lambda \right\}$ называется \emph{равномерно интегрируемым}, если
   \begin{equation*}
     \lim_{c \to \infty} \sup_{\alpha \in \Lambda} \int_{ \left\{ |\xi_\alpha| \geqslant c \right\}} |\xi_\alpha| \dif\Prob = 0.
   \end{equation*}
 \end{defn}
 
-Известно, что если семейство $\{ \xi_n, n \geqslant 1\}$ равномерно интегрируемо и $\xi_n \to \xi$ почти наверное, то $\xi$ тоже интегрируема и $\Expect \xi_n \to \Expect \xi$. Для неотрицательных случайных величин $\xi_n$, $n \geqslant 1$, таких, что $\xi_n \to \xi$ п.\,н., где $\Expect \xi < \infty$, имеет место и обратная импликация
+Известно, что если семейство $\left\{ \xi_n, n \geqslant 1\right\}$ равномерно интегрируемо и $\xi_n \to \xi$ почти наверное, то $\xi$ тоже интегрируема и $\Expect \xi_n \to \Expect \xi$. Для неотрицательных случайных величин $\xi_n$, $n \geqslant 1$, таких, что $\xi_n \to \xi$ п.\,н., где $\Expect \xi < \infty$, имеет место и обратная импликация
 \begin{equation*}
-  \Expect \xi_n \to \Expect \xi\; \Longrightarrow\; \text{семейство $\{ \xi_n, n \geqslant 1 \}$ равномерно интегрируемо.}
+  \Expect \xi_n \to \Expect \xi\; \Longrightarrow\; \text{семейство $\left\{ \xi_n, n \geqslant 1 \right\}$ равномерно интегрируемо.}
 \end{equation*}
 
 Следующая теорема принимается без доказательства
 \begin{thm}[Де ла Валле Пуссен]\index{Теорема!Де ла Валле Пуссена}\label{pussen}
   \sloppy
-  Семейство случайных величин $\{ \xi_\alpha, \alpha \in \Lambda\}$ является равномерно интегрируемым тогда и только тогда, когда найдется измеримая функция $g\colon \real_+ \to \real_+$, т.\,е. $g \in \borel(\real_+) | \borel(\real_+)$, такая, что
+  Семейство случайных величин $\left\{ \xi_\alpha, \alpha \in \Lambda\right\}$ является равномерно интегрируемым тогда и только тогда, когда найдется измеримая функция $g\colon \real_+ \to \real_+$, т.\,е. $g \in \borel(\real_+) | \borel(\real_+)$, такая, что
   \begin{equation*}
     \lim_{t \to \infty}\frac{g(t)}{t} = \infty\quad \text{и}\quad \sup \Expect g(|\xi_\alpha|) < \infty.
   \end{equation*}
 \end{thm}
 
 \begin{thm}
-  Пусть $Z = \{ Z(t), t\geqslant 0 \}$ "--- процесс восстановления, построенный по последовательности н.\,о.\,р случайных величин $X, X_1, X_2, \ldots$ . Тогда
+  Пусть $Z = \left\{ Z(t), t\geqslant 0 \right\}$ "--- процесс восстановления, построенный по последовательности н.\,о.\,р случайных величин $X, X_1, X_2, \ldots$ . Тогда
   \begin{enumerate}
     \item\label{firstel} $\displaystyle \frac{Z(t)}{t} \as \frac{1}{\mu}$ при $t \to \infty$;
     \item\label{secondel} $\displaystyle \frac{\Expect Z(t)}{t} \to \frac{1}{\mu}$ при $t \to \infty$, где $\frac{1}{0} := \infty$, $\frac{1}{\infty} := 0$.
