@@ -1,91 +1,16 @@
-=== XCODE ===
+## .mk files from LaTeX.mk
+*.mk 
 
-/**/*.xcodeproj/
+## Vim locks
+*.swp
 
-## Build generated
-build/
-DerivedData/
+## Xy-Pic matrices
+*.xyc
 
-## Various settings
-*.pbxuser
-!default.pbxuser
-*.mode1v3
-!default.mode1v3
-*.mode2v3
-!default.mode2v3
-*.perspectivev3
-!default.perspectivev3
-xcuserdata/
-
-## Other
-*.moved-aside
-*.xccheckout
-*.xcscmblueprint
-
-=== LINUX ===
-
-*~
-
-# temporary files which can be created if a process still has a handle open of a deleted file
-.fuse_hidden*
-
-# KDE directory preferences
-.directory
-
-# Linux trash folder which might appear on any partition or disk
-.Trash-*
-
-
-
-
-=== OSX ===
-
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Icon must end with two \r
-Icon
-
-
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
-
-
-
-=== VIM ===
-
-# swap
-[._]*.s[a-w][a-z]
-[._]s[a-w][a-z]
-# session
-Session.vim
-# temporary
-.netrwhist
-*~
-# auto-generated tag files
-tags
-
-
-
-
-=== TEX ===
+## Output
+*.pdf
+*.ps
+*.dvi
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
@@ -95,17 +20,13 @@ tags
 *.fls
 *.out
 *.toc
-*.fmt
-*.fot
-*.cb
-*.cb2
 
 ## Intermediate documents:
 *.dvi
 *-converted-to.*
 # these rules might exclude image files for figures etc.
-*.ps
-*.eps
+# *.ps
+# *.eps
 # *.pdf
 
 ## Bibliography auxiliary files (bibtex/biblatex/biber):
@@ -125,6 +46,7 @@ tags
 *.pdfsync
 
 ## Auxiliary and intermediate files from other packages:
+
 # algorithms
 *.alg
 *.loa
@@ -140,15 +62,8 @@ acs-*.bib
 *.snm
 *.vrb
 
-# cprotect
-*.cpt
-
-# fixme
-*.lox
-
-#(r)(e)ledmac/(r)(e)ledpar
+#(e)ledmac/(e)ledpar
 *.end
-*.?end
 *.[1-9]
 *.[1-9][0-9]
 *.[1-9][0-9][0-9]
@@ -168,7 +83,6 @@ acs-*.bib
 *.glg
 *.glo
 *.gls
-*.glsdefs
 
 # gnuplottex
 *-gnuplottex-*
@@ -178,7 +92,6 @@ acs-*.bib
 
 # knitr
 *-concordance.tex
-# TODO Comment the next line if you want to keep your tikz graphics files
 *.tikz
 *-tikzDictionary
 
@@ -193,11 +106,8 @@ acs-*.bib
 
 # minitoc
 *.maf
-*.mlf
-*.mlt
 *.mtc
-*.mtc[0-9]
-*.mtc[1-9][0-9]
+*.mtc0
 
 # minted
 _minted*
@@ -205,9 +115,6 @@ _minted*
 
 # morewrites
 *.mw
-
-# mylatexformat
-*.fmt
 
 # nomencl
 *.nlo
@@ -222,79 +129,12 @@ _minted*
 *.sympy
 sympy-plots-for-*.tex/
 
-# pdfcomment
-*.upa
-*.upb
-
-# pythontex
-*.pytxcode
-pythontex-files-*/
-
-# TikZ & PGF
-*.dpth
-*.md5
-*.auxlock
-
 # todonotes
 *.tdo
 
 # xindy
 *.xdy
 
-# xypic precompiled matrices
-*.xyc
-
-# endfloat
-*.ttt
-*.fff
-
-# Latexian
-TSWLatexianTemp*
-
-## Editors:
 # WinEdt
 *.bak
 *.sav
-
-# Texpad
-.texpadtmp
-
-# Kile
-*.backup
-
-# KBibTeX
-*~[0-9]*
-
-
-
-
-=== C++ ===
-
-Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app

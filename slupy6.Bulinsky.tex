@@ -1,0 +1,69 @@
+\documentclass[a4paper, 12pt]{report}
+\makeindex
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+%\usepackage{pscyr}
+\usepackage{mathtools}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage{graphicx}
+\usepackage[update]{epstopdf}
+\usepackage[nosimple,dots,thmitshape,nodiagram]{dmvn}
+\usepackage[all]{xy}
+\CompileMatrices
+
+%	XXX:К сожалению, я знаю, что это делает, пацаны говорят и это правда,
+%	что можно будет кликать по ссылкам, и на практике оказалось, что да.
+\usepackage[unicode]{hyperref}
+\hypersetup{
+	debug = true,
+}
+
+\textwidth=500pt
+\textheight=750pt
+\oddsidemargin=20pt
+\hoffset=-1.5cm
+\topmargin=-25mm
+\tolerance=4000
+
+% from Boris with love
+\DeclareMathOperator{\var}{\mathrm var}
+\DeclareMathOperator{\Exp}{\mathrm Exp}
+\DeclareMathOperator{\Pois}{\mathrm Pois}
+\begin{document}
+% good reference for equations
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+% At least, because ex counter resets at start of section
+\renewcommand{\theex}{\thesection.\arabic{ex}}
+% better equal by definition
+\renewcommand{\eqdef}{\triangleq}
+
+% Transoceanization
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+% Львовский называл это dirty tricks,
+% но идеалогически единицей курса является именно лекция
+\renewcommand{\chaptername}{Лекция}
+
+\newcommand{\Cx}{\mathbb{C}}
+\newcommand{\Hx}{\mathbb{H}}
+\newcommand{\Zm}[1]{\mathbb{Z}_{#1}}
+\newcommand{\fA}{~\forall\;}
+\newcommand{\Ex}{~\exists\;}
+\newcommand{\Exo}{~\exists\,!\;}
+\newcommand{\Pbb}{\mathbb{P}}
+
+
+\dmvntitle{Булинский А.В.}{Случайные процессы}{6 семестр, втрой поток}{}{\today}
+%FIXME: переносы формул
+\include{misc} % TOC и Предметный указатель
+\include{l1}
+\begin{thebibliography}{20}
+%FIXME
+\bibitem{B-Sh} Булинский, Ширяев,
+		Т.Сл.Пр.	
+\end{thebibliography}
+
+\end{document}
