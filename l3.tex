@@ -1,119 +1,133 @@
+\chapter{Пуассоновские процессы}
 
-
-
-
-
-\section{Лекция от 22.02.17.
-Пуассоновские процессы}
-
-
-\subsection{Процессы восстановления (продолжение)}
+\section{Процессы восстановления (продолжение)}
 
 \begin{df}
-	Будем говорить, что дискретная случайная величина $U$ имеет \index{Распределение!геометрическое}\textit{геометрическое распределение} с параметром $p \in (0, 1)$, если для $k = 0, 1, 2\etc$ $\Pb(U = k) = (1-p)^{k}p$.
+	Будем говорить, что дискретная случайная величина $U$ имеет
+	\index{Распределение!геометрическое}\textit{геометрическое распределение} с параметром $p \in (0, 1)$,
+	если для $k = 0, 1, 2\etc$ $\Pb(U = k) = (1 - p)^k p$.
 \end{df}
 
 \begin{lemma}\label{lemsum}
-	\sloppy
-	Рассмотрим независимые геометрические величины $U_{0}\etc , U_{j}$ с параметром $p \in (0, 1)$, где $j = \left[ \frac{t}{\alpha} \right]$.
+	Рассмотрим независимые геометрические величины $U_0 \sco U_j$ с параметром $p \in (0, 1)$,
+	где $j = \hs{\frac t \alpha}$.
 Тогда
 	$$
-		\Pb (j + U_{0} + \ldots + U_{j} = m) = \Pb (Z^{\star}(t) = m ).
+		\Pb (j + U_0 \spl U_j = m)
+	=	\Pb (Z^{\star}(t) = m ).
 	$$
 \end{lemma}
 
 \begin{proof}
-	 Обозначим $M = \left\{ (k_0\etc, k_j)\colon k_j \in \nonneg, \sum\limits_{i = 0}^j k_j = m - j\right\}$.
+	 Обозначим $M = \hc{ (k_0\sco k_j)\mid k_j \in \Z_+, \sum\limits_{i = 0}^j k_j = m - j}$.
 	\begin{multline*}
-		\Pb\left( U_0 + \ldots + U_j = m - j\right) = \sum_{(k_0\etc, k_j) \in M} \Pb(U_0 = k_0\etc, U_j = k_j) =\\
-		= \sum_{(k_0\etc, k_j) \in M} \Pb(U_0 = k_0)\ldots \Pb(U_j = k_j) = \sum_{(k_0\etc, k_j) \in M} p (1 - p)^{k_0}\ldots p (1 - p)^{k_j} =\\
-		= \sum_{(k_0\etc, k_j) \in M} = p^{j + 1} (1 - p)^{k_0 + \ldots + k_j} =\\
-		= p^{j + 1} (1 - p)^{m - j} \#M = C_m^j p^{j + 1} (1 - p)^{m - j}.
+		\Pb\hr{ U_0 \spl U_j = m - j}
+	=	\sum_{(k_0 \sco k_j) \in M} \Pb(U_0 = k_0 \sco U_j = k_j) = \\
+	=	\sum_{(k_0 \sco k_j) \in M} \Pb(U_0 = k_0) \sd \Pb(U_j = k_j)
+	=	\sum_{(k_0 \sco k_j) \in M} p (1 - p)^{k_0} \sd p (1 - p)^{k_j} = \\
+	=	\sum_{(k_0 \sco k_j) \in M} p^{j + 1} (1 - p)^{k_0 \spl k_j}
+	=	p^{j + 1} (1 - p)^{m - j} \#M = C_m^j p^{j + 1} (1 - p)^{m - j}.
 	\end{multline*}
 \end{proof}
 
-\subsection{Сопоставление исходного процесса восстановления со вспомогательным}
+\section{Сопоставление исходного процесса восстановления со вспомогательным}
 
 \begin{lemma}\label{est}
 	Пусть $t \ge \alpha$.
-Тогда $\Ef Z^\star(t) \le At$ и $\Ef Z^\star(t)^2 \le B t^2$, где $A = A(p, \alpha) > 0$, $B = B(p, \alpha) > 0$.
+	Тогда $\Eb Z^\star(t) \le At$ и $\Eb Z^\star(t)^2 \le B t^2$,
+	где $A \deq A(p, \alpha) > 0$, $B \deq B(p, \alpha) > 0$.
 \end{lemma}
 
 \begin{proof}
-	По лемме \ref{lemsum} $\Ef Z^\star(t) = \Ef(j + U_0 + \ldots + U_j) = j + (j + 1) \Ef U$, где $\Ef U =: a(p) < \bes$ "\td математическое ожидание геометрического распределения.
+	По лемме \ref{lemsum} $\Eb Z^\star(t) = \Eb(j + U_0 \spl U_j) = j + (j + 1) \Eb U$,
+	где $\Eb U \eqd a(p) < \bes$ \td математическое ожидание геометрического распределения.
 
 	Тогда
-	\begin{multline*}
-		\Ef Z^\star(t) = j + (j + 1) a(p) \le (j + 1) \big(a(p) + 1\big) \le\\
-		\le \frac{t + \alpha}{\alpha} \big(a(p) + 1\big) \le \frac{2 t}{\alpha} \big( a(p) + 1 \big) = A t,
-	\end{multline*}
-	где $A \deq \frac{2 (a(p) + 1)}{\alpha}$.
+	$$
+		\Eb Z^\star(t) = j + (j + 1) a(p)
+	\le	(j + 1) \hr{a(p) + 1}
+	\le	\frac{t + \alpha}{\alpha} \hr{a(p) + 1}
+	\le	\frac{2 t}{\alpha} \hr{a(p) + 1}
+	=	A t,
+	$$
+	%FIXME?
+	где $A \deq \cfrac{2 (a(p) + 1)}{\alpha}$.
 
 	Далее,
 	\begin{multline*}
-		\Ef Z^\star(t)^2 = \var Z^\star(t) + \big(\Ef Z^\star(t) \big)^2 \le (j + 1) \underbrace{\var U}_{\sigma^2(p)} + (j + 1)^2 \big( a(p) + 1 \big)^2 \le\\
-		\le (j + 1)^2 \left( \sigma^2(p) + \big( a(p) + 1 \big)^2 \right) \le \frac{4}{\alpha^2} \left( \sigma^2(p) + \big( a(p) + 1 \big)^2 \right) t^2 = B t^2,
+		\Eb Z^\star(t)^2
+	=	\Db Z^\star(t) + \hr{\Eb Z^\star(t)}^2
+	\le	(j + 1) \ub{\Db U}_{\sigma^2(p)} + (j + 1)^2 \hr{ a(p) + 1 }^2 \le\\
+	\le	(j + 1)^2 \hr{ \sigma^2(p) + \hr{ a(p) + 1 }^2}
+	\le	\frac 4 {\alpha^2} \hr{ \sigma^2(p) + \hr{ a(p) + 1 }^2} t^2
+	=	B t^2,
 	\end{multline*}
-	где $B \deq \frac{4}{\alpha^2} \left( \sigma^2(p) + \big( a(p) + 1 \big)^2 \right)$.
+	где $B \deq \frac4{\alpha^2} \hr{ \sigma^2(p) + \hr{ a(p) + 1}^2 }$.
 \end{proof}
 
-Заметим, что для любой невырожденной (не равной константе почти наверное) случайной величины $X \ge 0$ найдется такое $\alpha > 0$, что $\Pb(X > \alpha) = p \in (0, 1)$.
-Тогда построим процесс $Z^\star$, как в определении \ref{dfstar}, по независимым одинаково распределенным случайным величинам
+Заметим, что для любой невырожденной (не равной константе почти наверное) случайной величины $X \ge 0$
+найдется такое $\alpha > 0$, что $\Pb(X > \alpha) = p \in (0, 1)$.
+%FIXME
+Тогда построим процесс $Z^\star$, как в определении \hyperref[dfstar]{определении} из прошлой лекции,
+по независимым одинаково распределенным случайным величинам
 $$
 	Y_n =
-	\begin{cases}
+	\bcase{
 		\alpha, &\text{если }X_n > \alpha,\\
 		0, &\text{если }X_n \le \alpha.
-	\end{cases}
+	}
 $$
 
 По построению $Y_n \le X_n$, откуда $Z(t) \le Z^\star(t)$, $t \ge 0$.
 
-\begin{cor}
-	$\Ef Z(t) \le A t$ и $\Ef Z(t)^2 \le B t^2$ для любого $t \ge \alpha$.
-В частности, $Z(t) < \bes$ п.\,н.
-при всех $t \ge 0$.
-\end{cor}
+\begin{imp}
+	\phantomsection
+	\label{prev.imp}
+	$\Eb Z(t) \le A t$ и $\Eb Z(t)^2 \le B t^2$ для любого $t \ge \alpha$.
+	В частности, $Z(t) < \bes$ п.\,н.
+	при всех $t \ge 0$.
+\end{imp}
 
-\begin{cor}
-	$\Pb\left( \forall\, t \ge 0\; Z(t) < \bes \right) = 1$.
-\end{cor}
+\begin{imp}
+	$\Pb\hr{ \fA t \ge 0\; Z(t) < \bes } = 1$.
+\end{imp}
 
 \begin{proof}
-	Поскольку $Z(t)$ является неубывающим процессом, т.\,е.
-$\forall\, s \le t \; Z(s) \le Z(t)$, то достаточно доказать, что $\Pb\left(\forall\,n \in \N\; Z(n) < \bes\right) = 1$.
-Но
+	Поскольку $Z(t)$ является неубывающим процессом, \ie
+	$\fA s \le t \; Z(s) \le Z(t)$, то достаточно доказать,
+	что $\Pb\hr{\A n \in \N\; Z(n) < \bes} = 1$.
+	Но
 	$$
-		\left\{ \forall\,n \in \N\; Z(n) < \bes \right\} = \bigcap_{n \in \N} \left\{ Z(n) < \bes \right\} \text{"\td}
+		\hc{ \fA n \in \N\; Z(n) < \bes}
+	=	\caps{n \in \N} \hc{ Z(n) < \bes } \text{\td}
 	$$
-	счетное пересечение событий вероятности 1 (см.
-предыдущее следствие).
-Оно тоже имеет вероятность 1.
+	счетное пересечение событий вероятности 1 (см. \hyperref[prev.imp]{предыдущее следствие}).
+	Оно тоже имеет вероятность 1.
 \end{proof}
 
 
-\subsection{Элементарная теория восстановления}
+\section{Элементарная теория восстановления}
 
 \begin{lemma}
-	Пусть $X, X_1, X_2\etc$	"\td н.\,о.\,р.
-случайные величины, $X \ge 0$.
-Тогда $\frac{S_n}{n} \as \mu \in [0, \bes]$ при $n \to \bes$, где $\mu = \Ef X$ (конечное или бесконечное).
+	Пусть $X, X_1, X_2\etc$	\td н.\,о.\,р. случайные величины, $X \ge 0$.
+	Тогда $\frac{S_n}{n} \convas \mu \in [0, \bes]$ при $n \to \bes$, где $\mu = \Eb X$ (конечное или бесконечное).
 \end{lemma}
 
 \begin{proof}
 	Если $\mu < \bes$, то утверждение леммы представляет собой усиленный закон больших чисел А.\,Н.\,Колмогорова.
 
 	Пусть $\mu = \bes$.
-Положим для $c > 0$
+	Положим для $c > 0$
 	$$
-		V_n(c) \deq X_n \ind\left\{X_n \le c\right\}.
+		V_n(c) \deq X_n \Ibb\hr{X_n \le c}.
 	$$
-	Тогда снова по УЗБЧ А.\,Н.\,Колмогорова $\frac{1}{n} \sum\limits_{k = 1}^n V_k \as \Ef X \ind\left\{X_n \le c\right\}$.
+	Тогда снова по УЗБЧ А.\,Н.\,Колмогорова $\frac 1 n \sumkun V_k \convas \Eb X \Ibb \h{X_n \le c}$.
 
 	Возьмем $c = m \in \N$.
-Тогда с вероятностью 1
+	Тогда с вероятностью 1
 	$$
-		\liminf_{n\to \bes} \frac{1}{n}\sum_{k = 1}^n X_k \ge \lim_{m \to \bes} \Ef X \ind\left\{X \le m\right\} = \Ef X.
+		\liminf_{n \to \bes} \frac 1 n \sumkun X_k
+	\ge	\lim_{m \to \bes} \Eb X \Ibb\hc{X \le m} = \Eb X.
 	$$
 	В последнем равенстве использовалась теорема о монотонной сходимости (для бесконечного предельного интеграла).
 \end{proof}
@@ -121,86 +135,93 @@ $\forall\, s \le t \; Z(s) \le Z(t)$, то достаточно доказать
 Введем определение, которое понадобится нам в дальнейшем.
 
 \begin{df}
-	Семейство случайных величин $\left\{ \xi_\alpha, t \in \Lambda \right\}$ называется \textit{равномерно интегрируемым}, если
+	Семейство случайных величин $\hc{ \xi_\alpha, t \in \Lambda }$ называется \textit{равномерно интегрируемым}, если
 	$$
-		\lim_{c \to \bes} \sup_{\alpha \in \Lambda} \int_{ \left\{ |\xi_\alpha| \ge c \right\}} |\xi_\alpha| \dif\Pb = 0.
+		\lim_{c \to \bes} \sup_{\alpha \in \Lambda} \ints{ \hc{ |\xi_\alpha| \ge c}} |\xi_\alpha| \diff\Pb = 0.
 	$$
 \end{df}
 
-Известно, что если семейство $\left\{ \xi_n, n \ge 1\right\}$ равномерно интегрируемо и $\xi_n \to \xi$ почти наверное, то $\xi$ тоже интегрируема и $\Ef \xi_n \to \Ef \xi$.
-Для неотрицательных случайных величин $\xi_n$, $n \ge 1$, таких, что $\xi_n \to \xi$ п.\,н., где $\Ef \xi < \bes$, имеет место и обратная импликация
+Известно, что если семейство $\left\{ \xi_n, n \ge 1\right\}$ равномерно интегрируемо и $\xi_n \to \xi$ почти наверное,
+то $\xi$ тоже интегрируема и $\Eb \xi_n \to \Eb \xi$.
+Для неотрицательных случайных величин $\xi_n$, $n \ge 1$, таких, что $\xi_n \to \xi$ п.\,н.,
+где $\Eb \xi < \bes$, имеет место и обратная импликация
 $$
-	\Ef \xi_n \to \Ef \xi\; \Longto\; \text{семейство $\left\{ \xi_n, n \ge 1 \right\}$ равномерно интегрируемо.}
+	\Eb \xi_n \to \Eb \xi \Ra \text{семейство $\hc{ \xi_n, n \ge 1 }$ равномерно интегрируемо.}
 $$
 
 Следующая теорема принимается без доказательства
 \begin{theorem}[Де ла Валле Пуссен]\index{Теорема!Де ла Валле Пуссена}\label{pussen}
-	\sloppy
-	Семейство случайных величин $\left\{ \xi_\alpha, \alpha \in \Lambda\right\}$ является равномерно интегрируемым тогда и только тогда, когда найдется измеримая функция $g\colon \real_+ \to \real_+$, т.\,е.
-$g \in \borel(\real_+) | \borel(\real_+)$, такая, что
-	$$
-		\lim_{t \to \bes}\frac{g(t)}{t} = \bes\quad \text{и}\quad \sup \Ef g(|\xi_\alpha|) < \bes.
-	$$
+	Семейство случайных величин $\hc{ \xi_\alpha, \alpha \in \Lambda}$ является равномерно интегрируемым тогда и только тогда,
+	когда найдется измеримая функция $g \cln \R_+ \to \R_+$, \ie
+	$g \in \Bs(\R_+) \divs \Bs(\R_+)$, \sth
+	$\lim\limits_{t \to \bes}\frac{g(t)}{t}	= \bes$ и $\sup \Eb g(|\xi_\alpha|) < \bes$.
 \end{theorem}
 
 \begin{theorem}
-	Пусть $Z = \left\{ Z(t), t\ge 0 \right\}$ "\td процесс восстановления, построенный по последовательности н.\,о.\,р случайных величин $X, X_1, X_2\etc$ .
-Тогда
-	\begin{enumerate}
-		\item\label{firstel} $\displaystyle \frac{Z(t)}{t} \as \frac{1}{\mu}$ при $t \to \bes$;
-		\item\label{secondel} $\displaystyle \frac{\Ef Z(t)}{t} \to \frac{1}{\mu}$ при $t \to \bes$, где $\frac{1}{0} \deq \bes$, $\frac{1}{\bes} \deq 0$.
-	\end{enumerate}
+	Пусть $Z = \hc{ Z(t), t\ge 0 }$ \td процесс восстановления,
+	построенный по последовательности н.\,о.\,р случайных величин $X, X_1, X_2\etc$ .
+	Тогда
+	\begin{points}{0}
+		%FIXME: маленькое пн
+		\item\label{firstel} $\cfrac{Z(t)}{t} \convas \cfrac{1}{\mu}$ при $t \to \bes$;
+		\item\label{secondel} $\cfrac{\Eb Z(t)}{t} \to \cfrac{1}{\mu}$ при $t \to \bes$,
+	\end{points}
+	где $\frac{1}{0} \deq \bes$, $\frac{1}{\bes} \deq 0$.
 \end{theorem}
 
 \begin{proof}
-	Если $\mu = 0$, то $X_n = 0$ п.\,н., поэтому $\forall\, t > 0 \; Z(t) = \bes$ и утверждение теоремы очевидно.
+	Если $\mu = 0$, то $X_n = 0$ п.\,н., поэтому $\fA t > 0 \; Z(t) = \bes$ и утверждение теоремы очевидно.
 
 	Далее $\mu > 0$.
-Заметим, что
-	$$
+	Заметим, что
+	\begin{equation}
 		S_{Z(t)} \le t < S_{Z(t) + 1}
 		\label{eqz}
-	$$
+	\end{equation}
 	Для фиксированного $\omega$ рассмотрим последовательность $t_n \deq S_n(\omega)$.
-Поскольку $Z(t_n, \omega) = n$ и траектория $Z(t, \omega)$ монотонна, $Z(t, \omega) \to \bes$.
-Будем рассматривать те $(t, \omega)$, для которых $0 < Z(t, \omega) < \bes$ (при всех $t_n$, а значит, вообще при всех $t$ это выполнено почти наверное).
-Для этих $(t, \omega)$ разделим обе части \ref{eqz} на $Z(t)$.
-Получим
+	Поскольку $Z(t_n, \omega) = n$ и траектория $Z(t, \omega)$ монотонна, $Z(t, \omega) \to \bes$.
+	Будем рассматривать те $(t, \omega)$, для которых $0 < Z(t, \omega) < \bes$
+	(при всех $t_n$, а значит, вообще при всех $t$ это выполнено почти наверное).
+	Для этих $(t, \omega)$ разделим обе части \ref{eqz} на $Z(t)$.
+	Получим
 	$$
 		\frac{S_{Z(t)}}{Z(t)} \le \frac{t}{Z(t)} < \frac{S_{Z(t) + 1}}{Z(t) + 1}\frac{Z(t) + 1}{Z(t)}.
 	$$
-	Но поскольку $Z(t) \to \bes$, то $\frac{S_{Z(t)}}{Z(t)} \as \mu$, $\frac{S_{Z(t) + 1}}{Z(t) + 1} \as \mu$ и $\frac{Z(t) + 1}{Z(t)} \to 1$.
-Следовательно, $\frac{t}{Z(t)} \as \mu$ при $t \to \bes$, т.\,е.
-$\frac{Z(t)}{t} \as \frac{1}{\mu}$, что завершает доказательство утверждения \ref{firstel}.
+	Но поскольку $Z(t) \to \bes$, то $\frac{S_{Z(t)}}{Z(t)} \convas \mu$,
+	$\frac{S_{Z(t) + 1}}{Z(t) + 1} \convas \mu$ и $\frac{Z(t) + 1}{Z(t)} \to 1$.
+	Следовательно, $\frac{t}{Z(t)} \convas \mu$ при $t \to \bes$, \ie
+	$\frac{Z(t)}{t} \convas \frac{1}{\mu}$, что завершает доказательство утверждения \autoref{firstel}.
 
-	Для доказательства утверждения \ref{secondel} используем теорему \ref{pussen}.
-А именно, рассмотрим семейство $\left\{\xi_t, t \ge \alpha\right\}$ и функцию $g(t) = t^2$, где $\xi_t = \frac{Z(t)}{t}$.
-По лемме \ref{est}
+	Для доказательства утверждения \autoref{secondel} используем \hyperref[pussen]{{теорему Валле--Пуссена}}.
+	А именно, рассмотрим семейство $\left\{\xi_t, t \ge \alpha\right\}$ и функцию $g(t) = t^2$, где $\xi_t = \frac{Z(t)}{t}$.
+	По лемме \ref{est}
 	$$
-		\Ef \xi_t^2 = \frac{\Ef Z(t)^2}{t^2} \le \frac{B t^2}{t^2} = B < \bes.
+		\Eb \xi_t^2 = \frac{\Eb Z(t)^2}{t^2} \le \frac{B t^2}{t^2} = B < \bes.
 	$$
-	Все условия теоремы \ref{pussen} выполнены.
-Поэтому из нее вытекает, что семейство $\left\{\xi_t, t \ge \alpha\right\}$ равномерно интегрируемо.
-Тогда можно совершить предельный переход под знаком математического ожидания, и из утверждения \ref{firstel} получаем, что
+	Все условия \hyperref[pussen]{теоремы Валле--Пуссена} выполнены.
+
+	Поэтому из нее вытекает, что семейство $\hc{\xi_t, t \ge \alpha}$ равномерно интегрируемо.
+	Тогда можно совершить предельный переход под знаком математического ожидания,
+	и из утверждения \autoref{firstel} получаем, что
 	$$
-		\Ef \frac{Z(t)}{t} \to \Ef \frac{1}{\mu} = \frac{1}{\mu},\quad t \to \bes.
+		\Eb \frac{Z(t)}{t} \to \Eb \frac{1}{\mu} = \frac{1}{\mu},\quad t \to \bes.
 	$$
 \end{proof}
 
 
-\subsection{Пуассоновский процесс как процесс восстановления}
+\section{Пуассоновский процесс как процесс восстановления}
 
 \begin{df}
-	\sloppy
-	Пусть $X$, $X_1$, $X_2$\etc	"\td независимые одинаково распределенные случайные величины с экспоненциальным распределением $X\sim \Exp(\lambda)$, т.\,е.
+	Пусть $X$, $X_1$, $X_2$\etc \td н.\,о.\,р. случайные величины с экспоненциальным распределением $X\sim \Exp(\lambda)$,\ie
 	$$
 		p_X(x) =
-		\begin{cases}
-			\lambda e^{- \lambda x}, &\text{если $x \ge 0$,}\\
-			0, &\text{если $x < 0$}.
-		\end{cases}
+		\bcase{
+			\lambda e^{- \lambda x}, &\quad\text{если $x \ge 0$,}\\
+			0, &\quad\text{если $x < 0$}.
+		}
 	$$
-	\textit{Пуассоновским процессом}\index{Процесс!пуассоновский}\index{Пуассоновский процесс} $N = \left\{N(t), t\ge 0\right\}$ называется процесс восстановления, построенный по $X_1$, $X_2$\etc.
+	\textit{Пуассоновским процессом}\index{Процесс!пуассоновский}\index{Пуассоновский процесс}
+	$N = \hc{N(t), t\ge 0}$ называется процесс восстановления, построенный по $X_1, X_2\etc$.
 \end{df}
 
 Для $t > 0$ введем случайные величины
@@ -210,75 +231,79 @@ $\frac{Z(t)}{t} \as \frac{1}{\mu}$, что завершает доказател
 \end{align*}
 
 \begin{lemma}
-	\sloppy
-	Для любого $t > 0$ случайные величины $N(t)$, $X_1^t$, $X_2^t$\etc являются независимыми, причем $N(t) \sim \Pois(\lambda t)$, $X_k^t \sim \Exp(\lambda)$ для $k = 1, 2\etc$.
+	Для любого $t > 0$ случайные величины $N(t), X_1^t, X_2^t\etc$ являются независимыми,
+	причем $N(t) \sim \Pois(\lambda t)$, $X_k^t \sim \Exp(\lambda)$ для $k = 1, 2\etc$.
 \end{lemma}
 
 \begin{proof}
-	Чтобы доказать независимость указанных случайных величин, достаточно проверить, что для $\forall\, n \in \nonneg\; \forall\,u_1\etc, u_k \ge 0$ выполнено
+	Чтобы доказать независимость указанных случайных величин,
+	достаточно проверить, что для $\fA n \in \Z_+\; \fA u_1 \sco u_k \ge 0$ выполнено
 	$$
-		\Pb(N(t) = n, X_1^t > u_1\etc, X_k^t > u_k) = \Pb(N(t) = n) \Pb(X_1^t > u_1) \ldots \Pb(X_k^t > u_k).
+		\Pb\hc{N(t) = n, X_1^t > u_1 \sco X_k^t > u_k} = \Pb(N(t) = n) \cdot \Pb(X_1^t > u_1) \sd \Pb(X_k^t > u_k).
 	$$
 
 	Доказываем это индукцией по $k$.
 
 	База индукции: $k = 1$.
-Напомним (было в курсе теории вероятностей), что случайная величина $S_n$ имеет плотность
+	Напомним (было в курсе теории вероятностей), что случайная величина $S_n$ имеет плотность
 	$$
 		p_{S_n}(x) =
-		\begin{cases}
-			\frac{\lambda (\lambda x)^{n - 1}}{(n - 1)!} e^{- \lambda x}, &\text{если $x \ge 0$};\\
-			0, &\text{если $x < 0$}.
-		\end{cases}
+		\bcase{
+			\frac{\lambda (\lambda x)^{n - 1}}{(n - 1)!} e^{- \lambda x}, &\quad \text{если $x \ge 0$};\\
+			0, &\quad\text{если $x < 0$}.
+		}
 	$$
 
 	Итак,
-	\begin{multline*}
-		\Pb(N(t) = n, X_1^t > u_1) = \Pb(S_n \le t, S_{n + 1} > t, S_{N(t) + 1} - t > u_1) =\\
-		= \Pb(S_n \le t, S_{n + 1} > t, S_{n + 1} > t + u_1) = \Pb(S_n \le t, S_{n + 1} > t + u_1) =\\
-		= \Pb(S_n \le t, S_n + X_{n + 1} > t + u_1) =\\
-		= \Pb\left((S_n, X_{n + 1}) \in \left\{(x, y)\colon x \le t, x + y > t + u_1\right\} \right) =\\
-		\iint\limits_{\substack{x \le t\\ x + y > t + u_1}} p_{(S_n, X_{n + 1})}(x, y) \dif x \dif y = \left(\text{независимость $S_n$ и $X_{n + 1}$}\right) =\\
-		= \iint\limits_{\substack{x \le t\\ x + y > t + u_1}} p_{S_n}(x) p_{X_{n + 1}}(y) \dif x \dif y = \iint\limits_{\substack{0 \le x \le t, y \ge 0\\ x + y > t + u_1}} \frac{\lambda (\lambda x)^{n - 1}}{(n - 1)!} e^{- \lambda x} \lambda e^{-\lambda y} \dif x \dif y =\\
-		= \left(\text{теорема Фубини}\right) = \int\limits_{0}^{t} \frac{\lambda (\lambda x)^{n - 1}}{(n - 1)!} e^{- \lambda x} \dif x \int\limits_{t + u_1 - x}^{+\bes} \lambda	e^{-\lambda y} \dif y =\\
-		= \int\limits_{0}^{t} \frac{\lambda (\lambda x)^{n - 1}}{(n - 1)!} e^{- \lambda x} e^{-\lambda (t + u_1 - x)} \dif x = e^{-\lambda (t + u_1)} \int\limits_{0}^{t} \frac{\lambda (\lambda x)^{n - 1}}{(n - 1)!} \dif x =\\
-		= \frac{(\lambda t)^n}{n!} e^{-\lambda t} e^{-\lambda u_1}.
-	\end{multline*}
+	\begin{gather*}
+		\Pb(N(t) = n, X_1^t > u_1)
+	=	\Pb(S_n \le t, S_{n + 1} > t, S_{N(t) + 1} - t > u_1)
+%XXX:	=	\Pb(S_n \le t, S_{n + 1} > t, S_{n + 1} > t + u_1) =\\
+	=	\Pb(S_n \le t, S_{n + 1} > t + u_1) = \\
+	=	\Pb(S_n \le t, S_n + X_{n + 1} > t + u_1)
+	=	\Pb\hr{ (S_n, X_{n + 1}) \in \hc{(x, y)\mid x \le t, x + y > t + u_1 } } =\\
+	=	\iints{\substack{x \le t\\ x + y > t + u_1}} p_{(S_n, X_{n + 1})}(x, y) \diff x \diff y
+	\eqvl{$S_n \perp X_{n + 1}$}{40} 
+		\iints{\substack{x \le t\\ x + y > t + u_1}} p_{S_n}(x) p_{X_{n + 1}}(y) \diff x \diff y = \\
+	= 	\iints{\substack{0 \le x \le t, y \ge 0\\ x + y > t + u_1}}
+			\frac{\la (\la x)^{n - 1}}{(n - 1)!} e^{-\la x} \la e^{-\la y} \diff x \diff y
+	\eqvl{\text{т. Фубини}}{30}
+		\intl{0}{t} \frac{\la (\la x)^{n - 1}}{(n - 1)!} e^{- \la x} \diff x
+		\intl{t + u_1 - x}{+\bes} \la e^{-\la y} \diff y =\\
+	=	\intl{0}{t} \frac{\la (\la x)^{n - 1}}{(n - 1)!} e^{-\la x} e^{-\la (t + u_1 - x)} \diff x
+	=	e^{-\la (t + u_1)} \intl{0}{t} \frac{\la (\la x)^{n - 1}}{(n - 1)!} \diff x
+	=	\frac{(\la t)^n}{n!} e^{-\la t} e^{-\la u_1}.
+	\end{gather*}
 
 	Положим $u_1 = 0$, получим
 	$$
-		\Pb(N(t) = n, X_1^t > 0) = \Pb(N(t) = n) = \frac{(\lambda t)^n}{n!} e^{-\lambda t},\quad n\in \nonneg,
+		\Pb(N(t) = n, X_1^t > 0) = \Pb(N(t) = n) = \frac{(\la t)^n}{n!} e^{-\la t},\quad n\in \Z_+,
 	$$
-	т.\,е.
-$N(t) \sim \Pois(\lambda t)$.
-Далее,
+	\ie $N(t) \sim \Pois(\lambda t)$.
+	Далее,
 	$$
-		\Pb(X_1^t > u_1) = \sum_{n = 0}^\bes \Pb(N(t) = n, X_1^t > u_1) = \sum_{n = 0}^\bes \frac{(\lambda t)^n}{n!} e^{-\lambda t} \cdot e^{-\lambda u_1} = 1\cdot e^{-\lambda u_1},
+		\Pb(X_1^t > u_1)
+	=	\sumnzi \Pb(N(t) = n, X_1^t > u_1)
+	=	\sumnzi \frac{(\la t)^n}{n!} e^{-\la t} \cdot e^{-\la u_1} = 1\cdot e^{-\la u_1},
 	$$
-	т.\,е.
-$X_1^t \sim \Exp(\lambda)$ и база установлена.
+	\ie $X_1^t \sim \Exp(\la)$ и база установлена.
 
 	Индукционный переход: пусть $k \ge 2$.
 	\begin{multline*}
-		\Pb(N(t) = n, X_1^t > u_1\etc, X_k^t > u_k) =\\ \Pb(S_n \le t, S_{n + 1} > t, S_{n + 1} > t + u_1, X_{n + 2} > u_2\etc, X_{n + k} > u_k) =\\
-		= \left(\text{см.
-предыдущее}\right) = \Pb(N(t) = n) \Pb(X_1^t > u_1) e^{-\lambda u_2} \ldots e^{-\lambda u_k} =\\
-		= \Pb(N(t) = n)	e^{-\lambda u_1} \ldots e^{-\lambda u_k}.
+		\Pb\hc{N(t) = n, X_1^t > u_1\etc, X_k^t > u_k} =\\
+	=	\Pb\hc{S_n \le t, S_{n + 1} > t, S_{n + 1} > t + u_1, X_{n + 2} > u_2\etc, X_{n + k} > u_k} 
+	\eqvl{см. выше}{30} \\
+	=	\Pb\hc{N(t) = n} \Pb\hc{X_1^t > u_1}\cdot e^{-\la u_2} \sd e^{-\la u_k}
+	=	\Pb\hc{N(t) = n} \cdot e^{-\la u_1} \sd e^{-\la u_k}.
 	\end{multline*}
 
-	Снова положим $u_1 = \ldots = u_{k - 1} = 0$ и просуммируем по всем $n \in \nonneg$.
-Получим $\Pb(X_k^t > u_k) = e^{-\lambda u_k}$, откуда $X_k^t \sim \Exp(\lambda)$, индукционный переход завершен.
+	Снова положим $u_1 = \ldots = u_{k - 1} = 0$ и просуммируем по всем $n \in \Z_+$.
+	Получим $\Pb(X_k^t > u_k) = e^{-\la u_k}$, откуда $X_k^t \sim \Exp(\la)$, индукционный переход завершен.
 \end{proof}
 
-Пусть $X_j \sim \Exp(\lambda)$ "\td интервалы между временами прихода автобусов на данную остановку.
+Пусть $X_j \sim \Exp(\la)$ \td интервалы между временами прихода автобусов на данную остановку.
 Тогда случайная величина $X_1^t = S_{N(t) + 1} - t$ соответствует времени ожидания прибытия ближайшего автобуса.
-Мы только что доказали, что она распределена так же, как и интервалы: $X_1^t \sim \Exp(\lambda)$.
+Мы только что доказали, что она распределена так же, как и интервалы: $X_1^t \sim \Exp(\la)$.
 Мы будем в среднем ждать автобуса столько же времени, сколько в среднем проходит времени между двумя автобусами.
 В этом состоит \textbf{парадокс времени ожидания}\index{Парадокс времени ожидания}.
 Никакого противоречия здесь на самом деле нет, так как сами моменты прихода автобусов также случайные.
-
-\clearpage
-\phantomsection
-\addcontentsline{toc}{section}{Предметный указатель}
-\printindex
-

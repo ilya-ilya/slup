@@ -183,16 +183,16 @@
 \end{proof}
 
 \begin{theorem}
-	Простое случайное блуждание в $\Z^d$ возвратно $\Lra$ $\Ef N = \bes$
-	(соответственно, невозвратно $\Lra$ $\Ef N < \bes$).
+	Простое случайное блуждание в $\Z^d$ возвратно $\Lra$ $\Eb N = \bes$
+	(соответственно, невозвратно $\Lra$ $\Eb N < \bes$).
 \end{theorem}
 
 \begin{proof}
-	Если $\Ef N < \bes$, то $\Pb(N<\bes) = 1$.
+	Если $\Eb N < \bes$, то $\Pb(N<\bes) = 1$.
 	Пусть теперь $\Pb(N<\bes) = 1$.
 	Это равносильно тому, что $\Pb(\tau < \bes) < 1$.
 	$$
-		\Ef N = \sumnui n\Pb(N=n)
+		\Eb N = \sumnui n\Pb(N=n)
 	=	\sumnui n\Pb(\tau = \bes)\Pb(\tau < \bes)^{n-1}
 	=	\Pb(\tau = \bes)\sumnui n\Pb(\tau < \bes)^{n-1}.
 	$$
@@ -211,7 +211,7 @@
 \begin{note}
 	Заметим, что поскольку $N = \sumnui \Ibb \hc{S_n = 0}$, то
 	$$
-		\Ef N = \sumnzi \Ef \Ibb \hc{S_n = 0} = \sumnzi \Pb(S_n = 0),
+		\Eb N = \sumnzi \Eb \Ibb \hc{S_n = 0} = \sumnzi \Pb(S_n = 0),
 	$$
 	где перестановка местами знаков матожидания и суммы возможна в силу неотрицательности членов ряда.
 	Таким образом,
@@ -252,7 +252,7 @@
 \begin{theorem}
 	Для простого случайного блуждания в $\Z^{d}$
 	$$
-		\Ef N = \lim_{c \up 1} \frac 1{(2 \pi)^d} \ints{[-\pi, \pi]^d} \frac1{1 - c \phi (t)}\diff{t},
+		\Eb N = \lim_{c \up 1} \frac 1{(2 \pi)^d} \ints{[-\pi, \pi]^d} \frac1{1 - c \phi (t)}\diff{t},
 	$$
 	где $\phi (t)$ \td характеристическая функция X, $t \in \mathbb{R}^{d}$.
 \end{theorem}
@@ -273,17 +273,17 @@
 	$$
 	По теореме Фубини
 	$$
-		\Ef \Ibb \hc{S_n = 0}
-	=	\Ef \frac1{(2 \pi)^d} \ints{[-\pi, \pi]^d} e^{i (S_n, t)}\diff{ t}
-	=	\frac1{(2 \pi)^d} \ints{[-\pi, \pi]^d} \Ef e^{i (S_n, t)}\diff{ t}.
+		\Eb \Ibb \hc{S_n = 0}
+	=	\Eb \frac1{(2 \pi)^d} \ints{[-\pi, \pi]^d} e^{i (S_n, t)}\diff{ t}
+	=	\frac1{(2 \pi)^d} \ints{[-\pi, \pi]^d} \Eb e^{i (S_n, t)}\diff{ t}.
 	$$
 	Заметим, что
 	$$
-		\Ef e^{i (S_n, t)} = \prod_{k=1}^n \phi_{X_k} (t) = (\phi (t))^n.
+		\Eb e^{i (S_n, t)} = \prod_{k=1}^n \phi_{X_k} (t) = (\phi (t))^n.
 	$$
 	Тогда
 	$$
-		\Ef \Ibb (S_n = 0) = \Pb(S_n = 0)
+		\Eb \Ibb (S_n = 0) = \Pb(S_n = 0)
 	=	\frac1{(2 \pi)^d}\ints{[-\pi, \pi]^d} \hr{\phi (t)}^n\diff{ t}.
 	$$
 	Из этого следует, что
@@ -299,7 +299,7 @@
 	по формуле для суммы бесконечно убывающей геометрической прогрессии.
 	Осталось только заметить, что
 	$$
-		\sumnzi c^n \Pb(S_n = 0) \to \sumnzi \Pb(S_n = 0) = \Ef N, \quad c \uparrow 1,
+		\sumnzi c^n \Pb(S_n = 0) \to \sumnzi \Pb(S_n = 0) = \Eb N, \quad c \uparrow 1,
 	$$
 	что и завершает доказательство теоремы.
 \end{proof}

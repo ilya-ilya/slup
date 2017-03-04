@@ -50,3 +50,4 @@ Changes in DMVN Style packages
 
 03 Mar 2017, v. 2.02
 [+] \sumj... command family
+[+] \eqd for =: symbol from mathtools

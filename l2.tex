@@ -39,7 +39,7 @@ $$
 
 Заметим, что если $a_k = \Pb(Y = k), k = 0, 1,\; \ldots$ , то
 $$
-	f_Y(s) = \sumkzi s^k \Pb(Y = k) = \Ef s^Y, \quad s \in [0, 1].
+	f_Y(s) = \sumkzi s^k \Pb(Y = k) = \Eb s^Y, \quad s \in [0, 1].
 $$
 
 \begin{lemma}
@@ -50,19 +50,19 @@ $$
 \begin{proof}
 	\begin{multline*}
 		f_{Z_n}(s)
-	=	\Ef s^{Z_n}
-	=	\Ef \hr{s^{\sum_{k = 1}^{Z_{n - 1}} \xi_{n, k}}} = \\
-	=	\sumjzi \Ef \hs{ \hr{ s^{\sum_{k = 1}^{Z_{n - 1}} \xi_{n, k}} } \Ibb \hc{ Z_{n - 1} = j}} = \\
-	=	\sumjzi \Ef \hs{ \hr{ s^{\sum_{k = 1}^j \xi_{n, k}} } \Ibb \hc{ Z_{n - 1} = j} }.
+	=	\Eb s^{Z_n}
+	=	\Eb \hr{s^{\sum_{k = 1}^{Z_{n - 1}} \xi_{n, k}}} = \\
+	=	\sumjzi \Eb \hs{ \hr{ s^{\sum_{k = 1}^{Z_{n - 1}} \xi_{n, k}} } \Ibb \hc{ Z_{n - 1} = j}} = \\
+	=	\sumjzi \Eb \hs{ \hr{ s^{\sum_{k = 1}^j \xi_{n, k}} } \Ibb \hc{ Z_{n - 1} = j} }.
 	\end{multline*}
 	Поскольку $\sigma \hc{ Z_r} \subs \sigma \hc{ \xi_{m, k}, \; m = 1 \sco r,\; k \in \N}$,
 	которая независима с $\sigma \hc{\xi_{n, k}, \; k \in \N}$
 	(строгое и полное обоснование остается в качестве упражнения), то
 	\begin{multline*}
-		\sumjzi \Ef \hs{ \hc{ s^{\sum_{k = 1}^j \xi_{n, k}} } \Ibb \hc{ Z_{n-1} = j } }
-	=	\sumjzi \Ef \hr{s^{\sum_{k = 1}^j \xi_{n, k}}} \Ef \Ibb \hc{ Z_{n - 1} = j} = \\
-	=	\sumjzi \Ef \hr{s^{\sum_{k=1}^j \xi_{n, k}}} \Pb ( Z_{n - 1} = j )
-	=	\sumjzi \prod_{k = 1}^j \Ef s^{\xi_{n, k}} \Pb (Z_{n - 1} = j) = \\
+		\sumjzi \Eb \hs{ \hc{ s^{\sum_{k = 1}^j \xi_{n, k}} } \Ibb \hc{ Z_{n-1} = j } }
+	=	\sumjzi \Eb \hr{s^{\sum_{k = 1}^j \xi_{n, k}}} \Eb \Ibb \hc{ Z_{n - 1} = j} = \\
+	=	\sumjzi \Eb \hr{s^{\sum_{k=1}^j \xi_{n, k}}} \Pb ( Z_{n - 1} = j )
+	=	\sumjzi \prod_{k = 1}^j \Eb s^{\xi_{n, k}} \Pb (Z_{n - 1} = j) = \\
 	=	\sumjzi \psi_{\xi}^j (s) \Pb (Z_{n - 1} = j)
 	=	f_{Z_{n - 1}} \hr{\psi_{\xi} (s)}
 	\end{multline*}
@@ -143,8 +143,8 @@ $$
 	\begin{points}{0}
 		\item\label{firth} Вероятность вырождения $\Pb(A)$ есть нуль $\Lra$ $p_{0} = 0$.
 		\item\label{secth} Пусть $p_{0} > 0$.
-			Тогда при $\Ef \xi \le 1$ имеем $\Pb (A) = 1$,
-			при $\Ef \xi > 1$ имеем $\Pb(A) < 1$.
+			Тогда при $\Eb \xi \le 1$ имеем $\Pb (A) = 1$,
+			при $\Eb \xi > 1$ имеем $\Pb(A) < 1$.
 	\end{points}
 \end{theorem}
 
@@ -155,8 +155,8 @@ $$
 	В другую сторону, если $p_0 = 0$, то вымирания не происходит (почти наверное) из-за того,
 	что у каждой частицы есть как минимум один потомок (почти наверное).
 
-	Докажем \ref{secth}.
-	Пусть $\mu = \Ef\xi \le 1$.
+	Докажем \autoref{secth}.
+	Пусть $\mu = \Eb\xi \le 1$.
 	Покажем, что в таком случае у уравнения \eqref{eq1} будет единственный корень, равный $1$.
 	$$
 		\psi_{\xi}^{\prime} (z)
@@ -179,7 +179,7 @@ $$
 	то есть $z = 1$ \td это единственный корень уравнения \eqref{eq1}.
 	Значит, $P(A) = 1$.
 
-	Пусть $\mu = \Ef\xi > 1$.
+	Пусть $\mu = \Eb\xi > 1$.
 	Покажем, что в таком случае у уравнения \eqref{eq1} есть два корня, один из которых строго меньше единицы.
 	$$
 		\psi_{\xi}^{\prime\prime}(z)
@@ -201,32 +201,32 @@ $$
 \end{proof}
 
 \begin{imp}
-	Пусть $\Ef \xi < \bes$.
-Тогда $\Ef Z_{n} = (\Ef \xi)^{n},\; n \in \N{.}$
+	Пусть $\Eb \xi < \bes$.
+Тогда $\Eb Z_{n} = (\Eb \xi)^{n},\; n \in \N{.}$
 \end{imp}
 
 \begin{proof}
 	Доказательство проводится по индукции.
 
-	База индукции: $n=1 \Ra \Ef Z_{1} = \Ef \xi$.
+	База индукции: $n=1 \Ra \Eb Z_{1} = \Eb \xi$.
 
 	Индуктивный переход:
 	$$
-		\Ef Z_{n}
-	=	\Ef \hr{ \sum_{k = 1}^{Z_{n - 1}} \xi_{n,k} }
-	=	\sumjzi j \Ef \xi \Pb(Z_{n - 1} = j)
-	=	\Ef \xi \Ef Z_{n - 1}
-	=	\hr{\Ef \xi}^n.
+		\Eb Z_{n}
+	=	\Eb \hr{ \sum_{k = 1}^{Z_{n - 1}} \xi_{n,k} }
+	=	\sumjzi j \Eb \xi \Pb(Z_{n - 1} = j)
+	=	\Eb \xi \Eb Z_{n - 1}
+	=	\hr{\Eb \xi}^n.
 	$$
 \end{proof}
 
 \begin{df}
 
-	При $\Ef \xi < 1$ процесс называется \textit{докритическим.}
+	При $\Eb \xi < 1$ процесс называется \textit{докритическим.}
 
-	При $\Ef \xi = 1$ процесс называется \textit{критическим.}
+	При $\Eb \xi = 1$ процесс называется \textit{критическим.}
 
-	При $\Ef \xi > 1$ процесс называется \textit{надкритическим.}
+	При $\Eb \xi > 1$ процесс называется \textit{надкритическим.}
 \end{df}
 
 \section{Процессы восстановления}
@@ -257,8 +257,10 @@ $$
 		Z(t) = \sumnui \Ibb \hc{ S_n \le t},\quad t > 0.
 	$$
 \end{note}
-
-\begin{df}\label{dfstar}
+\begin{df}
+%FIXME
+\phantomsection
+\label{dfstar}
 	Рассмотрим \textit{процесс восстановления} $\hc{ Z^\star(t),\; t \ge 0 }$,
 	который строится по $Y, Y_{1}, Y_{2}\etc$ \td независимым одинаково распределенным случайным величинам,
 	где $\Pb(Y = \alpha) = p \in (0, 1)$, $\Pb(Y = 0) = 1 - p$.
