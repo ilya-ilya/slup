@@ -17,7 +17,7 @@
 \end{denote}
 
 \begin{df}\index{Случайный!элемент}
-	Пусть есть $(\Om, \Fs, \Pb)$ \td вероятностное пространство,
+	Пусть есть $(\Om, \Fs, \Pf)$ \td вероятностное пространство,
 	$(S, \Bs)$ \td измеримое пространство,
 	$Y \cln \Om \to S$ \td отображение.
 	Если $Y \in \Fs \divs \Bs$, то $Y$ называется \textit{случайным элементом}.
@@ -27,23 +27,23 @@
 	$S = \R^m$, $\Bc = \Bc(\R)$ \td борелевские множества.
 	Тогда при $m > 1$ случайный элемент $Y$ \td случайный вектор;
 	если $m = 1$, то $Y$ \td случайная величина.
-	$\Pb_Y(B) = \Pb[Y^{-1}(B)]$ \td мера на $\Bc$.
+	$\Pf_Y(B) = \Pf[Y^{-1}(B)]$ \td мера на $\Bc$.
 
 	Легко видеть, что
-	$$
-		\Pb_Y(B) = \Pb\hc{\om \in \Om \mid Y(\om) \in B}
-	$$
+	\[
+		\Pf_Y(B) = \Pf\hc{\om \in \Om \mid Y(\om) \in B}
+	\]
 \end{ex}
 
 \begin{df}\index{Распределение!случайного элемента}
- 	Пусть $(\Om, \Fs, \Pb)$ \td вероятностное пространство,
+ 	Пусть $(\Om, \Fs, \Pf)$ \td вероятностное пространство,
 	$(S, \Bs)$ \td измеримое пространство,
 	$Y \cln \Om \to S$ \td случайный элемент.
 	\textit{Распределение вероятностей, индуцированное случайным элементом $Y$,}
 	\td это функция на множествах из $\Bs$, задаваемая равенством
-	$$
-		\Pb_Y (B)\deq \Pb(Y^{-1}(B)), \quad B\in\mathscr{B}.
-	$$
+	\[
+		\Pf_Y (B)\deq \Pf(Y^{-1}(B)), \quad B\in\mathscr{B}.
+	\]
 \end{df}
 
 \begin{df}\index{Случайный!процесс}
@@ -64,16 +64,16 @@
 
 \begin{df}
 	Случайные элементы $X_1 \sco X_n$ называются \textit{независимыми}, если
-	$$
-		\Pb \hr{\capkun \hc{X_k \in B_k}} = \prodl{k=1}{n} \Pb(X_k \in B_k),
+	\[
+		\Pf \hr{\capkun \hc{X_k \in B_k}} = \prodl{k=1}{n} \Pf(X_k \in B_k),
 			\quad \fA B_1 \in \Bs_1 \sco B_n \in \Bs_n.
-	$$
+	\]
 \end{df}
 
 \begin{theorem}[Ломницкого-Улама]\index{Теорема!Ломницкого-Улама}
  	Пусть $(S_t, \Bs_t, \Q_t)_{t \in	T}$ \td семейство вероятностных пространств.
-	Тогда на некотором $(\Om, \Fs, \Pb)$ существует семейство \textit{независимых} случайных элементов
-	$X_t \cln \Om \to S_t$, $X_t \in \Fs \divs \Bs_t$ таких, что $\Pb_{X_t} = \Q_{t}$, $t \in T$.
+	Тогда на некотором $(\Om, \Fs, \Pf)$ существует семейство \textit{независимых} случайных элементов
+	$X_t \cln \Om \to S_t$, $X_t \in \Fs \divs \Bs_t$ таких, что $\Pf_{X_t} = \Q_{t}$, $t \in T$.
 \end{theorem}
 
 \begin{note}
@@ -97,9 +97,9 @@
 
 \begin{df}\index{Случайное блуждание!простое}
 	\textit{Простое случайное блуждание в $\Z^d$} \td это такое случайное блуждание, что
-	$$
-		\Pb(X = e_k) = \Pb(X = -e_k) = \frac1{2d},
-	$$
+	\[
+		\Pf(X = e_k) = \Pf(X = -e_k) = \frac1{2d},
+	\]
 	где $e_k = (0 \sco 0, \ub{1}_k, 0 \sco 0)$, $k = 1 \sco d$.
 \end{df}
 
@@ -107,11 +107,11 @@
 	Введем $N \deq \sumnzi \Ibb \hc{S_n = 0} \le \bes$.
 	Это, по сути, число попаданий нашего процесса в точку $0$.
 	Простое случайное блуждание $S = \hc{S_n, n \ge 0}$ называется \textit{возвратным},
-	если $\Pb(N = \bes) = 1$; \textit{невозвратным}, если $\Pb(N < \bes) = 1$.
+	если $\Pf(N = \bes) = 1$; \textit{невозвратным}, если $\Pf(N < \bes) = 1$.
 \end{df}
 
 \begin{note}
-	Следует понимать, что хотя определение подразумевает, что $\Pb(N = \bes)$ равно либо 0, либо 1,
+	Следует понимать, что хотя определение подразумевает, что $\Pf(N = \bes)$ равно либо 0, либо 1,
 	пока что это является недоказанным фактом.
 	Это свойство будет следовать из следующей леммы.
 \end{note}
@@ -121,7 +121,7 @@
 \end{df}
 
 \begin{lemma}
-	Для $ \fA n \in \N \; \Pb(N = n) = \Pb(\tau = \bes)\Pb(\tau < \bes)^{n-1}$.
+	Для $ \fA n \in \N \; \Pf(N = n) = \Pf(\tau = \bes)\Pf(\tau < \bes)^{n-1}$.
 		\footnote{\textit{от наборщика:} Судя по всему, в лемме подразумевается,
 			что начальная точка нашего случайного блуждания \td это 0.}
 \end{lemma}
@@ -131,92 +131,92 @@
 Докажем по индукции.
 
 	\begin{gather*}
-		\Pb(N = n+1, \tau < \bes) =
-		\sumkun \Pb(N = n+1, \tau = k) 
-	=	\sumkun \Pb\hr{ \sum_{m=0}^{\bes} \Ibb \hc{ S_{m+k} - S_k = 0 } = n, \tau = k} = \\
-	=	\sumkun \Pb \hr{ \sum_{m=0}^{\bes} \Ibb \hc{ S_m = 0} = n} \Pb(\tau = k) 
-	=	\sumkun \Pb(N^{\prime} = n)\Pb(\tau = k),
+		\Pf(N = n+1, \tau < \bes) =
+		\sumkun \Pf(N = n+1, \tau = k) 
+	=	\sumkun \Pf\hr{ \sum_{m=0}^{\bes} \Ibb \hc{ S_{m+k} - S_k = 0 } = n, \tau = k} = \\
+	=	\sumkun \Pf \hr{ \sum_{m=0}^{\bes} \Ibb \hc{ S_m = 0} = n} \Pf(\tau = k) 
+	=	\sumkun \Pf(N^{\prime} = n)\Pf(\tau = k),
 	\end{gather*}
 	где $N^{\prime}$ определяется по последовательности
 	$X_1^{\prime} = X_{k+1}, X_{2}^{\prime} = X_{k+2}$ и так далее.
 	Из того, что $X_i$ \td независиые одинаково распределенные случайные векторы,
 	следует, что $N^{\prime}$ и $N$ распределены одинаково.
 	Таким образом, получаем, что
-	$$
-		\Pb(N = n+1, \tau < \bes) = \Pb(N = n)\Pb(\tau < \bes).
-	$$
+	\[
+		\Pf(N = n+1, \tau < \bes) = \Pf(N = n)\Pf(\tau < \bes).
+	\]
 	Заметим теперь, что
-	$$
-		\Pb(N = n+1) = \Pb(N = n+1, \tau < \bes) + \Pb(N = n+1, \tau = \bes),
-	$$
+	\[
+		\Pf(N = n+1) = \Pf(N = n+1, \tau < \bes) + \Pf(N = n+1, \tau = \bes),
+	\]
 	где второе слагаемое обнуляется из-за того, что $n+1 \ge 2$.
 	Из этого следует, что
-	$$
-		\Pb(N = n+1) = \Pb(N = n)\Pb(\tau < \bes).
-	$$
+	\[
+		\Pf(N = n+1) = \Pf(N = n)\Pf(\tau < \bes).
+	\]
 		Пользуемся предположением индукции и получаем, что
-	$$
-		\Pb(N = n+1) = \Pb(\tau = \bes)\Pb(\tau < \bes)^n,
-	$$
+	\[
+		\Pf(N = n+1) = \Pf(\tau = \bes)\Pf(\tau < \bes)^n,
+	\]
 	что и завершает доказательство леммы.
 \end{proof}
 
 \begin{imp}
-	$\Pb(N = \bes)$ равно 0 или 1.
-	$\Pb(N < \bes) = 1 \Lra \Pb(\tau < \bes) < 1$.
+	$\Pf(N = \bes)$ равно 0 или 1.
+	$\Pf(N < \bes) = 1 \Lra \Pf(\tau < \bes) < 1$.
 \end{imp}
 
 \begin{proof}
-	Пусть $\Pb(\tau < \bes) < 1$.
+	Пусть $\Pf(\tau < \bes) < 1$.
 	Тогда
-	$$
-		\Pb(N < \bes) = \sumnui \Pb(N = n) = \sumnui \Pb(\tau = \bes) \Pb(\tau < \bes)^{n-1}
-		= \frac{\Pb(\tau = \bes)}{1 - \Pb(\tau < \bes)} = \frac{\Pb(\tau = \bes)}{\Pb(\tau = \bes)} = 1.
-	$$
+	\[
+		\Pf(N < \bes) = \sumnui \Pf(N = n) = \sumnui \Pf(\tau = \bes) \Pf(\tau < \bes)^{n-1}
+		= \frac{\Pf(\tau = \bes)}{1 - \Pf(\tau < \bes)} = \frac{\Pf(\tau = \bes)}{\Pf(\tau = \bes)} = 1.
+	\]
 	Это доказывает первое утверждение следствия и импликацию справа налево в формулировке следствия.
 	Докажем импликацию слева направо.
-	$$
-		\Pb(\tau < \bes) = 1 \Ra \Pb \hr{\tau = \bes } = 0 \Ra \Pb(N = n) = 0
-			\quad \fA n \in \N \Ra \Pb(N < \bes) = 0.
-	$$
+	\[
+		\Pf(\tau < \bes) = 1 \Ra \Pf \hr{\tau = \bes } = 0 \Ra \Pf(N = n) = 0
+			\quad \fA n \in \N \Ra \Pf(N < \bes) = 0.
+	\]
 	Следствие доказано.
 \end{proof}
 
 \begin{theorem}
-	Простое случайное блуждание в $\Z^d$ возвратно $\Lra$ $\Eb N = \bes$
-	(соответственно, невозвратно $\Lra$ $\Eb N < \bes$).
+	Простое случайное блуждание в $\Z^d$ возвратно $\Lra$ $\Ef N = \bes$
+	(соответственно, невозвратно $\Lra$ $\Ef N < \bes$).
 \end{theorem}
 
 \begin{proof}
-	Если $\Eb N < \bes$, то $\Pb(N<\bes) = 1$.
-	Пусть теперь $\Pb(N<\bes) = 1$.
-	Это равносильно тому, что $\Pb(\tau < \bes) < 1$.
-	$$
-		\Eb N = \sumnui n\Pb(N=n)
-	=	\sumnui n\Pb(\tau = \bes)\Pb(\tau < \bes)^{n-1}
-	=	\Pb(\tau = \bes)\sumnui n\Pb(\tau < \bes)^{n-1}.
-	$$
+	Если $\Ef N < \bes$, то $\Pf(N<\bes) = 1$.
+	Пусть теперь $\Pf(N<\bes) = 1$.
+	Это равносильно тому, что $\Pf(\tau < \bes) < 1$.
+	\[
+		\Ef N = \sumnui n\Pf(N=n)
+	=	\sumnui n\Pf(\tau = \bes)\Pf(\tau < \bes)^{n-1}
+	=	\Pf(\tau = \bes)\sumnui n\Pf(\tau < \bes)^{n-1}.
+	\]
 	Заметим, что
-	$$
+	\[
 		\sumnui np^{n-1} = \hr{\sumnui p^n}^{\prime} = (\frac1{1-p})^{\prime} = \frac1{(1-p)^2}.
-	$$
+	\]
 	Тогда, продолжая цепочку равенств, получаем, что
-	$$
-		\Pb(\tau = \bes)\sumnui n\Pb(\tau < \bes)^{n-1} =
-		\frac{\Pb(\tau = \bes)}{(1 - \Pb(\tau < \bes))^2} = \frac1{1 - \Pb(\tau < \bes)},
-	$$
+	\[
+		\Pf(\tau = \bes)\sumnui n\Pf(\tau < \bes)^{n-1} =
+		\frac{\Pf(\tau = \bes)}{(1 - \Pf(\tau < \bes))^2} = \frac1{1 - \Pf(\tau < \bes)},
+	\]
 	что завершает доказательство теоремы.
 \end{proof}
 
 \begin{note}
 	Заметим, что поскольку $N = \sumnui \Ibb \hc{S_n = 0}$, то
-	$$
-		\Eb N = \sumnzi \Eb \Ibb \hc{S_n = 0} = \sumnzi \Pb(S_n = 0),
-	$$
+	\[
+		\Ef N = \sumnzi \Ef \Ibb \hc{S_n = 0} = \sumnzi \Pf(S_n = 0),
+	\]
 	где перестановка местами знаков матожидания и суммы возможна в силу неотрицательности членов ряда.
 	Таким образом,
 	\begin{center}
-		S возвратно $\Lra$ $\sumnzi \Pb(S_n = 0) = \bes$.
+		S возвратно $\Lra$ $\sumnzi \Pf(S_n = 0) = \bes$.
 	\end{center}
 \end{note}
 
@@ -225,24 +225,24 @@
 \end{imp}
 
 \begin{proof}
-	$$
-		\Pb(S_{2n} = 0) =
+	\[
+		\Pf(S_{2n} = 0) =
 		(\frac1{2d})^{2n} \sum_{\substack{n_1 \sco n_d \ge 0 \\ n_1 \spl n_d = n}} \frac{(2n)!}{(n_1!)^2 \ldots (n_d!)^2}.
-	$$
-	\textit{Случай d = 1}: $\Pb(S_{2n} = 0) = \frac{(2n)!}{(n!)^{2}}(\frac{1}{2})^{2n}$.
+	\]
+	\textit{Случай d = 1}: $\Pf(S_{2n} = 0) = \frac{(2n)!}{(n!)^{2}}(\frac{1}{2})^{2n}$.
 	Согласно формуле Стирлинга,
-	$$
+	\[
 		m! \sim \hr{\frac m e}^m \sqrt{2 \pi m}, \quad m \to \bes.
-	$$
+	\]
 	Соответственно,
-	$$
-		\Pb(S_{2n} = 0) \sim \frac{1}{\sqrt{\pi n}} \Ra
-	$$
+	\[
+		\Pf(S_{2n} = 0) \sim \frac{1}{\sqrt{\pi n}} \Ra
+	\]
 	ряд $\sumnzi \frac 1{\sqrt{\pi n}} = \bes \Ra$ блуждание возвратно.
 	Аналогично рассматривается \textit{случай d = 2}:
-	$$
-		\Pb(S_{2n} = 0) = \ldots = \hc{ \frac{(2n)!}{(n!)^2}(\frac 1{2})^{2n} }^{2} \sim \frac{1}{\pi n} \Ra
-	$$
+	\[
+		\Pf(S_{2n} = 0) = \ldots = \hc{ \frac{(2n)!}{(n!)^2}(\frac 1{2})^{2n} }^{2} \sim \frac{1}{\pi n} \Ra
+	\]
 	ряд тоже разойдется $\Ra$ блуждание возвратно.
 	Теорема доказана.
 \end{proof}
@@ -251,56 +251,56 @@
 
 \begin{theorem}
 	Для простого случайного блуждания в $\Z^{d}$
-	$$
-		\Eb N = \lim_{c \up 1} \frac 1{(2 \pi)^d} \ints{[-\pi, \pi]^d} \frac1{1 - c \phi (t)}\diff{t},
-	$$
+	\[
+		\Ef N = \lim_{c \up 1} \frac 1{(2 \pi)^d} \ints{[-\pi, \pi]^d} \frac1{1 - c \phi (t)}\diff{t},
+	\]
 	где $\phi (t)$ \td характеристическая функция X, $t \in \mathbb{R}^{d}$.
 \end{theorem}
 
 \begin{proof}
-	$$
+	\[
 		\ints{[-\pi, \pi]} \frac{e^{inx}}{2 \pi} \diff{x} = \bcase{
 				1, && n &= 0, \\
 				0, && n &\ne 0.
 		}
-	$$
+	\]
 	Следовательно,
-	$$
+	\[
 		\Ibb \hc{S_n = 0}
 	=	\prod_{k=1}^d \Ibb \hc{ S_n^{(k)} = 0}
 	=	\prod_{k=1}^d \ints{[-\pi, \pi]} \frac{e^{i S_n^{(k)} t_k}}{2 \pi}\diff{ t_k}
 	=	\frac1{(2 \pi)^d} \ints{[-\pi, \pi]^d} e^{i (S_n, t)}\diff{ t}.
-	$$
+	\]
 	По теореме Фубини
-	$$
-		\Eb \Ibb \hc{S_n = 0}
-	=	\Eb \frac1{(2 \pi)^d} \ints{[-\pi, \pi]^d} e^{i (S_n, t)}\diff{ t}
-	=	\frac1{(2 \pi)^d} \ints{[-\pi, \pi]^d} \Eb e^{i (S_n, t)}\diff{ t}.
-	$$
+	\[
+		\Ef \Ibb \hc{S_n = 0}
+	=	\Ef \frac1{(2 \pi)^d} \ints{[-\pi, \pi]^d} e^{i (S_n, t)}\diff{ t}
+	=	\frac1{(2 \pi)^d} \ints{[-\pi, \pi]^d} \Ef e^{i (S_n, t)}\diff{ t}.
+	\]
 	Заметим, что
-	$$
-		\Eb e^{i (S_n, t)} = \prod_{k=1}^n \phi_{X_k} (t) = (\phi (t))^n.
-	$$
+	\[
+		\Ef e^{i (S_n, t)} = \prod_{k=1}^n \phi_{X_k} (t) = (\phi (t))^n.
+	\]
 	Тогда
-	$$
-		\Eb \Ibb (S_n = 0) = \Pb(S_n = 0)
+	\[
+		\Ef \Ibb (S_n = 0) = \Pf(S_n = 0)
 	=	\frac1{(2 \pi)^d}\ints{[-\pi, \pi]^d} \hr{\phi (t)}^n\diff{ t}.
-	$$
+	\]
 	Из этого следует, что
-	$$
-		\sumnzi c^n \Pb(S_n = 0)
+	\[
+		\sumnzi c^n \Pf(S_n = 0)
 	=	\frac1{(2 \pi)^d} \ints{[-\pi, \pi]^d} \sumnzi (c \phi(t))^n\diff{t},\quad\text{где $0 < c < 1$}.
-	$$
+	\]
 	Поскольку $|c \phi| \le c < 1$, то
-	$$
+	\[
 		\frac1{(2 \pi)^d} \ints{[-\pi, \pi]^d} \sumnzi (c \phi(t))^n\diff{ t}
 	=	\frac1{(2 \pi)^d} \ints{[-\pi, \pi]^d} \frac1{1 - c \phi (t)}\diff{ t}
-	$$
+	\]
 	по формуле для суммы бесконечно убывающей геометрической прогрессии.
 	Осталось только заметить, что
-	$$
-		\sumnzi c^n \Pb(S_n = 0) \to \sumnzi \Pb(S_n = 0) = \Eb N, \quad c \uparrow 1,
-	$$
+	\[
+		\sumnzi c^n \Pf(S_n = 0) \to \sumnzi \Pf(S_n = 0) = \Ef N, \quad c \uparrow 1,
+	\]
 	что и завершает доказательство теоремы.
 \end{proof}
 
@@ -317,17 +317,17 @@
 \begin{df}\index{Множество!возвратности}
 	Пусть есть случайное блуждание $S$ на $\R^d$.
 	Тогда \textit{множество возвратности} случайного блуждания $S$ \td это множество
-	$$
+	\[
 		R(S) = \hc{ x \in \R^d : \text{блуждание возвратно в окрестности точки } x}.
-	$$
+	\]
 \end{df}
 
 \begin{df}\index{Множество!достижимости}
 	Пусть есть случайное блуждание $S$ на $\R^d$.
 	Тогда \textit{точки, достижимые случайным блужданием $S$,} \td это множество $P(S)$ такое, что
-	$$
-		\fA z \in P(S) \; \fA \epsilon > 0 \; \Ex n : \; \Pb( | S_{n} - z | < \epsilon) > 0.
-	$$
+	\[
+		\fA z \in P(S) \; \fA \epsilon > 0 \; \Ex n : \; \Pf( | S_{n} - z | < \epsilon) > 0.
+	\]
 \end{df}
 
 \begin{theorem}[Чжуна-Фукса]\index{Теорема!Чжуна-Фукса}

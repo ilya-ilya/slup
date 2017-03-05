@@ -5,25 +5,25 @@
 \begin{df}
 	Будем говорить, что дискретная случайная величина $U$ имеет
 	\index{Распределение!геометрическое}\textit{геометрическое распределение} с параметром $p \in (0, 1)$,
-	если для $k = 0, 1, 2\etc$ $\Pb(U = k) = (1 - p)^k p$.
+	если для $k = 0, 1, 2\etc$ $\Pf(U = k) = (1 - p)^k p$.
 \end{df}
 
 \begin{lemma}\label{lemsum}
 	Рассмотрим независимые геометрические величины $U_0 \sco U_j$ с параметром $p \in (0, 1)$,
 	где $j = \hs{\frac t \alpha}$.
 Тогда
-	$$
-		\Pb (j + U_0 \spl U_j = m)
-	=	\Pb (Z^{\star}(t) = m ).
-	$$
+	\[
+		\Pf (j + U_0 \spl U_j = m)
+	=	\Pf (Z^{\star}(t) = m ).
+	\]
 \end{lemma}
 
 \begin{proof}
 	 Обозначим $M = \hc{ (k_0\sco k_j)\mid k_j \in \Z_+, \sum\limits_{i = 0}^j k_j = m - j}$.
 	\begin{multline*}
-		\Pb\hr{ U_0 \spl U_j = m - j}
-	=	\sum_{(k_0 \sco k_j) \in M} \Pb(U_0 = k_0 \sco U_j = k_j) = \\
-	=	\sum_{(k_0 \sco k_j) \in M} \Pb(U_0 = k_0) \sd \Pb(U_j = k_j)
+		\Pf\hr{ U_0 \spl U_j = m - j}
+	=	\sum_{(k_0 \sco k_j) \in M} \Pf(U_0 = k_0 \sco U_j = k_j) = \\
+	=	\sum_{(k_0 \sco k_j) \in M} \Pf(U_0 = k_0) \sd \Pf(U_j = k_j)
 	=	\sum_{(k_0 \sco k_j) \in M} p (1 - p)^{k_0} \sd p (1 - p)^{k_j} = \\
 	=	\sum_{(k_0 \sco k_j) \in M} p^{j + 1} (1 - p)^{k_0 \spl k_j}
 	=	p^{j + 1} (1 - p)^{m - j} \#M = C_m^j p^{j + 1} (1 - p)^{m - j}.
@@ -34,30 +34,30 @@
 
 \begin{lemma}\label{est}
 	Пусть $t \ge \alpha$.
-	Тогда $\Eb Z^\star(t) \le At$ и $\Eb Z^\star(t)^2 \le B t^2$,
+	Тогда $\Ef Z^\star(t) \le At$ и $\Ef Z^\star(t)^2 \le B t^2$,
 	где $A \deq A(p, \alpha) > 0$, $B \deq B(p, \alpha) > 0$.
 \end{lemma}
 
 \begin{proof}
-	По лемме \ref{lemsum} $\Eb Z^\star(t) = \Eb(j + U_0 \spl U_j) = j + (j + 1) \Eb U$,
-	где $\Eb U \eqd a(p) < \bes$ \td математическое ожидание геометрического распределения.
+	По лемме \ref{lemsum} $\Ef Z^\star(t) = \Ef(j + U_0 \spl U_j) = j + (j + 1) \Ef U$,
+	где $\Ef U \eqd a(p) < \bes$ \td математическое ожидание геометрического распределения.
 
 	Тогда
-	$$
-		\Eb Z^\star(t) = j + (j + 1) a(p)
+	\[
+		\Ef Z^\star(t) = j + (j + 1) a(p)
 	\le	(j + 1) \hr{a(p) + 1}
 	\le	\frac{t + \alpha}{\alpha} \hr{a(p) + 1}
 	\le	\frac{2 t}{\alpha} \hr{a(p) + 1}
 	=	A t,
-	$$
+	\]
 	%FIXME?
 	где $A \deq \cfrac{2 (a(p) + 1)}{\alpha}$.
 
 	Далее,
 	\begin{multline*}
-		\Eb Z^\star(t)^2
-	=	\Db Z^\star(t) + \hr{\Eb Z^\star(t)}^2
-	\le	(j + 1) \ub{\Db U}_{\sigma^2(p)} + (j + 1)^2 \hr{ a(p) + 1 }^2 \le\\
+		\Ef Z^\star(t)^2
+	=	\Df Z^\star(t) + \hr{\Ef Z^\star(t)}^2
+	\le	(j + 1) \ub{\Df U}_{\sigma^2(p)} + (j + 1)^2 \hr{ a(p) + 1 }^2 \le\\
 	\le	(j + 1)^2 \hr{ \sigma^2(p) + \hr{ a(p) + 1 }^2}
 	\le	\frac 4 {\alpha^2} \hr{ \sigma^2(p) + \hr{ a(p) + 1 }^2} t^2
 	=	B t^2,
@@ -66,41 +66,41 @@
 \end{proof}
 
 Заметим, что для любой невырожденной (не равной константе почти наверное) случайной величины $X \ge 0$
-найдется такое $\alpha > 0$, что $\Pb(X > \alpha) = p \in (0, 1)$.
+найдется такое $\alpha > 0$, что $\Pf(X > \alpha) = p \in (0, 1)$.
 %FIXME
 Тогда построим процесс $Z^\star$, как в определении \hyperref[dfstar]{определении} из прошлой лекции,
 по независимым одинаково распределенным случайным величинам
-$$
+\[
 	Y_n =
 	\bcase{
 		\alpha, &\text{если }X_n > \alpha,\\
 		0, &\text{если }X_n \le \alpha.
 	}
-$$
+\]
 
 По построению $Y_n \le X_n$, откуда $Z(t) \le Z^\star(t)$, $t \ge 0$.
 
 \begin{imp}
 	\phantomsection
 	\label{prev.imp}
-	$\Eb Z(t) \le A t$ и $\Eb Z(t)^2 \le B t^2$ для любого $t \ge \alpha$.
+	$\Ef Z(t) \le A t$ и $\Ef Z(t)^2 \le B t^2$ для любого $t \ge \alpha$.
 	В частности, $Z(t) < \bes$ п.\,н.
 	при всех $t \ge 0$.
 \end{imp}
 
 \begin{imp}
-	$\Pb\hr{ \fA t \ge 0\; Z(t) < \bes } = 1$.
+	$\Pf\hr{ \fA t \ge 0\; Z(t) < \bes } = 1$.
 \end{imp}
 
 \begin{proof}
 	Поскольку $Z(t)$ является неубывающим процессом, \ie
 	$\fA s \le t \; Z(s) \le Z(t)$, то достаточно доказать,
-	что $\Pb\hr{\A n \in \N\; Z(n) < \bes} = 1$.
+	что $\Pf\hr{\fA n \in \N\; Z(n) < \bes} = 1$.
 	Но
-	$$
+	\[
 		\hc{ \fA n \in \N\; Z(n) < \bes}
 	=	\caps{n \in \N} \hc{ Z(n) < \bes } \text{\td}
-	$$
+	\]
 	счетное пересечение событий вероятности 1 (см. \hyperref[prev.imp]{предыдущее следствие}).
 	Оно тоже имеет вероятность 1.
 \end{proof}
@@ -110,7 +110,7 @@ $$
 
 \begin{lemma}
 	Пусть $X, X_1, X_2\etc$	\td н.\,о.\,р. случайные величины, $X \ge 0$.
-	Тогда $\frac{S_n}{n} \convas \mu \in [0, \bes]$ при $n \to \bes$, где $\mu = \Eb X$ (конечное или бесконечное).
+	Тогда $\frac{S_n}{n} \convas \mu \in [0, \bes]$ при $n \to \bes$, где $\mu = \Ef X$ (конечное или бесконечное).
 \end{lemma}
 
 \begin{proof}
@@ -118,17 +118,17 @@ $$
 
 	Пусть $\mu = \bes$.
 	Положим для $c > 0$
-	$$
+	\[
 		V_n(c) \deq X_n \Ibb\hr{X_n \le c}.
-	$$
-	Тогда снова по УЗБЧ А.\,Н.\,Колмогорова $\frac 1 n \sumkun V_k \convas \Eb X \Ibb \h{X_n \le c}$.
+	\]
+	Тогда снова по УЗБЧ А.\,Н.\,Колмогорова $\frac 1 n \sumkun V_k \convas \Ef X \Ibb \h{X_n \le c}$.
 
 	Возьмем $c = m \in \N$.
 	Тогда с вероятностью 1
-	$$
+	\[
 		\liminf_{n \to \bes} \frac 1 n \sumkun X_k
-	\ge	\lim_{m \to \bes} \Eb X \Ibb\hc{X \le m} = \Eb X.
-	$$
+	\ge	\lim_{m \to \bes} \Ef X \Ibb\hc{X \le m} = \Ef X.
+	\]
 	В последнем равенстве использовалась теорема о монотонной сходимости (для бесконечного предельного интеграла).
 \end{proof}
 
@@ -136,25 +136,25 @@ $$
 
 \begin{df}
 	Семейство случайных величин $\hc{ \xi_\alpha, t \in \Lambda }$ называется \textit{равномерно интегрируемым}, если
-	$$
-		\lim_{c \to \bes} \sup_{\alpha \in \Lambda} \ints{ \hc{ |\xi_\alpha| \ge c}} |\xi_\alpha| \diff\Pb = 0.
-	$$
+	\[
+		\lim_{c \to \bes} \sup_{\alpha \in \Lambda} \ints{ \hc{ |\xi_\alpha| \ge c}} |\xi_\alpha| \diff\Pf = 0.
+	\]
 \end{df}
 
 Известно, что если семейство $\left\{ \xi_n, n \ge 1\right\}$ равномерно интегрируемо и $\xi_n \to \xi$ почти наверное,
-то $\xi$ тоже интегрируема и $\Eb \xi_n \to \Eb \xi$.
+то $\xi$ тоже интегрируема и $\Ef \xi_n \to \Ef \xi$.
 Для неотрицательных случайных величин $\xi_n$, $n \ge 1$, таких, что $\xi_n \to \xi$ п.\,н.,
-где $\Eb \xi < \bes$, имеет место и обратная импликация
-$$
-	\Eb \xi_n \to \Eb \xi \Ra \text{семейство $\hc{ \xi_n, n \ge 1 }$ равномерно интегрируемо.}
-$$
+где $\Ef \xi < \bes$, имеет место и обратная импликация
+\[
+	\Ef \xi_n \to \Ef \xi \Ra \text{семейство $\hc{ \xi_n, n \ge 1 }$ равномерно интегрируемо.}
+\]
 
 Следующая теорема принимается без доказательства
 \begin{theorem}[Де ла Валле Пуссен]\index{Теорема!Де ла Валле Пуссена}\label{pussen}
 	Семейство случайных величин $\hc{ \xi_\alpha, \alpha \in \Lambda}$ является равномерно интегрируемым тогда и только тогда,
 	когда найдется измеримая функция $g \cln \R_+ \to \R_+$, \ie
 	$g \in \Bs(\R_+) \divs \Bs(\R_+)$, \sth
-	$\lim\limits_{t \to \bes}\frac{g(t)}{t}	= \bes$ и $\sup \Eb g(|\xi_\alpha|) < \bes$.
+	$\lim\limits_{t \to \bes}\frac{g(t)}{t}	= \bes$ и $\sup \Ef g(|\xi_\alpha|) < \bes$.
 \end{theorem}
 
 \begin{theorem}
@@ -164,7 +164,7 @@ $$
 	\begin{points}{0}
 		%FIXME: маленькое пн
 		\item\label{firstel} $\cfrac{Z(t)}{t} \convas \cfrac{1}{\mu}$ при $t \to \bes$;
-		\item\label{secondel} $\cfrac{\Eb Z(t)}{t} \to \cfrac{1}{\mu}$ при $t \to \bes$,
+		\item\label{secondel} $\cfrac{\Ef Z(t)}{t} \to \cfrac{1}{\mu}$ при $t \to \bes$,
 	\end{points}
 	где $\frac{1}{0} \deq \bes$, $\frac{1}{\bes} \deq 0$.
 \end{theorem}
@@ -184,9 +184,9 @@ $$
 	(при всех $t_n$, а значит, вообще при всех $t$ это выполнено почти наверное).
 	Для этих $(t, \omega)$ разделим обе части \ref{eqz} на $Z(t)$.
 	Получим
-	$$
+	\[
 		\frac{S_{Z(t)}}{Z(t)} \le \frac{t}{Z(t)} < \frac{S_{Z(t) + 1}}{Z(t) + 1}\frac{Z(t) + 1}{Z(t)}.
-	$$
+	\]
 	Но поскольку $Z(t) \to \bes$, то $\frac{S_{Z(t)}}{Z(t)} \convas \mu$,
 	$\frac{S_{Z(t) + 1}}{Z(t) + 1} \convas \mu$ и $\frac{Z(t) + 1}{Z(t)} \to 1$.
 	Следовательно, $\frac{t}{Z(t)} \convas \mu$ при $t \to \bes$, \ie
@@ -195,17 +195,17 @@ $$
 	Для доказательства утверждения \autoref{secondel} используем \hyperref[pussen]{{теорему Валле--Пуссена}}.
 	А именно, рассмотрим семейство $\left\{\xi_t, t \ge \alpha\right\}$ и функцию $g(t) = t^2$, где $\xi_t = \frac{Z(t)}{t}$.
 	По лемме \ref{est}
-	$$
-		\Eb \xi_t^2 = \frac{\Eb Z(t)^2}{t^2} \le \frac{B t^2}{t^2} = B < \bes.
-	$$
+	\[
+		\Ef \xi_t^2 = \frac{\Ef Z(t)^2}{t^2} \le \frac{B t^2}{t^2} = B < \bes.
+	\]
 	Все условия \hyperref[pussen]{теоремы Валле--Пуссена} выполнены.
 
 	Поэтому из нее вытекает, что семейство $\hc{\xi_t, t \ge \alpha}$ равномерно интегрируемо.
 	Тогда можно совершить предельный переход под знаком математического ожидания,
 	и из утверждения \autoref{firstel} получаем, что
-	$$
-		\Eb \frac{Z(t)}{t} \to \Eb \frac{1}{\mu} = \frac{1}{\mu},\quad t \to \bes.
-	$$
+	\[
+		\Ef \frac{Z(t)}{t} \to \Ef \frac{1}{\mu} = \frac{1}{\mu},\quad t \to \bes.
+	\]
 \end{proof}
 
 
@@ -213,13 +213,13 @@ $$
 
 \begin{df}
 	Пусть $X$, $X_1$, $X_2$\etc \td н.\,о.\,р. случайные величины с экспоненциальным распределением $X\sim \Exp(\lambda)$,\ie
-	$$
+	\[
 		p_X(x) =
 		\bcase{
 			\lambda e^{- \lambda x}, &\quad\text{если $x \ge 0$,}\\
 			0, &\quad\text{если $x < 0$}.
 		}
-	$$
+	\]
 	\textit{Пуассоновским процессом}\index{Процесс!пуассоновский}\index{Пуассоновский процесс}
 	$N = \hc{N(t), t\ge 0}$ называется процесс восстановления, построенный по $X_1, X_2\etc$.
 \end{df}
@@ -238,36 +238,39 @@ $$
 \begin{proof}
 	Чтобы доказать независимость указанных случайных величин,
 	достаточно проверить, что для $\fA n \in \Z_+\; \fA u_1 \sco u_k \ge 0$ выполнено
-	$$
-		\Pb\hc{N(t) = n, X_1^t > u_1 \sco X_k^t > u_k} = \Pb(N(t) = n) \cdot \Pb(X_1^t > u_1) \sd \Pb(X_k^t > u_k).
-	$$
+	\[
+		\Pf\hc{N(t) = n, X_1^t > u_1 \sco X_k^t > u_k} = \Pf(N(t) = n) \cdot \Pf(X_1^t > u_1) \sd \Pf(X_k^t > u_k).
+	\]
 
 	Доказываем это индукцией по $k$.
 
 	База индукции: $k = 1$.
 	Напомним (было в курсе теории вероятностей), что случайная величина $S_n$ имеет плотность
-	$$
+	\[
 		p_{S_n}(x) =
 		\bcase{
 			\frac{\lambda (\lambda x)^{n - 1}}{(n - 1)!} e^{- \lambda x}, &\quad \text{если $x \ge 0$};\\
 			0, &\quad\text{если $x < 0$}.
 		}
-	$$
+	\]
 
 	Итак,
 	\begin{gather*}
-		\Pb(N(t) = n, X_1^t > u_1)
-	=	\Pb(S_n \le t, S_{n + 1} > t, S_{N(t) + 1} - t > u_1)
-%XXX:	=	\Pb(S_n \le t, S_{n + 1} > t, S_{n + 1} > t + u_1) =\\
-	=	\Pb(S_n \le t, S_{n + 1} > t + u_1) = \\
-	=	\Pb(S_n \le t, S_n + X_{n + 1} > t + u_1)
-	=	\Pb\hr{ (S_n, X_{n + 1}) \in \hc{(x, y)\mid x \le t, x + y > t + u_1 } } =\\
+		\Pf(N(t) = n, X_1^t > u_1)
+	=	\Pf(S_n \le t, S_{n + 1} > t, S_{N(t) + 1} - t > u_1)
+%XXX:	=	\Pf(S_n \le t, S_{n + 1} > t, S_{n + 1} > t + u_1) =\\
+	=	\Pf(S_n \le t, S_{n + 1} > t + u_1) = \\
+	=	\Pf(S_n \le t, S_n + X_{n + 1} > t + u_1)
+	=	\Pf\hr{ (S_n, X_{n + 1}) \in \hc{(x, y)\mid x \le t, x + y > t + u_1 } } =\\
 	=	\iints{\substack{x \le t\\ x + y > t + u_1}} p_{(S_n, X_{n + 1})}(x, y) \diff x \diff y
-	\eqvl{$S_n \perp X_{n + 1}$}{40} 
+%	\eqvl{$S_n \perp X_{n + 1}$}{40} 
+	= \hr{S_n \perp X_{n + 1}} = 
 		\iints{\substack{x \le t\\ x + y > t + u_1}} p_{S_n}(x) p_{X_{n + 1}}(y) \diff x \diff y = \\
 	= 	\iints{\substack{0 \le x \le t, y \ge 0\\ x + y > t + u_1}}
 			\frac{\la (\la x)^{n - 1}}{(n - 1)!} e^{-\la x} \la e^{-\la y} \diff x \diff y
-	\eqvl{\text{т. Фубини}}{30}
+%	\eqvl{\text{т. Фубини}}{30}
+	= \text{(т. Фубини)}
+	= 
 		\intl{0}{t} \frac{\la (\la x)^{n - 1}}{(n - 1)!} e^{- \la x} \diff x
 		\intl{t + u_1 - x}{+\bes} \la e^{-\la y} \diff y =\\
 	=	\intl{0}{t} \frac{\la (\la x)^{n - 1}}{(n - 1)!} e^{-\la x} e^{-\la (t + u_1 - x)} \diff x
@@ -276,29 +279,30 @@ $$
 	\end{gather*}
 
 	Положим $u_1 = 0$, получим
-	$$
-		\Pb(N(t) = n, X_1^t > 0) = \Pb(N(t) = n) = \frac{(\la t)^n}{n!} e^{-\la t},\quad n\in \Z_+,
-	$$
+	\[
+		\Pf(N(t) = n, X_1^t > 0) = \Pf(N(t) = n) = \frac{(\la t)^n}{n!} e^{-\la t},\quad n\in \Z_+,
+	\]
 	\ie $N(t) \sim \Pois(\lambda t)$.
 	Далее,
-	$$
-		\Pb(X_1^t > u_1)
-	=	\sumnzi \Pb(N(t) = n, X_1^t > u_1)
+	\[
+		\Pf(X_1^t > u_1)
+	=	\sumnzi \Pf(N(t) = n, X_1^t > u_1)
 	=	\sumnzi \frac{(\la t)^n}{n!} e^{-\la t} \cdot e^{-\la u_1} = 1\cdot e^{-\la u_1},
-	$$
+	\]
 	\ie $X_1^t \sim \Exp(\la)$ и база установлена.
 
 	Индукционный переход: пусть $k \ge 2$.
 	\begin{multline*}
-		\Pb\hc{N(t) = n, X_1^t > u_1\etc, X_k^t > u_k} =\\
-	=	\Pb\hc{S_n \le t, S_{n + 1} > t, S_{n + 1} > t + u_1, X_{n + 2} > u_2\etc, X_{n + k} > u_k} 
-	\eqvl{см. выше}{30} \\
-	=	\Pb\hc{N(t) = n} \Pb\hc{X_1^t > u_1}\cdot e^{-\la u_2} \sd e^{-\la u_k}
-	=	\Pb\hc{N(t) = n} \cdot e^{-\la u_1} \sd e^{-\la u_k}.
+		\Pf\hc{N(t) = n, X_1^t > u_1\etc, X_k^t > u_k} =\\
+	=	\Pf\hc{S_n \le t, S_{n + 1} > t, S_{n + 1} > t + u_1, X_{n + 2} > u_2\etc, X_{n + k} > u_k} 
+%	\eqvl{см. выше}{30} \\
+	= \text{(см. выше)} = \\
+	=	\Pf\hc{N(t) = n} \Pf\hc{X_1^t > u_1}\cdot e^{-\la u_2} \sd e^{-\la u_k}
+	=	\Pf\hc{N(t) = n} \cdot e^{-\la u_1} \sd e^{-\la u_k}.
 	\end{multline*}
 
 	Снова положим $u_1 = \ldots = u_{k - 1} = 0$ и просуммируем по всем $n \in \Z_+$.
-	Получим $\Pb(X_k^t > u_k) = e^{-\la u_k}$, откуда $X_k^t \sim \Exp(\la)$, индукционный переход завершен.
+	Получим $\Pf(X_k^t > u_k) = e^{-\la u_k}$, откуда $X_k^t \sim \Exp(\la)$, индукционный переход завершен.
 \end{proof}
 
 Пусть $X_j \sim \Exp(\la)$ \td интервалы между временами прихода автобусов на данную остановку.
