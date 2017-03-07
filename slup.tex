@@ -3,6 +3,9 @@
 \usepackage{commath}
 \usepackage{addmhh}
 \usepackage{mathrsfs}
+\usepackage[left=3cm,right=1.5cm,
+    top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+    
 
 \newindex{default}{idx}{ind}{Предметный указатель}
 
@@ -756,7 +759,7 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 \begin{equation*}
 \Prob(Z(1) = 0, Z(2)-Z(1) = 0) = 0,
 \end{equation*}
-так как $\Prob(X \leq  2) = 1$. 
+так как $X \leq 2$.
 \\
 \\
 Теперь по отдельности рассмотрим следующие вероятности $\Prob(Z(1) = 0)$, $\Prob(Z(2)-Z(1) = 0)$: 
@@ -780,15 +783,15 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 \begin{solution}
   Пусть $t > s$. Распишем определение ковариации:
   \begin{equation*}
-    \text{cov}(\xi_0(-1)^{N(t)},\xi_0(-1)^{N(s)}) = \mathsf{E}\left[\xi_0^2 (-1)^{N(t)+N(s)}\right] - \mathsf{E}\left[\xi_0(-1)^{N(t)} \right]\mathsf{E} \left[\xi_0(-1)^{N(s)}\right]
+    \text{cov}\left(\xi_0(-1)^{N(t)},\xi_0(-1)^{N(s)}\right) = \Expect \left[\xi_0^2 (-1)^{N(t)+N(s)}\right] - \mathsf{E}\left[\xi_0(-1)^{N(t)} \right]\Expect \left[\xi_0(-1)^{N(s)}\right]
   \end{equation*}
-   Вспомним, что для независимых случайных величин $\xi$ и $\eta$ выполнено $\mathsf{E}\xi\eta = \mathsf{E}\xi\mathsf{E}\eta$ и продолжим рассуждения:
+   Вспомним, что для независимых случайных величин $\xi$ и $\eta$ выполнено $\Expect\xi\eta = \Expect\xi\Expect\eta$ и продолжим рассуждения:
     \begin{equation*}
-      =   \mathsf{E}\eta^2 \mathsf{E}(-1)^{N(t)+N(s)} - \left(\mathsf{E}\eta\right)^2 \mathsf{E} \left[(-1)^{N(t)}\right] \mathsf{E} \left[ (-1)^{N(s)} \right]
+      =   \Expect\eta^2 \mathsf{E}(-1)^{N(t)+N(s)} - \left(\mathsf{E}\eta\right)^2 \Expect\left[(-1)^{N(t)}\right] \Expect \left[ (-1)^{N(s)} \right]
     \end{equation*}
-    Обозначим за $\psi(z) = e^{\mu(z-1)}$ - производящуюю функцию $Poiss(\mu)$. Заметим, что $\mathsf{E}\eta^2 \equiv 1$, $\mathsf{E}\eta = 0$ и $(-1)^{N(t)-N(s)} = (-1)^{N(t)+N(s)}$. Подставим в полученное выше выражение, продолжив рассуждения:
+    Обозначим за $\psi(z) = e^{\mu(z-1)}$ - производящуюю функцию $\Pois(\mu)$. Заметим, что $\mathsf{E}\eta^2 \equiv 1$, $\mathsf{E}\eta = 0$ и $(-1)^{N(t)-N(s)} = (-1)^{N(t)+N(s)}$. Подставим в полученное выше выражение, продолжив рассуждения:
     \begin{equation*}
-      = \mathsf{E}(-1)^{N(t)-N(s)} = \psi(-1) = e^{-2\lambda(t-s)},
+      = \Expect(-1)^{N(t)-N(s)} = \psi_{\lambda(t-s)}(-1) = e^{-2\lambda(t-s)},
     \end{equation*}
     Опустив изначальное предположение $t > s$, получаем 
     \\ 
