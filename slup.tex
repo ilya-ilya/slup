@@ -23,6 +23,7 @@
 \newtheorem{lem}[thm]{Лемма}
 \newtheorem{prop}[thm]{Предложение}
 \newtheorem*{cor}{Следствие}
+\newtheorem{prob}{Задача}[section]
 
 \theoremstyle{definition}
 \newtheorem{defn}{Определение}[section]
@@ -30,6 +31,10 @@
 
 \theoremstyle{remark}
 \newtheorem*{rem}{Замечание}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Решение]}
+  {\end{proof}}
 
 \begin{document}
 \tableofcontents
@@ -737,6 +742,59 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 \end{proof}
 
 Пусть $X_j \sim \Exp(\lambda)$ "--- интервалы между временами прихода автобусов на данную остановку. Тогда случайная величина $X_1^t = S_{N(t) + 1} - t$ соответствует времени ожидания прибытия ближайшего автобуса. Мы только что доказали, что она распределена так же, как и интервалы: $X_1^t \sim \Exp(\lambda)$. Мы будем в среднем ждать автобуса столько же времени, сколько в среднем проходит времени между двумя автобусами. В этом состоит \textbf{парадокс времени ожидания}\index{Парадокс времени ожидания}. Никакого противоречия здесь на самом деле нет, так как сами моменты прихода автобусов также случайные.
+
+\subsection{Задачи}
+\begin{prob}
+Можно ли утверждать, что не только пуассоновский процесс, но и любой процесс восстановления является процессом с независимыми приращениями?
+\end{prob}
+\begin{solution}
+Нет, нельзя. Приведем контрпример. Итак, пусть процесс восстановления $Z(t)$ порожден н.о.р. случайными величинами $\{X,X_i \; | \; i \in \mathbb{N}\}$, где 
+\begin{equation*}
+\Prob(X = 0) = \Prob(X = 1) = \Prob(X = 2) = \frac{1}{3} 
+\end{equation*}
+Покажем, что у процесса восстановления $Z(t)$ существуют зависимые приращения. Сначала заметим, что 
+\begin{equation*}
+\Prob(Z(1) = 0, Z(2)-Z(1) = 0) = 0,
+\end{equation*}
+так как $\Prob(X \leq  2) = 1$. 
+\\
+\\
+Теперь по отдельности рассмотрим следующие вероятности $\Prob(Z(1) = 0)$, $\Prob(Z(2)-Z(1) = 0)$: 
+\begin{equation*}
+\Prob(Z(1) = 0) = P(X_1 = 0) = \frac{1}{3}
+\end{equation*}
+Со второй вероятностью чуть сложнее:
+\begin{equation*}
+\Prob(Z(2)-Z(1) = 0) = \Prob(Z(2) = Z(1)) \geq \Prob(X_1 = 1, X_2 = 2) = \frac{1}{9}
+\end{equation*}
+Напишем в явном виде полученное противоречие:
+\begin{equation*}
+\Prob(Z(1) = 0, Z(2)-Z(1) = 0) = 0 \neq  \Prob(Z(1) = 0) \Prob(Z(2)-Z(1) = 0)  
+\end{equation*}
+\end{solution}
+
+\begin{prob}
+  Найти ковариционную функцию процесса $Z = \{ Z(t), t \geq 0 \}$, где $Z(t) = \xi_0(-1)^{N(t)}, N = \{N(t),t \geq 0\}$ - пуассоновский         процесс интенсивоности $\lambda$, случайная величина $\xi_0$ принимает значения $1$ и $-1$ с вероятностью $1/2$, причем $\xi_0$ не  зависит от процесса $N$.
+\end{prob}
+
+\begin{solution}
+  Пусть $t > s$. Распишем определение ковариации:
+  \begin{equation*}
+    \text{cov}(\xi_0(-1)^{N(t)},\xi_0(-1)^{N(s)}) = \mathsf{E}\left[\xi_0^2 (-1)^{N(t)+N(s)}\right] - \mathsf{E}\left[\xi_0(-1)^{N(t)} \right]\mathsf{E} \left[\xi_0(-1)^{N(s)}\right]
+  \end{equation*}
+   Вспомним, что для независимых случайных величин $\xi$ и $\eta$ выполнено $\mathsf{E}\xi\eta = \mathsf{E}\xi\mathsf{E}\eta$ и продолжим рассуждения:
+    \begin{equation*}
+      =   \mathsf{E}\eta^2 \mathsf{E}(-1)^{N(t)+N(s)} - \left(\mathsf{E}\eta\right)^2 \mathsf{E} \left[(-1)^{N(t)}\right] \mathsf{E} \left[ (-1)^{N(s)} \right]
+    \end{equation*}
+    Обозначим за $\psi(z) = e^{\mu(z-1)}$ - производящуюю функцию $Poiss(\mu)$. Заметим, что $\mathsf{E}\eta^2 \equiv 1$, $\mathsf{E}\eta = 0$ и $(-1)^{N(t)-N(s)} = (-1)^{N(t)+N(s)}$. Подставим в полученное выше выражение, продолжив рассуждения:
+    \begin{equation*}
+      = \mathsf{E}(-1)^{N(t)-N(s)} = \psi(-1) = e^{-2\lambda(t-s)},
+    \end{equation*}
+    Опустив изначальное предположение $t > s$, получаем 
+    \\ 
+    \\
+    \textbf{Ответ:} $e^{-2\lambda|t-s|}$
+\end{solution}
 
 \clearpage
 \phantomsection
