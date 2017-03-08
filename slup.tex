@@ -12,6 +12,7 @@
 \newcommand{\Expect}{\mathsf{E}}
 \newcommand{\real}{\ensuremath\mathbb R}
 \newcommand{\nat}{\ensuremath\mathbb N}
+\newcommand{\whole}{\ensuremath\mathbb Z}
 \newcommand{\nonneg}{\ensuremath\mathbb Z_+}
 \newcommand{\borel}{\mathscr{B}}
 \newcommand{\as}{\xrightarrow{\text{п.\,н.}}}
@@ -174,9 +175,9 @@
 \begin{proof}
   Если $\Expect N < \infty$, то $\Prob(N<\infty) = 1$.
   Пусть теперь $\Prob(N<\infty) = 1$. Это равносильно тому, что $\Prob(\tau < \infty) < 1$.
-  \begin{multline*}
-    \Expect N = \sum_{n=1}^{\infty} n\Prob(N=n) = \sum\limits_{n=1}^{\infty} n\Prob(\tau = \infty)\Prob(\tau < \infty)^{n-1} = \\ =\Prob(\tau = \infty)\sum\limits_{n=1}^{\infty} n\Prob(\tau < \infty)^{n-1}.
-  \end{multline*}
+  \begin{equation*}
+    \Expect N = \sum_{n=1}^{\infty} n\Prob(N=n) = \sum\limits_{n=1}^{\infty} n\Prob(\tau = \infty)\Prob(\tau < \infty)^{n-1} =\Prob(\tau = \infty)\sum\limits_{n=1}^{\infty} n\Prob(\tau < \infty)^{n-1}.
+  \end{equation*}
   Заметим, что
   \begin{equation*}
     \sum_{n=1}^{\infty} np^{n-1} = (\sum\limits_{n=1}^{\infty} p^{n})^{\prime} = (\frac{1}{1-p})^{\prime} = \frac{1}{(1-p)^{2}}.
@@ -294,6 +295,27 @@
   $0 \notin R(S)$, то  $R(S) = \varnothing$.
 \end{cor}
 
+\subsection{Задачи}
+
+\begin{prob}
+	Пусть $S = \{S_n, n\geq 0\}$ - простое случайное блуждание в $\whole$, имеющее начальной точкой нуль. Доказать, что для любых $a,b\in			\whole$ таких, что $a<0<b$, с вероятностью единица блуждание не останется в полосе, ограниченной прямыми $y = a$ и $y = b$.
+\end{prob}
+\begin{solution}
+	Поделим случайные величины $\xi_n = S_n - S_{n-1}, n \in \nat$ на группы по $M = \left[b-a\right] + 1$ штук:
+	\begin{equation*}
+		\underbrace{\xi_1, \xi_2, \ldots, \xi_M}_{M\text{ штук}}, \underbrace{\xi_{M+1}, \ldots,\xi_{2M}}_{M\text{ штук}}, \ldots
+	\end{equation*}
+Покажем, что вероятность $\Prob_{ab}$ того, что блуждание останется в полосе равняется нулю. Очевидно, что если в каждой группе все $\xi_i$ одновременно равны либо $+1$, либо $-1$, то тогда мы вылетаем за полосу. Вероятность того, что все $\xi_i$ в каждой группе одновременно не обратятся в $\pm 1$ вычисляется следующим образом:
+		\begin{equation*}
+			\Prob_{\pm 1} = \lim_{k \rightarrow \infty} (1 - p^M + q^M)^k = 0
+		\end{equation*}
+	Вычисленная вероятность является в том числе верхней оценкой вероятности того, что мы останемся в полосе. Таким образом,
+	\begin{equation*}
+		\Prob_{ab} \leq \Prob_{\pm 1} = 0 \Rightarrow \Prob_{ab} = 0,
+	\end{equation*}
+	что и требовалось доказать.
+\end{solution}
+
 \section[Лекция от 15.02.17. Ветвящиеся процессы и процессы восстановления]{Лекция от 15.02.17\\ {\large Ветвящиеся процессы и процессы восстановления}}
 
 \subsection{Модель Гальтона--Ватсона}\index{Модель Гальтона-Ватсона}
@@ -344,12 +366,12 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 \begin{proof}
 
   \begin{multline*}
-    f_{Z_{n}}(s) = \Expect s^{Z_{n}} = \Expect \left(s^{\sum_{k=1}^{Z_{n-1}} \xi_{n, k}}\right) =\\
+    f_{Z_{n}}(s) = \Expect s^{Z_{n}} = \Expect \left(s^{\sum_{k=1}^{Z_{n-1}} \xi_{n, k}}\right)
     = \sum_{j=0}^{\infty} \Expect \left[ \left( s^{\sum_{k=1}^{Z_{n-1}} \xi_{n, k}} \right)  \ind \lbrace Z_{n-1} = j \rbrace \right] = \\ = \sum_{j=0}^{\infty} \Expect \left[ \left( s \: ^{\sum_{k=1}^{j} \xi_{n, k}} \right)  \ind \lbrace Z_{n-1} = j \rbrace \right].
   \end{multline*}
   Поскольку $\sigma \lbrace Z_{r} \rbrace \subset \sigma \lbrace \xi_{m, k}, \; m = 1, \ldots, r, \; k \in \mathbb{N} \rbrace$, которая независима с $\sigma \lbrace \xi_{n, k}, \; k \in \mathbb{N} \rbrace$ (строгое и полное обоснование остается в качестве упражнения), то
   \begin{multline*}
-    \sum_{j=0}^{\infty} \Expect \left[ \left( s \: ^{\sum_{k=1}^{j} \xi_{n, k}} \right)  \ind \lbrace Z_{n-1} = j \rbrace \right]  =  \sum\limits_{j=0}^{\infty} \Expect \left(s \: ^{\sum\limits_{k=1}^{j} \xi_{n, k}}\right) \Expect \ind \lbrace Z_{n-1} = j \rbrace  = \\ = \sum\limits_{j=0}^{\infty} \Expect \left(s \: ^{\sum\limits_{k=1}^{j} \xi_{n, k}}\right) \Prob ( Z_{n-1} = j ) = \sum\limits_{j=0}^{\infty} \prod\limits_{k=1}^{j} \Expect s^{\xi_{n, k}} \Prob (Z_{n-1} = j) = \\ = \sum\limits_{j=0}^{\infty} \psi_{\xi}^{j} (s) \Prob (Z_{n-1} = j)  =  f_{Z_{n-1}} \left(\psi_{\xi} \left(s \right) \right)
+    \sum_{j=0}^{\infty} \Expect \left[ \left( s \: ^{\sum_{k=1}^{j} \xi_{n, k}} \right)  \ind \lbrace Z_{n-1} = j \rbrace \right]  =  \sum\limits_{j=0}^{\infty} \Expect \left(s \: ^{\sum\limits_{k=1}^{j} \xi_{n, k}}\right) \Expect \ind \lbrace Z_{n-1} = j \rbrace   = \sum\limits_{j=0}^{\infty} \Expect \left(s \: ^{\sum\limits_{k=1}^{j} \xi_{n, k}}\right) \Prob ( Z_{n-1} = j ) = \\ = \sum\limits_{j=0}^{\infty} \prod\limits_{k=1}^{j} \Expect s^{\xi_{n, k}} \Prob (Z_{n-1} = j)  = \sum\limits_{j=0}^{\infty} \psi_{\xi}^{j} (s) \Prob (Z_{n-1} = j)  =  f_{Z_{n-1}} \left(\psi_{\xi} \left(s \right) \right)
   \end{multline*}
   в силу независимости и одинаковой распределенности $\xi_{n, k}$ и определения производящей функции. Таким образом,
   \begin{equation*}
@@ -361,7 +383,7 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
   \end{equation*}
   Заметим, что
   \begin{multline*}
-    f_{Z_{n}}(s) = f_{Z_{n-1}}(\psi_{\xi}(s)) = f_{Z_{n-2}} \left(\psi_{\xi} \left( \psi_{\xi} \left(s \right) \right) \right) = \ldots = \underbrace{\psi_{\xi} (\psi_{\xi} \ldots (\psi_{\xi}}_{\text{$n$ итераций}}(s)) \ldots ) = \\ = \psi_{\xi} (f_{Z_{n-1}} (s)){.}
+    f_{Z_{n}}(s) = f_{Z_{n-1}}(\psi_{\xi}(s)) = f_{Z_{n-2}} \left(\psi_{\xi} \left( \psi_{\xi} \left(s \right) \right) \right) = \ldots = \underbrace{\psi_{\xi} (\psi_{\xi} \ldots (\psi_{\xi}}_{\text{$n$ итераций}}(s)) \ldots ) = \psi_{\xi} (f_{Z_{n-1}} (s)){.}
   \end{multline*}
   Тогда при $s = 0$ имеем, что
   \begin{equation*}
@@ -533,7 +555,7 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
   \begin{multline*}
     \Prob\left( U_0 + \ldots + U_j = m - j\right) = \sum_{(k_0, \ldots, k_j) \in M} \Prob(U_0 = k_0, \ldots, U_j = k_j) =\\
     = \sum_{(k_0, \ldots, k_j) \in M} \Prob(U_0 = k_0)\ldots \Prob(U_j = k_j) = \sum_{(k_0, \ldots, k_j) \in M} p (1 - p)^{k_0}\ldots p (1 - p)^{k_j} =\\
-    = \sum_{(k_0, \ldots, k_j) \in M} = p^{j + 1} (1 - p)^{k_0 + \ldots + k_j} =\\
+    = \sum_{(k_0, \ldots, k_j) \in M} = p^{j + 1} (1 - p)^{k_0 + \ldots + k_j}
     = p^{j + 1} (1 - p)^{m - j} \#M = C_m^j p^{j + 1} (1 - p)^{m - j}.
   \end{multline*}
 \end{proof}
@@ -548,10 +570,10 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
   По лемме \ref{lemsum} $\Expect Z^\star(t) = \Expect(j + U_0 + \ldots + U_j) = j + (j + 1) \Expect U$, где $\Expect U =: a(p) < \infty$ "--- математическое ожидание геометрического распределения.
 
   Тогда
-  \begin{multline*}
-    \Expect Z^\star(t) = j + (j + 1) a(p) \leqslant (j + 1) \big(a(p) + 1\big) \leqslant\\
+  \begin{equation*}
+    \Expect Z^\star(t) = j + (j + 1) a(p) \leqslant (j + 1) \big(a(p) + 1\big)
     \leqslant \frac{t + \alpha}{\alpha} \big(a(p) + 1\big) \leqslant \frac{2 t}{\alpha} \big( a(p) + 1 \big) = A t,
-  \end{multline*}
+  \end{equation*}
   где $A := \frac{2 (a(p) + 1)}{\alpha}$.
 
   Далее,
@@ -789,7 +811,7 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
     \begin{equation*}
       =   \Expect\eta^2 \mathsf{E}(-1)^{N(t)+N(s)} - \left(\mathsf{E}\eta\right)^2 \Expect\left[(-1)^{N(t)}\right] \Expect \left[ (-1)^{N(s)} \right]
     \end{equation*}
-    Обозначим за $\psi(z) = e^{\mu(z-1)}$ - производящуюю функцию $\Pois(\mu)$. Заметим, что $\mathsf{E}\eta^2 \equiv 1$, $\mathsf{E}\eta = 0$ и $(-1)^{N(t)-N(s)} = (-1)^{N(t)+N(s)}$. Подставим в полученное выше выражение, продолжив рассуждения:
+    Обозначим за $\psi_\mu(z) = e^{\mu(z-1)}$ - производящуюю функцию $\Pois(\mu)$. Заметим, что $\mathsf{E}\eta^2 \equiv 1$, $\mathsf{E}\eta = 0$ и $(-1)^{N(t)-N(s)} = (-1)^{N(t)+N(s)}$. Подставим в полученное выше выражение, продолжив рассуждения:
     \begin{equation*}
       = \Expect(-1)^{N(t)-N(s)} = \psi_{\lambda(t-s)}(-1) = e^{-2\lambda(t-s)},
     \end{equation*}
