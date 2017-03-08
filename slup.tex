@@ -23,6 +23,7 @@
 \DeclareMathOperator{\Pois}{\mathrm Pois}
 
 \theoremstyle{plain}
+\theoremseparator{.}
 \newtheorem{thm}{Теорема}[section]
 \newtheorem{lem}[thm]{Лемма}
 \newtheorem{prop}[thm]{Предложение}
@@ -30,15 +31,29 @@
 \newtheorem{prob}{Задача}[section]
 
 \theoremstyle{definition}
+\theoremheaderfont{\bfseries}\theorembodyfont{\upshape}
+\theoremseparator{.}
 \newtheorem{defn}{Определение}[section]
 \newtheorem{exmp}{Пример}[section]
 
 \theoremstyle{remark}
 \newtheorem*{rem}{Замечание}
 
-\newenvironment{solution}
-  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Решение]}
-  {\end{proof}}
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\itshape}\theorembodyfont{\upshape}
+\theoremseparator{.}
+\theoremsymbol{\ensuremath\square}
+\newtheorem{proof}{Доказательство}
+
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\itshape}\theorembodyfont{\upshape}
+\theoremseparator{.}
+\theoremsymbol{\ensuremath\blacksquare}
+\newtheorem{solution}{Решение}
+
+%\newenvironment{solution}
+%  {\begin{proof}[Решение]}
+%  {\end{proof}}
 
 \begin{document}
 \tableofcontents
@@ -348,6 +363,7 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 \end{equation*}
 
 \begin{defn}\index{Производящая функция}
+  \sloppy
   Пусть дана последовательность $(a_{n})_{n=0}^{\infty}$ неотрицательных чисел такая, что $\sum\limits_{n=0}^{\infty} a_{n} = 1$.
   \emph{Производящая функция} для этой последовательности "--- это
   \begin{equation*}
@@ -519,7 +535,7 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 \end{rem}
 
 \begin{defn}\label{defstar}
-  Рассмотрим \emph{процесс восстановления} $\{ Z^\star(t),\; t \geqslant 0 \}$, который строится по $Y, Y_{1}, Y_{2}, \ldots$ "--- независимым одинаково распределенным случайным величинам, где $\Prob(Y = \alpha) = p \in (0, 1)$, $\Prob(Y = 0) =  1-p$. Исключаем из рассмотрения случай, когда $Y = C = \const$: если $C = 0$, то $Z(t) = \infty \;\: \forall\, t > 0$; если же $C > 0$, то $Z(t) = \left[\frac{t}{c}\right]$.
+  Рассмотрим \emph{процесс восстановления} $\{ Z^\star(t),\; t \geqslant 0 \}$, который строится по $Y$, $Y_{1}$, $Y_{2}$, \ldots "--- независимым одинаково распределенным случайным величинам, где $\Prob(Y = \alpha) = p \in (0, 1)$, $\Prob(Y = 0) =  1-p$. Исключаем из рассмотрения случай, когда $Y = C = \const$: если $C = 0$, то $Z(t) = \infty \;\: \forall\, t > 0$; если же $C > 0$, то $Z(t) = \left[\frac{t}{c}\right]$.
 \end{defn}
 
 \begin{lem}
@@ -640,7 +656,8 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 Введем определение, которое понадобится нам в дальнейшем.
 
 \begin{defn}
-  Семейство случайных величин $\left\{ \xi_\alpha, t \in \Lambda \right\}$ называется \emph{равномерно интегрируемым}, если
+  \sloppy
+  Семейство случайных величин $\left\{ \xi_\alpha, t \in \Lambda \right\}$ называется \emph{равномерно интег\-ри\-руе\-мым}, если
   \begin{equation*}
     \lim_{c \to \infty} \sup_{\alpha \in \Lambda} \int_{ \left\{ |\xi_\alpha| \geqslant c \right\}} |\xi_\alpha| \dif\Prob = 0.
   \end{equation*}
@@ -682,6 +699,7 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
   \end{equation*}
   Но поскольку $Z(t) \to \infty$, то $\frac{S_{Z(t)}}{Z(t)} \as \mu$, $\frac{S_{Z(t) + 1}}{Z(t) + 1} \as \mu$ и $\frac{Z(t) + 1}{Z(t)} \to 1$. Следовательно, $\frac{t}{Z(t)} \as \mu$ при $t \to \infty$, т.\,е. $\frac{Z(t)}{t} \as \frac{1}{\mu}$, что завершает доказательство утверждения \ref{firstel}.
 
+  \sloppy
   Для доказательства утверждения \ref{secondel} используем теорему \ref{pussen}. А именно, рассмотрим семейство $\left\{\xi_t, t \geqslant \alpha\right\}$ и функцию $g(t) = t^2$, где $\xi_t = \frac{Z(t)}{t}$. По лемме \ref{est}
   \begin{equation*}
     \Expect \xi_t^2 = \frac{\Expect Z(t)^2}{t^2} \leqslant \frac{B t^2}{t^2} = B < \infty.
