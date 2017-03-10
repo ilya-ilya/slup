@@ -3,12 +3,16 @@
 \usepackage{commath}
 \usepackage{addmhh}
 \usepackage{mathrsfs}
+\usepackage[left=3cm,right=1.5cm,
+    top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+
 
 \newindex{default}{idx}{ind}{Предметный указатель}
 
 \newcommand{\Expect}{\mathsf{E}}
 \newcommand{\real}{\ensuremath\mathbb R}
 \newcommand{\nat}{\ensuremath\mathbb N}
+\newcommand{\whole}{\ensuremath\mathbb Z}
 \newcommand{\nonneg}{\ensuremath\mathbb Z_+}
 \newcommand{\borel}{\mathscr{B}}
 \newcommand{\as}{\xrightarrow{\text{п.\,н.}}}
@@ -23,6 +27,7 @@
 \newtheorem{lem}[thm]{Лемма}
 \newtheorem{prop}[thm]{Предложение}
 \newtheorem*{cor}{Следствие}
+\newtheorem{prob}{Задача}[section]
 
 \theoremstyle{definition}
 \newtheorem{defn}{Определение}[section]
@@ -30,6 +35,10 @@
 
 \theoremstyle{remark}
 \newtheorem*{rem}{Замечание}
+
+\newenvironment{solution}
+  {\renewcommand\qedsymbol{$\blacksquare$}\begin{proof}[Решение]}
+  {\end{proof}}
 
 \begin{document}
 \tableofcontents
@@ -39,49 +48,52 @@
 \subsection{Понятие случайного блуждания}
 
 \begin{defn}\index{Измеримое!пространство}
-  Пусть $V$ "--- множество, а $\mathscr{A}$ — $\sigma$-алгебра его подмножеств. Тогда ($V$, $\mathscr{A}$) называется \emph{измеримым пространством}.
+  Пусть $V$ "--- множество, а $\mathscr{A}$ — $\sigma$-алгебра его подмножеств. Тогда $(V, \mathscr{A})$ называется \emph{измеримым пространством}.
 \end{defn}
 
 \begin{defn}\index{Измеримое!отображение}
-  Пусть есть ($V$, $\mathscr{A}$) и ($S$, $\mathscr{B}$) "--- два измеримых пространства, $f$: $V$ $\rightarrow$ $S$ "--- отображение. $f$ называется \emph{$\mathscr{A}$|$\mathscr{B}$-измеримым}, если $\forall\, B \in\mathscr{B}$ $f^{-1}(B)\in\mathscr{A}$. \emph{Обозначение}: $f\in\mathscr{A}|\mathscr{B}$.
+  Пусть есть $(V, \mathscr{A})$ и $(S, \mathscr{B})$ "--- два измеримых пространства, $f\colon V \to S$ "--- отображение. $f$ называется \emph{$\mathscr{A}|\mathscr{B}$-измеримым}, если $\forall\, B \in\mathscr{B}\; f^{-1}(B)\in\mathscr{A}$. \emph{Обозначение}: $f\in\mathscr{A}|\mathscr{B}$.
 \end{defn}
 
 \begin{defn}\index{Случайный!элемент}
-  Пусть есть $(\Omega, \mathscr{F}, \Prob)$ "--- вероятностное пространство, \linebreak($S$, $\mathscr{B}$) "--- измеримое пространство, $Y$: $\Omega$ $\rightarrow$ $S$ "--- отображение. Если $Y\in\mathscr{F}|\mathscr{B}$, то $Y$ называется \emph{случайным элементом}.
+  Пусть есть $(\Omega, \mathscr{F}, \Prob)$ "--- вероятностное пространство, $(S, \mathscr{B})$ "--- измеримое пространство, $Y\colon \Omega \to S$ "--- отображение. Если $Y\in\mathscr{F}|\mathscr{B}$, то $Y$ называется \emph{случайным элементом}.
 \end{defn}
 
 \begin{defn}\index{Распределение!случайного элемента}
-  Пусть $(\Omega, \mathscr{F}, \Prob)$ "--- вероятностное пространство, \linebreak($S$, $\mathscr{B}$) "--- измеримое пространство, $Y$: $\Omega$ $\rightarrow$ $S$ "--- случайный элемент. \emph{Распределение вероятностей, индуцированное случайным элементом $Y$}, "--- это функция на множествах из $\mathscr{B}$, задаваемая равенством
+  Пусть $(\Omega, \mathscr{F}, \Prob)$ "--- вероятностное пространство, $(S, \mathscr{B})$ "--- измеримое пространство, $Y\colon \Omega \to S$ "--- случайный элемент. \emph{Распределение вероятностей, индуцированное случайным элементом $Y$,} "--- это функция на множествах из $\mathscr{B}$, задаваемая равенством
   \begin{equation*}
     \Prob_{Y}(B):= \Prob(Y^{-1}(B)), \quad B\in\mathscr{B}.
   \end{equation*}
 \end{defn}
 
 \begin{defn}\index{Случайный!процесс}
-  Пусть $(S_{t}, \mathscr{B}_{t})_{t \in T}$ "--- семейство измеримых пространств. \emph{Случайный процесс, ассоциированный с этим семейством}, "--- это семейство случайных элементов $X$ = $\lbrace X(t){,} t \in T \rbrace$, где $X(t)$: $\Omega$ $\rightarrow$ $S_{t}$, $X(t)$ $\in$ $\mathscr{F}|\mathscr{B}_{t}$ \linebreak $\forall\,t \in$ $T$. Здесь $T$ "--- это произвольное параметрическое множество, ($S_{t}$, $\mathscr{B}_{t}$) "--- произвольные измеримые пространства.
+  Пусть $(S_{t}, \mathscr{B}_{t})_{t \in T}$ "--- семейство измеримых пространств. \emph{Случайный процесс, ассоциированный с этим семейством}, "--- это семейство случайных элементов $X = \lbrace X(t){,} t \in T \rbrace$, где $X(t)\colon \Omega \to S_{t}$, $X(t) \in \mathscr{F}|\mathscr{B}_{t} \;\forall\,t \in T$. Здесь $T$ "--- это произвольное параметрическое множество, $(S_{t}, \mathscr{B}_{t}$) "--- произвольные измеримые пространства.
 \end{defn}
 
 \begin{rem}
-  Если T $\subset$ $\mathbb{R}$, то $t \in T$ интерпретируется как время. Если \linebreak $T = \mathbb{R}$, то время \emph{непрерывно}; если $T = \mathbb{Z}$ или $T = \mathbb{Z}_{+}$, то время \emph{дискретно}; если $T$ $\subset$ $\mathbb{R}^{d}$, то говорят о \emph{случайном поле}.
+  Если T $\subset$ $\mathbb{R}$, то $t \in T$ интерпретируется как время. Если $T = \mathbb{R}$, то время \emph{непрерывно}; если $T = \mathbb{Z}$ или $T = \mathbb{Z}_{+}$, то время \emph{дискретно}; если $T$ $\subset$ $\mathbb{R}^{d}$, то говорят о \emph{случайном поле}.
 \end{rem}
 
 \begin{defn}
-  Случайные элементы $X_{1}$, \ldots, $X_{n}$ называются \emph{независимыми}, если $\Prob\left(\bigcap\limits_{k=1}^n \left\lbrace X_{k} \in  B_{k}\right\rbrace \right) = \prod\limits_{k=1}^n \Prob(X_{k} \in B_{k})$  $\forall\, B_{1} \in \mathscr{B}_{1}$, \ldots, $B_{n} \in \mathscr{B}_{n}$.
+  Случайные элементы $X_{1}$, \ldots, $X_{n}$ называются \emph{независимыми}, если
+  \begin{equation*}
+    \Prob\left(\bigcap\limits_{k=1}^n \left\lbrace X_{k} \in  B_{k}\right\rbrace \right) = \prod\limits_{k=1}^n \Prob(X_{k} \in B_{k})\quad \forall\, B_{1} \in \mathscr{B}_{1}, \ldots, B_{n} \in \mathscr{B}_{n}.
+  \end{equation*}
 \end{defn}
 
 \begin{thm}[Ломницкого-Улама]\index{Теорема!Ломницкого-Улама}
-  Пусть $(S_{t}, \mathscr{B}_{t}, Q_{t})_{t \in  T}$ "--- семейство вероятностных пространств. Тогда на некотором $(\Omega, \mathscr{F}, \Prob)$ существует семейство \emph{независимых} случайных элементов $X_{t}$: $\Omega$ $\rightarrow$ $S_{t}$, $X_{t} \in \mathscr{F}|\mathscr{B}_{t}$ таких, что $\Prob_{X_{t}} = Q_{t}$, $t \in T$.
+  Пусть $(S_{t}, \mathscr{B}_{t}, Q_{t})_{t \in  T}$ "--- семейство вероятностных пространств. Тогда на некотором $(\Omega, \mathscr{F}, \Prob)$ существует семейство \emph{независимых} случайных элементов $X_{t}\colon \Omega \to S_{t}$, $X_{t} \in \mathscr{F}|\mathscr{B}_{t}$ таких, что $\Prob_{X_{t}} = Q_{t}$, $t \in T$.
 \end{thm}
 
 \begin{rem}
   \sloppy
-  Это значит, что на некотором вероятностном пространстве можно задать независимое семейство случайных элементов с наперед указанными распределениеми. При этом $T$ по-прежнему любое, как и $(S_{t}, \mathscr{B}_{t}, \mathbb{Q})_{t \in T}$ "--- произвольные вероятностные пространства. Независимость здесь означает независимость в совокупности $\forall\,$ конечного поднабора.
+  Это значит, что на некотором вероятностном пространстве можно задать независимое семейство случайных элементов с наперед указанными распределениеми. При этом $T$ по-прежнему любое, как и $(S_{t}, \mathscr{B}_{t}, \mathbb{Q})_{t \in T}$ "--- произвольные вероятностные пространства. Независимость здесь означает независимость в совокупности любого конечного поднабора.
 \end{rem}
 
 \subsection{Случайные блуждания}
 
 \begin{defn}\index{Случайное блуждание}
-  Пусть $X$, $X_{1}$, $X_{2}$, \ldots - независимые одинаково распределенные случайные векторы со значениями в $\mathbb{R}^{d}$. \emph{Случайным блужданием в $\mathbb{R}^{d}$} называется случайный процесс с дискретным временем $S = \lbrace S_{n}, n \geqslant 0 \rbrace$ ($n \in \mathbb{Z}_{+}$) такой, что
+  Пусть $X$, $X_{1}$, $X_{2}$, \ldots - независимые одинаково распределенные случайные векторы со значениями в $\mathbb{R}^{d}$. \emph{Случайным блужданием в $\mathbb{R}^{d}$} называется случайный процесс с дискретным временем $S = \lbrace S_{n}, n \in \mathbb{Z}_{+}\rbrace$ такой, что
   \begin{align*}
     S_{0} &:= x \in \mathbb{R}^{d} \quad\text{(начальная точка)};\\
     S_{n} &:= x + X_{1} + \ldots + X_{n}, \quad n \in \mathbb{N}.
@@ -97,7 +109,7 @@
 \end{defn}
 
 \begin{defn}\index{Случайное блуждание!простое!возвратное}
-  Введем N := $\sum\limits_{n=0}^\infty \ind \lbrace S_{n} = 0 \rbrace$ ($\leqslant \infty$). Это, по сути, число попаданий нашего процесса в точку 0. Простое случайное блуждание $S = \lbrace S_{n}, n \geqslant 0\rbrace$ называется \emph{возвратным}, если $\Prob(N = \infty) = 1$; \emph{невозвратным}, если $\Prob(N < \infty) = 1$.
+  Введем $N := \sum\limits_{n=0}^\infty \ind \lbrace S_{n} = 0 \rbrace$ ($\leqslant \infty$). Это, по сути, число попаданий нашего процесса в точку 0. Простое случайное блуждание $S = \lbrace S_{n}, n \geqslant 0\rbrace$ называется \emph{возвратным}, если $\Prob(N = \infty) = 1$; \emph{невозвратным}, если $\Prob(N < \infty) = 1$.
 \end{defn}
 
 \begin{rem}
@@ -108,7 +120,7 @@
   Судя по всему, в лемме ниже подразумевается, что начальная точка нашего случайного блуждания "--- это 0.
 \end{rem}
 \begin{defn}
-  Число $\tau := \inf\lbrace n \in \mathbb{N} : S_{n} = 0 \rbrace$ ($\tau := \infty$, если $S_{n} \neq 0$ $\forall\, n \in N$) называется \emph{моментом первого возвращения в 0}.
+  Число $\tau := \inf\lbrace n \in \mathbb{N}\colon S_{n} = 0 \rbrace$ ($\tau := \infty$, если $S_{n} \neq 0\;\forall\, n \in N$) называется \emph{моментом первого возвращения в 0}.
 \end{defn}
 
 \begin{lem}
@@ -166,9 +178,9 @@
 \begin{proof}
   Если $\Expect N < \infty$, то $\Prob(N<\infty) = 1$.
   Пусть теперь $\Prob(N<\infty) = 1$. Это равносильно тому, что $\Prob(\tau < \infty) < 1$.
-  \begin{multline*}
-    \Expect N = \sum_{n=1}^{\infty} n\Prob(N=n) = \sum\limits_{n=1}^{\infty} n\Prob(\tau = \infty)\Prob(\tau < \infty)^{n-1} = \\ =\Prob(\tau = \infty)\sum\limits_{n=1}^{\infty} n\Prob(\tau < \infty)^{n-1}.
-  \end{multline*}
+  \begin{equation*}
+    \Expect N = \sum_{n=1}^{\infty} n\Prob(N=n) = \sum\limits_{n=1}^{\infty} n\Prob(\tau = \infty)\Prob(\tau < \infty)^{n-1} =\Prob(\tau = \infty)\sum\limits_{n=1}^{\infty} n\Prob(\tau < \infty)^{n-1}.
+  \end{equation*}
   Заметим, что
   \begin{equation*}
     \sum_{n=1}^{\infty} np^{n-1} = (\sum\limits_{n=1}^{\infty} p^{n})^{\prime} = (\frac{1}{1-p})^{\prime} = \frac{1}{(1-p)^{2}}.
@@ -286,6 +298,27 @@
   $0 \notin R(S)$, то  $R(S) = \varnothing$.
 \end{cor}
 
+\subsection{Задачи}
+
+\begin{prob}
+	Пусть $S = \{S_n, n\geq 0\}$ - простое случайное блуждание в $\whole$, имеющее начальной точкой нуль. Доказать, что для любых $a,b\in			\whole$ таких, что $a<0<b$, с вероятностью единица блуждание не останется в полосе, ограниченной прямыми $y = a$ и $y = b$.
+\end{prob}
+\begin{solution}
+	Поделим случайные величины $\xi_n = S_n - S_{n-1}, n \in \nat$ на группы по $M = \left[b-a\right] + 1$ штук:
+	\begin{equation*}
+		\underbrace{\xi_1, \xi_2, \ldots, \xi_M}_{M\text{ штук}}, \underbrace{\xi_{M+1}, \ldots,\xi_{2M}}_{M\text{ штук}}, \ldots
+	\end{equation*}
+Покажем, что вероятность $\Prob_{ab}$ того, что блуждание останется в полосе, равняется нулю. Очевидно, что если в каждой группе все $\xi_i$ одновременно равны либо $+1$, либо $-1$, то тогда мы вылетаем за полосу. Вероятность того, что все $\xi_i$ в каждой группе одновременно не обратятся в $\pm 1$ вычисляется следующим образом:
+		\begin{equation*}
+			\Prob_{\pm 1} = \lim_{k \rightarrow \infty} (1 - p^M + q^M)^k = 0
+		\end{equation*}
+	Вычисленная вероятность является в том числе верхней оценкой вероятности того, что мы останемся в полосе. Таким образом,
+	\begin{equation*}
+		\Prob_{ab} \leq \Prob_{\pm 1} = 0 \Rightarrow \Prob_{ab} = 0,
+	\end{equation*}
+	что и требовалось доказать.
+\end{solution}
+
 \section[Лекция от 15.02.17. Ветвящиеся процессы и процессы восстановления]{Лекция от 15.02.17\\ {\large Ветвящиеся процессы и процессы восстановления}}
 
 \subsection{Модель Гальтона--Ватсона}\index{Модель Гальтона-Ватсона}
@@ -336,12 +369,12 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 \begin{proof}
 
   \begin{multline*}
-    f_{Z_{n}}(s) = \Expect s^{Z_{n}} = \Expect \left(s^{\sum_{k=1}^{Z_{n-1}} \xi_{n, k}}\right) =\\
+    f_{Z_{n}}(s) = \Expect s^{Z_{n}} = \Expect \left(s^{\sum_{k=1}^{Z_{n-1}} \xi_{n, k}}\right)
     = \sum_{j=0}^{\infty} \Expect \left[ \left( s^{\sum_{k=1}^{Z_{n-1}} \xi_{n, k}} \right)  \ind \lbrace Z_{n-1} = j \rbrace \right] = \\ = \sum_{j=0}^{\infty} \Expect \left[ \left( s \: ^{\sum_{k=1}^{j} \xi_{n, k}} \right)  \ind \lbrace Z_{n-1} = j \rbrace \right].
   \end{multline*}
   Поскольку $\sigma \lbrace Z_{r} \rbrace \subset \sigma \lbrace \xi_{m, k}, \; m = 1, \ldots, r, \; k \in \mathbb{N} \rbrace$, которая независима с $\sigma \lbrace \xi_{n, k}, \; k \in \mathbb{N} \rbrace$ (строгое и полное обоснование остается в качестве упражнения), то
   \begin{multline*}
-    \sum_{j=0}^{\infty} \Expect \left[ \left( s \: ^{\sum_{k=1}^{j} \xi_{n, k}} \right)  \ind \lbrace Z_{n-1} = j \rbrace \right]  =  \sum\limits_{j=0}^{\infty} \Expect \left(s \: ^{\sum\limits_{k=1}^{j} \xi_{n, k}}\right) \Expect \ind \lbrace Z_{n-1} = j \rbrace  = \\ = \sum\limits_{j=0}^{\infty} \Expect \left(s \: ^{\sum\limits_{k=1}^{j} \xi_{n, k}}\right) \Prob ( Z_{n-1} = j ) = \sum\limits_{j=0}^{\infty} \prod\limits_{k=1}^{j} \Expect s^{\xi_{n, k}} \Prob (Z_{n-1} = j) = \\ = \sum\limits_{j=0}^{\infty} \psi_{\xi}^{j} (s) \Prob (Z_{n-1} = j)  =  f_{Z_{n-1}} \left(\psi_{\xi} \left(s \right) \right)
+    \sum_{j=0}^{\infty} \Expect \left[ \left( s \: ^{\sum_{k=1}^{j} \xi_{n, k}} \right)  \ind \lbrace Z_{n-1} = j \rbrace \right]  =  \sum\limits_{j=0}^{\infty} \Expect \left(s \: ^{\sum\limits_{k=1}^{j} \xi_{n, k}}\right) \Expect \ind \lbrace Z_{n-1} = j \rbrace   = \sum\limits_{j=0}^{\infty} \Expect \left(s \: ^{\sum\limits_{k=1}^{j} \xi_{n, k}}\right) \Prob ( Z_{n-1} = j ) = \\ = \sum\limits_{j=0}^{\infty} \prod\limits_{k=1}^{j} \Expect s^{\xi_{n, k}} \Prob (Z_{n-1} = j)  = \sum\limits_{j=0}^{\infty} \psi_{\xi}^{j} (s) \Prob (Z_{n-1} = j)  =  f_{Z_{n-1}} \left(\psi_{\xi} \left(s \right) \right)
   \end{multline*}
   в силу независимости и одинаковой распределенности $\xi_{n, k}$ и определения производящей функции. Таким образом,
   \begin{equation*}
@@ -353,7 +386,7 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
   \end{equation*}
   Заметим, что
   \begin{multline*}
-    f_{Z_{n}}(s) = f_{Z_{n-1}}(\psi_{\xi}(s)) = f_{Z_{n-2}} \left(\psi_{\xi} \left( \psi_{\xi} \left(s \right) \right) \right) = \ldots = \underbrace{\psi_{\xi} (\psi_{\xi} \ldots (\psi_{\xi}}_{\text{$n$ итераций}}(s)) \ldots ) = \\ = \psi_{\xi} (f_{Z_{n-1}} (s)){.}
+    f_{Z_{n}}(s) = f_{Z_{n-1}}(\psi_{\xi}(s)) = f_{Z_{n-2}} \left(\psi_{\xi} \left( \psi_{\xi} \left(s \right) \right) \right) = \ldots = \underbrace{\psi_{\xi} (\psi_{\xi} \ldots (\psi_{\xi}}_{\text{$n$ итераций}}(s)) \ldots ) = \psi_{\xi} (f_{Z_{n-1}} (s)){.}
   \end{multline*}
   Тогда при $s = 0$ имеем, что
   \begin{equation*}
@@ -525,7 +558,7 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
   \begin{multline*}
     \Prob\left( U_0 + \ldots + U_j = m - j\right) = \sum_{(k_0, \ldots, k_j) \in M} \Prob(U_0 = k_0, \ldots, U_j = k_j) =\\
     = \sum_{(k_0, \ldots, k_j) \in M} \Prob(U_0 = k_0)\ldots \Prob(U_j = k_j) = \sum_{(k_0, \ldots, k_j) \in M} p (1 - p)^{k_0}\ldots p (1 - p)^{k_j} =\\
-    = \sum_{(k_0, \ldots, k_j) \in M} = p^{j + 1} (1 - p)^{k_0 + \ldots + k_j} =\\
+    = \sum_{(k_0, \ldots, k_j) \in M} = p^{j + 1} (1 - p)^{k_0 + \ldots + k_j}
     = p^{j + 1} (1 - p)^{m - j} \#M = C_m^j p^{j + 1} (1 - p)^{m - j}.
   \end{multline*}
 \end{proof}
@@ -540,10 +573,10 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
   По лемме \ref{lemsum} $\Expect Z^\star(t) = \Expect(j + U_0 + \ldots + U_j) = j + (j + 1) \Expect U$, где $\Expect U =: a(p) < \infty$ "--- математическое ожидание геометрического распределения.
 
   Тогда
-  \begin{multline*}
-    \Expect Z^\star(t) = j + (j + 1) a(p) \leqslant (j + 1) \big(a(p) + 1\big) \leqslant\\
+  \begin{equation*}
+    \Expect Z^\star(t) = j + (j + 1) a(p) \leqslant (j + 1) \big(a(p) + 1\big)
     \leqslant \frac{t + \alpha}{\alpha} \big(a(p) + 1\big) \leqslant \frac{2 t}{\alpha} \big( a(p) + 1 \big) = A t,
-  \end{multline*}
+  \end{equation*}
   где $A := \frac{2 (a(p) + 1)}{\alpha}$.
 
   Далее,
@@ -737,6 +770,59 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
 \end{proof}
 
 Пусть $X_j \sim \Exp(\lambda)$ "--- интервалы между временами прихода автобусов на данную остановку. Тогда случайная величина $X_1^t = S_{N(t) + 1} - t$ соответствует времени ожидания прибытия ближайшего автобуса. Мы только что доказали, что она распределена так же, как и интервалы: $X_1^t \sim \Exp(\lambda)$. Мы будем в среднем ждать автобуса столько же времени, сколько в среднем проходит времени между двумя автобусами. В этом состоит \textbf{парадокс времени ожидания}\index{Парадокс времени ожидания}. Никакого противоречия здесь на самом деле нет, так как сами моменты прихода автобусов также случайные.
+
+\subsection{Задачи}
+\begin{prob}
+Можно ли утверждать, что не только пуассоновский процесс, но и любой процесс восстановления является процессом с независимыми приращениями?
+\end{prob}
+\begin{solution}
+Нет, нельзя. Приведем контрпример. Итак, пусть процесс восстановления $Z(t)$ порожден н.о.р. случайными величинами $\{X,X_i \; | \; i \in \mathbb{N}\}$, где
+\begin{equation*}
+\Prob(X = 0) = \Prob(X = 1) = \Prob(X = 2) = \frac{1}{3}
+\end{equation*}
+Покажем, что у процесса восстановления $Z(t)$ существуют зависимые приращения. Сначала заметим, что
+\begin{equation*}
+\Prob(Z(1) = 0, Z(2)-Z(1) = 0) = 0,
+\end{equation*}
+так как $X \leq 2$.
+\\
+\\
+Теперь по отдельности рассмотрим следующие вероятности $\Prob(Z(1) = 0)$, $\Prob(Z(2)-Z(1) = 0)$:
+\begin{equation*}
+\Prob(Z(1) = 0) = P(X_1 = 0) = \frac{1}{3}
+\end{equation*}
+Со второй вероятностью чуть сложнее:
+\begin{equation*}
+\Prob(Z(2)-Z(1) = 0) = \Prob(Z(2) = Z(1)) \geq \Prob(X_1 = 1, X_2 = 2) = \frac{1}{9}
+\end{equation*}
+Напишем в явном виде полученное противоречие:
+\begin{equation*}
+\Prob(Z(1) = 0, Z(2)-Z(1) = 0) = 0 \neq  \Prob(Z(1) = 0) \Prob(Z(2)-Z(1) = 0)
+\end{equation*}
+\end{solution}
+
+\begin{prob}
+  Найти ковариционную функцию процесса $Z = \{ Z(t), t \geq 0 \}$, где $Z(t) = \xi_0(-1)^{N(t)}, N = \{N(t),t \geq 0\}$ - пуассоновский         процесс интенсивоности $\lambda$, случайная величина $\xi_0$ принимает значения $1$ и $-1$ с вероятностью $1/2$, причем $\xi_0$ не  зависит от процесса $N$.
+\end{prob}
+
+\begin{solution}
+  Пусть $t > s$. Распишем определение ковариации:
+  \begin{equation*}
+    \text{cov}\left(\xi_0(-1)^{N(t)},\xi_0(-1)^{N(s)}\right) = \Expect \left[\xi_0^2 (-1)^{N(t)+N(s)}\right] - \mathsf{E}\left[\xi_0(-1)^{N(t)} \right]\Expect \left[\xi_0(-1)^{N(s)}\right]
+  \end{equation*}
+   Вспомним, что для независимых случайных величин $\xi$ и $\eta$ выполнено $\Expect\xi\eta = \Expect\xi\Expect\eta$ и продолжим рассуждения:
+    \begin{equation*}
+      =   \Expect\eta^2 \mathsf{E}(-1)^{N(t)+N(s)} - \left(\mathsf{E}\eta\right)^2 \Expect\left[(-1)^{N(t)}\right] \Expect \left[ (-1)^{N(s)} \right]
+    \end{equation*}
+    Обозначим за $\psi_\mu(z) = e^{\mu(z-1)}$ - производящуюю функцию $\Pois(\mu)$. Заметим, что $\mathsf{E}\eta^2 \equiv 1$, $\mathsf{E}\eta = 0$ и $(-1)^{N(t)-N(s)} = (-1)^{N(t)+N(s)}$. Подставим в полученное выше выражение, продолжив рассуждения:
+    \begin{equation*}
+      = \Expect(-1)^{N(t)-N(s)} = \psi_{\lambda(t-s)}(-1) = e^{-2\lambda(t-s)},
+    \end{equation*}
+    Опустив изначальное предположение $t > s$, получаем
+    \\
+    \\
+    \textbf{Ответ:} $e^{-2\lambda|t-s|}$
+\end{solution}
 
 \clearpage
 \phantomsection
