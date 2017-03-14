@@ -809,9 +809,9 @@ $\lbrace Z_{n} = 0 \rbrace \subset \lbrace Z_{n+1} = 0 \rbrace$ и $A = \bigcup\
   \end{equation*}
    Вспомним, что для независимых случайных величин $\xi$ и $\eta$ выполнено $\Expect\xi\eta = \Expect\xi\Expect\eta$ и продолжим рассуждения:
     \begin{equation*}
-      =   \Expect\eta^2 \mathsf{E}(-1)^{N(t)+N(s)} - \left(\mathsf{E}\eta\right)^2 \Expect\left[(-1)^{N(t)}\right] \Expect \left[ (-1)^{N(s)} \right]
+      =   \Expect\xi_0^2 \Expect(-1)^{N(t)+N(s)} - \left(\Expect\xi_0\right)^2 \Expect\left[(-1)^{N(t)}\right] \Expect \left[ (-1)^{N(s)} \right]
     \end{equation*}
-    Обозначим за $\psi_\mu(z) = e^{\mu(z-1)}$ - производящуюю функцию $\Pois(\mu)$. Заметим, что $\mathsf{E}\eta^2 \equiv 1$, $\mathsf{E}\eta = 0$ и $(-1)^{N(t)-N(s)} = (-1)^{N(t)+N(s)}$. Подставим в полученное выше выражение, продолжив рассуждения:
+    Обозначим за $\psi_\mu(z) = e^{\mu(z-1)}$ - производящуюю функцию $\Pois(\mu)$. Заметим, что $\Expect\xi_0^2 \equiv 1$, $\Expect\xi_0 = 0$ и $(-1)^{N(t)-N(s)} = (-1)^{N(t)+N(s)}$. Подставим все "замеченное" в полученное выше выражение:
     \begin{equation*}
       = \Expect(-1)^{N(t)-N(s)} = \psi_{\lambda(t-s)}(-1) = e^{-2\lambda(t-s)},
     \end{equation*}
